@@ -37,70 +37,59 @@
 
 
     <header>
-
         <div class="fixed-top">
-
-
-      <nav class="navbar container">
-            <div class="mr-auto bd-highlight">
-                <a href="{% url 'home' %}" class="navbar-brand">
-                    <h1 class="logo">Lonely House</h1>
-                </a>
-            </div>
-
-
-            <div class="p-2 bd-highlight">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#search-bar" aria-controls="search-bar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="icon">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </span>
-                </button>
-            </div>
-
-
-            <div class="p-2 bd-highlight">
-                <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="icon">
-                        <i class="fa-solid fa-user"></i>
-                    </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-options">
-                    {% if request.user.is_authenticated %}
-                        {% if request.user.is_superuser %}
-                            <a href="" class="dropdown-item">Product Management</a>
-                        {% endif %}
-                        <a href="" class="dropdown-item">My Profile</a>
-                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                    {% else %}
-                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                    {% endif %}
+            <nav class="navbar container">
+                <div class="mr-auto bd-highlight">
+                    <a href="{% url 'home' %}" class="navbar-brand">
+                        <h1 class="logo">Lonely House</h1>
+                    </a>
                 </div>
-            </div>
-        </nav>
-
-        <div class="collapse" id="search-bar">    
-            <form method="GET" action="">
-                <div class="container">
-                    <div class="input-group">
-                        <input class="form-control rounded-0" type="text" name="q" placeholder="Search our site">
-                        <div class="input-group-append">
-                            <button class="form-control btn rounded-0" type="submit">
-                                <span class="icon">
-                                    <i class="fas fa-search"></i>
-                                </span>
-                            </button>
-                        </div>
+                <div class="p-2 bd-highlight">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#search-bar" aria-controls="search-bar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="icon">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-options">
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                                <a href="" class="dropdown-item">Product Management</a>
+                            {% endif %}
+                            <a href="" class="dropdown-item">My Profile</a>
+                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                        {% else %}
+                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                        {% endif %}
                     </div>
                 </div>
-            </form>
+            </nav>
+
+            <div class="collapse" id="search-bar">    
+                <form method="GET" action="">
+                    <div class="container">
+                        <div class="input-group">
+                            <input class="form-control rounded-0" type="text" name="q" placeholder="Search our site">
+                            <div class="input-group-append">
+                                <button class="form-control btn rounded-0" type="submit">
+                                    <span class="icon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-
-    </div>
     </header>
-
-
-
 
     <div class="header-container"></div>
 
@@ -114,6 +103,53 @@
 
     {% block content %}
     {% endblock %}
+
+
+    <footer class="mt-auto d-flex">
+        <div class="container-fluid">
+            <hr>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 text-sm-left">
+                            <h3>
+                                Lonely House
+                            </h3>
+                            <p class="small mb-md-2">
+                                Secluded holiday rentals for remote getaways
+                            </p>
+                        </div>
+                        <div class="col-sm-6 text-sm-right">
+                            <ul class="list-inline social-links">
+                                <li class="list-inline-item">
+                                    <a target="_blank" href="https://www.facebook.com">
+                                        <i class="fa-brands fa-facebook-square" aria-hidden="true"></i>
+                                        <span class="sr-only">Facebook</span>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a target="_blank" href="https://twitter.com">
+                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                        <span class="sr-only">Twitter</span>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a target="_blank" href="https://www.instagram.com">
+                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                                        <span class="sr-only">Instagram</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 text-sm-left">
+                            <p class="small">
+                                Copyright © 2022 fledgling
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     {% block postloadjs %}
     {% endblock %}

@@ -12,7 +12,7 @@ green #474d23
 dark #111f24
 mist #e1e2e7 */
 
-.bg-green {
+.green-bg {
     background-color: #474d23;
 }
 
@@ -20,11 +20,19 @@ mist #e1e2e7 */
     color: #e1e2e7;
 }
 
+.dark-bg {
+    background-color: #111f24;
+}
+
 /* --------------------- Base Template --------------------- */
 
 body {
     background-color: #e1e2e7;
     color: #111f24;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Jost, sans-serif;
 }
 
 .logo {
@@ -36,8 +44,13 @@ body {
     color: #e1e2e7;
 }
 
-h1 {
-    font-family: 'Josefin Slab';
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Josefin Slab', serif;
 }
 
 .header-container {
@@ -51,6 +64,32 @@ h1 {
 .navbar {
     padding-bottom: 0;
 }
+
+footer {
+    min-height: 10vh;
+    width: 100%;
+  }
+  
+  footer .row {
+    padding-top: 20px;
+    text-align: center;
+  }
+  
+  /* class name and css originally from CV CI project */
+  .social-links li a i {
+    font-size: 32px;
+    text-align: center;
+    color:#474d23;
+    margin: 0;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+  }
+  
+  .social-links li a i:hover {
+    color: #111f24
+  }
 
 /* --------------------- Hopmepage --------------------- */
 
@@ -67,6 +106,14 @@ h1 {
     /* color: #111f24; */
     color: #e1e2e7;
 }
+
+/* .btn-dark {
+    border: none;
+}
+
+.btn-dark:hover {
+    background-color: #474d23;
+  } */
 
 /* --------------------- Media Queries --------------------- */
 
