@@ -54,7 +54,7 @@ h6 {
 }
 
 .header-container {
-    padding-top: 0px;
+    padding-top: 64px;
 }
 
 #search-bar {
@@ -63,6 +63,15 @@ h6 {
 
 .navbar {
     padding-bottom: 0;
+    height: 74px;
+    z-index: 1;
+}
+
+.nav-background {
+    background-color: #474d23;
+    width: 100%;
+    height: 74px;
+    z-index: -10;
 }
 
 footer {
@@ -98,6 +107,12 @@ footer {
     background-size: cover;
     height: 50vh;
     color: #e1e2e7;
+}
+
+/* --------------------- Cards --------------------- */
+
+.card-full-width {
+    width: 100%;
 }
 
 /* --------------------- Icons & Buttons --------------------- */

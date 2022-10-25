@@ -2,14 +2,54 @@
 {% load static %}
 
 {% block page_header %}
+    <div class="nav-background"></div>
+    <div class="header-container"></div>
 {% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row">
         <div class="col">
-            {{ listings }}
+            <h2 class="text-center">Listings</h2>
+            <hr>
         </div>
+    </div>
+    <div class="row">
+        {% for listing in listings %}
+            <div class="card card-full-width mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        {% if listing.image %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ listing.image }}" alt="{{ listing.name }}">
+                        </a>
+                        {% else %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.png" alt="{{ listing.name }}">
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ listing.name }}</h5>
+                            <p class="card-text">${{ listing.price }}</p>
+                            {% if listing.category %}
+                            <p class="card-text">
+                                <a class="text-muted" href="">
+                                    <i class="fas fa-tag mr-1"></i>{{ listing.category.friendly_name }}
+                                </a>
+                            </p>
+                            {% endif %}
+                            {% if listing.rating %}
+                                <p class="card-text"><i class="fas fa-star mr-1"></i>{{ listing.rating }} / 5</p>
+                            {% else %}
+                                <p class="card-text">No Rating</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
