@@ -20,11 +20,11 @@
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         {% if listing.image %}
-                        <a href="">
+                        <a href="{% url 'listing_detail' listing.id %}">
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ listing.image }}" alt="{{ listing.name }}">
                         </a>
                         {% else %}
-                        <a href="">
+                        <a href="{% url 'listing_detail' listing_id %}">
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.png" alt="{{ listing.name }}">
                         </a>
                         {% endif %}
