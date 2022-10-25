@@ -2,14 +2,15 @@
 {% load static %}
 
 {% block page_header %}
+    <div class="header-container-sm"></div>
 {% endblock %}
 
 {% block content %}
     <div class="jumbotron jumbotron-fluid d-flex align-items-end">
         <div class="container">
-            <h1 class="display-4">Escape Into Nature</h1>
-            <p class="lead">Secluded holiday rentals for remote getaways</p>
-            <a class="btn btn-dark dark-bg" href="{% url 'listings' %}" role="button">Search & Book</a>
+                    <h2 class="display-4">Escape Into Nature</h2>
+                    <p class="lead">Secluded holiday rentals for remote getaways</p>
+                    <a class="btn btn-dark dark-bg" href="{% url 'listings' %}" role="button">Search & Book</a>
         </div>
     </div>
     <div class="container">

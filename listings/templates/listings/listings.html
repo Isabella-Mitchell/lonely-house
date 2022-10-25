@@ -2,54 +2,63 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="nav-background"></div>
-    <div class="header-container"></div>
+    <div class="header-container-sm"></div>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col">
+    <div class="listings-image d-flex align-items-center mb-3">
+        <div class="container">
             <h2 class="text-center">Listings</h2>
-            <hr>
+            <h3 class="lead text-center">Fnd the place to make you happy</h3>
         </div>
     </div>
-    <div class="row">
-        {% for listing in listings %}
-            <div class="card card-full-width mb-3">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        {% if listing.image %}
-                        <a href="{% url 'listing_detail' listing.id %}">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ listing.image }}" alt="{{ listing.name }}">
-                        </a>
-                        {% else %}
-                        <a href="{% url 'listing_detail' listing_id %}">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.png" alt="{{ listing.name }}">
-                        </a>
-                        {% endif %}
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ listing.name }}</h5>
-                            <p class="card-text">${{ listing.price }}</p>
-                            {% if listing.category %}
-                            <p class="card-text">
-                                <a class="text-muted" href="">
-                                    <i class="fas fa-tag mr-1"></i>{{ listing.category.friendly_name }}
-                                </a>
-                            </p>
-                            {% endif %}
-                            {% if listing.rating %}
-                                <p class="card-text"><i class="fas fa-star mr-1"></i>{{ listing.rating }} / 5</p>
+    <div class="container">
+        <div class="row">
+            {% for listing in listings %}
+                <div class="card card-full-width mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-6">
+                            {% if listing.image %}
+                            <a href="{% url 'listing_detail' listing.id %}">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ listing.image }}" alt="{{ listing.name }}">
+                            </a>
                             {% else %}
-                                <p class="card-text">No Rating</p>
+                            <a href="{% url 'listing_detail' listing_id %}">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.png" alt="{{ listing.name }}">
+                            </a>
                             {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 col-md-8">
+                                        <h5 class="card-title">{{ listing.name }}</h5>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        {% if listing.rating %}
+                                        <p class="card-text"><i class="fas fa-star mr-1"></i>{{ listing.rating }} / 5</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <hr class="mt-0">
+                                <p class="card-text text-truncate"> {{ listing.description }}</p>
+                                {% if listing.country %}
+                                    <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ listing.country }}</p>
+                                {% endif %}
+                                <p class="card-text">Price per night: £{{ listing.price }}</p>
+                                {% if listing.category %}
+                                <p class="card-text">
+                                    <a class="text-muted" href="">
+                                        <i class="fas fa-tag mr-1"></i>{{ listing.category.friendly_name }}
+                                    </a>
+                                </p>
+                                {% endif %}
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
-</div>
 {% endblock %}

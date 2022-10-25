@@ -41,7 +41,7 @@ body {
     padding-left: 16px;
     font-family: 'Josefin Slab', serif;
     font-weight: 600;
-    color: #e1e2e7;
+    color: #474d23;
 }
 
 h1,
@@ -53,26 +53,43 @@ h6 {
     font-family: 'Josefin Slab', serif;
 }
 
-.header-container {
+.header-container-lg {
+    padding-top: 107px;
+}
+
+.header-container-sm {
     padding-top: 64px;
 }
 
-#search-bar {
+/* #search-bar {
     background-color: white;
+} */
+
+.form-control {
+    background-color: #f2f2f2;
+    border-radius: 25px;
 }
 
 .navbar {
     padding-bottom: 0;
     height: 74px;
-    z-index: 1;
 }
 
-.nav-background {
+.fixed-top {
+    background-color: #e1e2e7;
+}
+
+.nav-hr {
+    margin: 0;
+    color: #474d23;
+}
+
+/* .nav-background {
     background-color: #474d23;
     width: 100%;
     height: 74px;
     z-index: -10;
-}
+} */
 
 footer {
     min-height: 10vh;
@@ -103,9 +120,18 @@ footer {
 /* --------------------- Hopmepage --------------------- */
 
 .jumbotron {
-    background: url('/media/holding-image-green-test.jpg') no-repeat center center fixed;
+    background: url('/media/holding-image.jpg') no-repeat;
     background-size: cover;
     height: 50vh;
+    color: #e1e2e7;
+}
+
+/* --------------------- Listings Page --------------------- */
+
+.listings-image {
+    background: url('/media/holding-image.jpg') no-repeat fixed;
+    background-size: cover;
+    height: 30vh;
     color: #e1e2e7;
 }
 
@@ -119,7 +145,8 @@ footer {
 
 .icon {
     /* color: #111f24; */
-    color: #e1e2e7;
+    /* color: #e1e2e7; */
+    color: #474d23;
 }
 
 /* .btn-dark {
