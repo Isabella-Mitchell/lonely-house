@@ -19,12 +19,30 @@
                     <div class="container">
                         <div class="form-group">
                             <div class="input-group">
+                                <p>Filters</p>
                                 <!--Category-->
-                                <label for="exampleFormControlSelect1">Category</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="category">
+                                <!-- <label for="exampleFormControlSelect1">Category</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="category" multiple>
                                 <option value="wetlands">Wetlands</option>
                                 <option value="forest">Forest</option>
-                                </select>
+                                </select> -->
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                      Category
+                                    </button>
+                                    <div class="dropdown-menu p-3">
+                                        <fieldset>
+                                            <div>
+                                                <input type="checkbox" id="wetlands" name="category" value="wetlands">
+                                                <label for="wetlands">wetlands</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="forest" name="category" value="forest">
+                                                <label for="forest">forest</label>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
                                 <!-- Sleeps -->
                                 <label for="exampleFormControlSelect2">Sleeps</label>
                                 <select class="form-control" id="exampleFormControlSelect2" name="sleeps">

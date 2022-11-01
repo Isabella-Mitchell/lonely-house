@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-# from django.http import QueryDict
+from django.http import QueryDict
 from .models import Listing, Category, Image, Facility
 
 
@@ -19,17 +19,22 @@ def all_listings(request):
     if request.GET:
 
         if 'category' in request.GET:
-            category_list = request.GET['category']
+            # category_list = request.GET['category']
+            category_list = request.GET.getlist('category')
             print(category_list)
-            categories_query_name = request.GET['category']
-            print(categories_query_name)
-            categories_query = request.GET['category'].split(',')
-            listings = listings.filter(category__name__in=categories_query)
-            categories_query = Category.objects.filter(name__in=categories_query)
+            for item in category_list:
+                categories_query_name = item
+                print(categories_query_name)
+            listings = listings.filter(category__name__in=category_list)
+            categories_query = Category.objects.filter(name__in=category_list)
+                # categories_query = request.GET['category'].split(',')
+                # listings = listings.filter(category__name__in=categories_query_name)
+                # categories_query = Category.objects.filter(name__in=categories_query)
 
         if 'sleeps' in request.GET:
             sleeps_query = request.GET['sleeps']
-            listings = listings.filter(no_sleeps=sleeps_query)
+            # gte means greater than or equal too
+            listings = listings.filter(no_sleeps__gte=sleeps_query)
 
         if 'facility' in request.GET:
             facilities_query_name = request.GET['facility']
