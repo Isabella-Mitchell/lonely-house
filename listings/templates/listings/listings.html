@@ -84,6 +84,12 @@
                                 </p>
                                 {% endif %}
 
+                                {% if listing.facilities %}
+                                {% for facility in listing.facilities.all %}
+                                <span>{{ facility.friendly_name }} </span>
+                                {% endfor %}
+                                {% endif %}
+
                             </div>
                         </div>
                     </div>
