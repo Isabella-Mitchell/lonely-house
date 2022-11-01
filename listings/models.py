@@ -46,6 +46,8 @@ class Listing(models.Model):
     bbq = models.BooleanField(default=False)
     cot = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
+    lead_image = models.ImageField(null=True, blank=True)
+    lead_image_url = models.URLField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
         return self.name

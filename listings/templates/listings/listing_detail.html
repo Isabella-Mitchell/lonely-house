@@ -11,11 +11,12 @@
         <div class="col-12 col-md-6">
                 
         <!--Bootstrap carousel - conditional if set image-->
-            {% if listing.images.all %}
+            {% if listing.lead_image %}
+                {% if listing.images.all %}
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="{{ MEDIA_URL }}/holding-image.jpg" class="d-block w-100" alt="{{ listing.name }}">
+                                <img src="{{ MEDIA_URL }}/{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
                             </div>
                             {% for image in listing.images.all %}
                                 <div class="carousel-item">
@@ -32,10 +33,13 @@
                         <span class="sr-only">Next</span>
                         </button>
                     </div>
+                {% else %}
+                    <img src="{{ MEDIA_URL }}/{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
+                {% endif %}
             {% else %}
-            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.jpg" alt="{{ listing.name }}">
-        {% endif %}
-    </div>
+                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.jpg" alt="{{ listing.name }}">
+            {% endif %}
+        </div>
 
         <div class="col-12 col-md-6">
             <h3>{{ listing.name }}</h3>
