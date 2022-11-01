@@ -1,14 +1,18 @@
 from django.contrib import admin
-from .models import Listing, Category, Image
+from .models import Listing, Category, Image, Facilities
 
 
 class ImageInline(admin.TabularInline):
     model = Image
 
 
+class FacilitiesInline(admin.TabularInline):
+    model = Facilities
+
+
 class ListingAdmin(admin.ModelAdmin):
 
-    inlines = (ImageInline,)
+    inlines = (ImageInline, FacilitiesInline, )
 
     list_display = (
         'name',

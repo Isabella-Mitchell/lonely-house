@@ -30,27 +30,26 @@ class Listing(models.Model):
         max_digits=12, decimal_places=10, null=True, blank=True)
     longitude = models.DecimalField(
         max_digits=12, decimal_places=10, null=True, blank=True)
-    dog_friendly = models.BooleanField(default=False)
-    wheelchair_accessible = models.BooleanField(default=False)
-    hot_water = models.BooleanField(default=False)
-    central_heating = models.BooleanField(default=False)
-    fireplace = models.BooleanField(default=False)
-    bath = models.BooleanField(default=False)
-    shower = models.BooleanField(default=False)
-    washing_machine = models.BooleanField(default=False)
-    hob = models.BooleanField(default=False)
-    oven = models.BooleanField(default=False)
-    fridge = models.BooleanField(default=False)
-    tv = models.BooleanField(default=False)
-    wifi = models.BooleanField(default=False)
-    bbq = models.BooleanField(default=False)
-    cot = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
     lead_image = models.ImageField(null=True, blank=True)
     lead_image_url = models.URLField(max_length=1024, null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+
+class Facility(models.Model):
+    class Meta:
+        verbose_name_plural = 'Facilities'
+
+    name = models.CharField(max_length=254)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
 
 
 class Image(models.Model):

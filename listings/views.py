@@ -10,6 +10,26 @@ def all_listings(request):
     listings = Listing.objects.all()
     query = None
 
+    facility_icons = [
+                "dog_friendly",
+                "wheelchair_accessible",
+                "hot_water",
+                "central_heating",
+                "fireplace",
+                "bath",
+                "shower",
+                "washing_machine",
+                "hob",
+                "oven",
+                "fridge",
+                "tv",
+                "wifi",
+                "bbq",
+                "cot"]
+
+    for listing in listings:
+        print(listing.facilities.all())
+
     if request.GET:
         if 'q' in request.GET:
             query = request.GET['q']
