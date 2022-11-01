@@ -17,13 +17,13 @@
             {% for listing in listings %}
             <!--Landscape card-->
                 <div class="card card-full-width mb-3">
-                    <div class="row no-gutters">
+                    <div class="row no-gutters align-items-center">
                         <div class="col-md-6 col-lg-7">
 
                             <!--Bootstrap carousel - conditional if set image. data-interval set to false to stop autoslide-->
                             {% if listing.lead_image %}
                                 {% if listing.images.all %}
-                                    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+                                    <div id="carousel-{{ listing.id }}" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
                                                 <a href="{% url 'listing_detail' listing.id %}">
@@ -38,11 +38,11 @@
                                                 </div>
                                             {% endfor %}
                                         </div>
-                                        <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+                                        <button class="carousel-control-prev" type="button" data-target="#carousel-{{ listing.id }}" data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Previous</span>
                                         </button>
-                                        <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+                                        <button class="carousel-control-next" type="button" data-target="#carousel-{{ listing.id }}" data-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                         </button>
@@ -60,7 +60,7 @@
 
                         </div>
                         <div class="col-md-6 col-lg-5">
-                            <div class="card-body">
+                            <div class="card-body p-lg-5">
                                 <div class="row">
                                     <div class="col-8">
                                         <h5 class="card-title">{{ listing.name }}</h5>
@@ -73,14 +73,14 @@
                                 <hr class="mt-0">
 
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-7">
                                         {% if listing.region and listing.country %}
                                             <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ listing.region }}, {{ listing.country }}</p>
                                         {% elif listing.country %}
                                             <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ listing.country }}</p>
                                         {% endif %}
                                     </div>
-                                    <div class="col-6 text-right">
+                                    <div class="col-5 text-right">
                                     <p class="card-text"><i class="fa-solid fa-bed"></i> Sleeps {{ listing.no_sleeps }}</p>
                                     </div>
                                 </div>
@@ -94,10 +94,10 @@
                                 {% endif %} -->
 
                                 {% if listing.facilities %}
-                                    <div class="row pt-2 pb-2">
+                                    <div class="row pt-3 pb-2">
                                         <div class="col-12">
                                             {% for facility in listing.facilities.all %}
-                                            <span data-toggle="tooltip" data-placement="top" title="{{ facility.friendly_name }}"><i class="{{ facility.font_awesome_class }}"></i></span>
+                                            <span data-toggle="tooltip" data-placement="top" title="{{ facility.friendly_name }}"><i class="{{ facility.font_awesome_class }} facility-icons-medium"></i></span>
                                             {% endfor %}
                                         </div>
                                     </div>

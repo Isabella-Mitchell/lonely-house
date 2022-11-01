@@ -141,12 +141,29 @@ footer {
     width: 100%;
 }
 
+/* --------------------- Map Embed --------------------- */
+
+.map iframe {
+    min-width : 100%; 
+    min-height: 600px; 
+}
+
 /* --------------------- Icons & Buttons --------------------- */
 
 .icon {
     /* color: #111f24; */
     /* color: #e1e2e7; */
     color: #474d23;
+}
+
+.facility-icons-large {
+    font-size: x-large;
+    margin: 6px;
+}
+
+.facility-icons-medium {
+    font-size: large;
+    margin: 4px;
 }
 
 /* .btn-dark {
