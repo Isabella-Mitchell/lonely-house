@@ -18,15 +18,13 @@
                 <div class="card card-full-width mb-3">
                     <div class="row no-gutters">
                         <div class="col-md-6">
-                            {% if listing.image %}
+
+                            {% for image in listing.images.all %}
                             <a href="{% url 'listing_detail' listing.id %}">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ listing.image }}" alt="{{ listing.name }}">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ image.name }}" alt="{{ listing.name }}">
                             </a>
-                            {% else %}
-                            <a href="{% url 'listing_detail' listing_id %}">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.png" alt="{{ listing.name }}">
-                            </a>
-                            {% endif %}
+                            {% endfor %}
+
                         </div>
                         <div class="col-md-6">
                             <div class="card-body">
