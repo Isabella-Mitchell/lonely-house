@@ -32,32 +32,72 @@
                                     </button>
                                     <div class="dropdown-menu p-3">
                                         <fieldset>
-                                            <div>
-                                                <input type="checkbox" id="wetlands" name="category" value="wetlands">
-                                                <label for="wetlands">wetlands</label>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" id="forest" name="category" value="forest">
-                                                <label for="forest">forest</label>
-                                            </div>
+                                            {% for filter in category_filters %}
+                                                <div>
+                                                    <input type="checkbox" id="{{ filter.name }}" name="category" value="{{ filter.name }}">
+                                                    <label for="{{ filter.name }}">{{ filter.friendly_name }}</label>
+                                                </div>
+                                            {% endfor %}
                                         </fieldset>
                                     </div>
                                 </div>
+
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                      Guests
+                                    </button>
+                                    <div class="dropdown-menu p-3">
+                                        <fieldset>
+                                            {% for filter in sleep_filters %}
+                                                <div>
+                                                    <input type="checkbox" id="sleep_filter_{{ filter }}" name="sleeps" value="{{ filter }}">
+                                                    <label for="sleep_filter_{{ filter }}">{{ filter }}</label>
+                                                </div>
+                                            {% endfor %}
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                      Facilties
+                                    </button>
+                                    <div class="dropdown-menu p-3">
+                                        <fieldset>
+                                            {% for filter in facility_filters %}
+                                            <div>
+                                                <input type="checkbox" id="{{ filter.name }}" name="facility" value="{{ filter.name }}">
+                                                <label for="{{ filter.name }}">{{ filter.friendly_name }}</label>
+                                            </div>
+                                            {% endfor %}
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <!-- {% for filter in category_filters %}
+                                    {{ filter.friendly_name }}
+                                {% endfor %}
+                                {% for filter in sleep_filters %}
+                                    {{ filter }}
+                                {% endfor %}
+                                {% for filter in facility_filters %}
+                                    {{ filter.friendly_name }}
+                                {% endfor %} -->
                                 <!-- Sleeps -->
-                                <label for="exampleFormControlSelect2">Sleeps</label>
+                                <!-- <label for="exampleFormControlSelect2">Sleeps</label>
                                 <select class="form-control" id="exampleFormControlSelect2" name="sleeps">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="12">12</option>
-                                </select>
+                                </select> -->
                                 <!-- Facility -->
-                                <label for="exampleFormControlSelect3">Facility</label>
+                                <!-- <label for="exampleFormControlSelect3">Facility</label>
                                 <select class="form-control" id="exampleFormControlSelect3" name="facility">
                                 <option value="dog_friendly">Dog Friendly</option>
                                 <option value="wheelchair_accessible">Wheelchair Accessible</option>
-                                </select>
+                                </select> -->
                                 <div class="input-group-append">
                                     <button class="form-control btn" type="submit">
                                         <span class="icon">
@@ -80,8 +120,8 @@
                     {{ listings|length }} Listings
                     {% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
                     {% if sleeps_query %} found for <strong>"Sleeps {{ sleeps_query }}" | </strong>{% endif %}
-                    {% if categories_query_name %} found for <strong>"Category: {{ categories_query_name }}" | </strong>{% endif %}
-                    {% if categories_query_name %} found for <strong>"Facility: {{ facilities_query_name }}" | </strong>{% endif %}
+                    {% if categories_query %} found for <strong>"Category: {{ categories_query }}" | </strong>{% endif %}
+                    {% if facilities_query %} found for <strong>"Facility: {{ facilities_query }}" | </strong>{% endif %}
                 </p>
             </div>
         </div>

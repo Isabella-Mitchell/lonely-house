@@ -12,33 +12,52 @@ def all_listings(request):
     query = None
     sleeps_query = None
     categories_query = None
-    categories_query_name = None
     facilities_query = None
-    facilities_query_name = None
+
+    category_filters = [{
+        'name': 'wetlands',
+        'friendly_name': 'Wetlands',
+    }, {
+        'name': 'forest',
+        'friendly_name': 'Forest',
+    }]
+    sleep_filters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    facility_filters = [{
+        'name': 'dog_friendly',
+        'friendly_name': 'Dog Friendly'
+    }, {
+        'name': 'wheelchair_accessible',
+        'friendly_name': 'Wheelchair Accessible'
+    }]
 
     if request.GET:
 
         if 'category' in request.GET:
             # category_list = request.GET['category']
-            category_list = request.GET.getlist('category')
-            print(category_list)
-            for item in category_list:
-                categories_query_name = item
-                print(categories_query_name)
-            listings = listings.filter(category__name__in=category_list)
-            categories_query = Category.objects.filter(name__in=category_list)
+            category_query = request.GET.getlist('category')
+            # print(category_list)
+            # for item in category_list:
+            #     categories_query_name = item
+            #     print(categories_query_name)
+            listings = listings.filter(category__name__in=category_query)
+            categories_query = Category.objects.filter(name__in=category_query)
                 # categories_query = request.GET['category'].split(',')
                 # listings = listings.filter(category__name__in=categories_query_name)
                 # categories_query = Category.objects.filter(name__in=categories_query)
 
         if 'sleeps' in request.GET:
-            sleeps_query = request.GET['sleeps']
-            # gte means greater than or equal too
-            listings = listings.filter(no_sleeps__gte=sleeps_query)
+            # sleeps_query = request.GET['sleeps']
+            # # gte means greater than or equal too
+            # listings = listings.filter(no_sleeps__gte=sleeps_query)
+            sleeps_query = request.GET.getlist('sleeps')
+            listings = listings.filter(no_sleeps__in=sleeps_query)
 
         if 'facility' in request.GET:
-            facilities_query_name = request.GET['facility']
-            facilities_query = request.GET['facility'].split(',')
+            # facilities_query_name = request.GET['facility']
+            # facilities_query = request.GET['facility'].split(',')
+            # listings = listings.filter(facilities__name__in=facilities_query)
+            # facilities_query = Facility.objects.filter(name__in=facilities_query)
+            facilities_query = request.GET.getlist('facility')
             listings = listings.filter(facilities__name__in=facilities_query)
             facilities_query = Facility.objects.filter(name__in=facilities_query)
 
@@ -57,10 +76,11 @@ def all_listings(request):
         'listings': listings,
         'search_term': query,
         'categories_query': categories_query,
-        'categories_query_name': categories_query_name,
         'sleeps_query': sleeps_query,
         'facilities_query': facilities_query,
-        'facilities_query_name': facilities_query_name,
+        'category_filters': category_filters,
+        'sleep_filters': sleep_filters,
+        'facility_filters': facility_filters,
     }
 
     return render(request, 'listings/listings.html', context)
