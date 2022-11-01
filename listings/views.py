@@ -1,7 +1,55 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Listing, Category, Image
+from .models import Listing, Category, Image, Facility
+
+
+def is_valid_queryparam(param):
+    return param != '' and param is not None
+
+
+# def filter(request):
+#     qs = Listing.objects.all()
+#     # filter_category = request.GET.get('category')
+#     filter_sleeps = request.GET.get('sleeps')
+#     # filter_facilities = request.GET.get('facilities')
+
+#     # if is_valid_queryparam(filter_category):
+#     #     qs = qs.filter(category=filter_category)
+
+#     if is_valid_queryparam(filter_sleeps):
+#         qs = qs.filter(no_sleeps=filter_sleeps)
+
+#     # if is_valid_queryparam(filter_facilities):
+#     #     qs = qs.filter(facilities=filter_facilities)
+
+#     return qs
+
+
+# def all_listings(request):
+
+#     listings = Listing.objects.all()
+#     query = None
+#     qs = filter(request)
+
+#     if request.GET:
+#         if 'q' in request.GET:
+#             query = request.GET['q']
+#             if not query:
+#                 messages.error(
+#                     request, "You didn't enter any search criteria!")
+#                 return redirect(reverse('listings'))
+
+#             queries = Q(name__icontains=query) | Q(
+#                 description__icontains=query)
+#             listings = listings.filter(queries)
+
+#     context = {
+#         'listings': listings,
+#         'search_term': query,
+#         'queryset': qs,
+#     }
+#     return render(request, "listings/listings.html", context)
 
 
 def all_listings(request):
@@ -9,11 +57,30 @@ def all_listings(request):
 
     listings = Listing.objects.all()
     query = None
-
-    for listing in listings:
-        print(listing.facilities.all())
+    sleeps_query = None
+    categories_query = None
+    categories_query_name = None
+    facilities_query = None
+    facilities_query_name = None
 
     if request.GET:
+
+        if 'category' in request.GET:
+            categories_query_name = request.GET['category']
+            categories_query = request.GET['category'].split(',')
+            listings = listings.filter(category__name__in=categories_query)
+            categories_query = Category.objects.filter(name__in=categories_query)
+
+        if 'sleeps' in request.GET:
+            sleeps_query = request.GET['sleeps']
+            listings = listings.filter(no_sleeps=sleeps_query)
+
+        if 'facility' in request.GET:
+            facilities_query_name = request.GET['facility']
+            facilities_query = request.GET['facility'].split(',')
+            listings = listings.filter(facilities__name__in=facilities_query)
+            facilities_query = Facility.objects.filter(name__in=facilities_query)
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -28,6 +95,11 @@ def all_listings(request):
     context = {
         'listings': listings,
         'search_term': query,
+        'categories_query': categories_query,
+        'categories_query_name': categories_query_name,
+        'sleeps_query': sleeps_query,
+        'facilities_query': facilities_query,
+        'facilities_query_name':facilities_query_name,
     }
 
     return render(request, 'listings/listings.html', context)
