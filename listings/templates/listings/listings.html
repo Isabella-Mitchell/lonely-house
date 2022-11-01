@@ -19,11 +19,17 @@
                     <div class="row no-gutters">
                         <div class="col-md-6">
 
-                            {% for image in listing.images.all %}
+                            {% if listing.images.all %}
+                                {% for image in listing.images.all %}
+                                <a href="{% url 'listing_detail' listing.id %}">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ image.name }}" alt="{{ listing.name }}">
+                                </a>
+                                {% endfor %}
+                            {% else %}
                             <a href="{% url 'listing_detail' listing.id %}">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ image.name }}" alt="{{ listing.name }}">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.jpg" alt="{{ listing.name }}">
                             </a>
-                            {% endfor %}
+                            {% endif %}
 
                         </div>
                         <div class="col-md-6">
