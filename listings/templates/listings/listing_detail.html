@@ -13,7 +13,7 @@
         <!--Bootstrap carousel - conditional if set image-->
             {% if listing.lead_image %}
                 {% if listing.images.all %}
-                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div id="carouselExampleControls" class="carousel slide  carousel-fade" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="{{ MEDIA_URL }}/{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
