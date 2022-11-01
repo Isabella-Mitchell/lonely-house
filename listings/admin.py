@@ -31,7 +31,8 @@ class CategoryAdmin(admin.ModelAdmin):
 class FacilityAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',
-        'name'
+        'name',
+        'font_awesome_class'
     )
 
 

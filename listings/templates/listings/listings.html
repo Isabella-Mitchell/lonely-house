@@ -86,7 +86,7 @@
 
                                 {% if listing.facilities %}
                                 {% for facility in listing.facilities.all %}
-                                <span>{{ facility.friendly_name }} </span>
+                                <span data-toggle="tooltip" data-placement="top" title="{{ facility.friendly_name }}"><i class="{{ facility.font_awesome_class }}"></i></span>
                                 {% endfor %}
                                 {% endif %}
 
@@ -97,6 +97,7 @@
             {% endfor %}
         </div>
     </div>
+
 {% endblock %}
 
 {% block postloadjs %}
