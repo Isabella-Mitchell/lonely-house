@@ -92,3 +92,8 @@
         </div>
     </div>
 {% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    {% include 'listings/includes/facility_icons_script.html' %}
+{% endblock %}
