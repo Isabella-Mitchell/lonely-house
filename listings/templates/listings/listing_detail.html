@@ -9,10 +9,12 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6">
-            {% if listing.image %}
-                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ listing.image }}" alt="{{ listing.name }}">
+            {% if listing.images.all %}
+                {% for image in listing.images.all %}
+                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ image.name }}" alt="{{ listing.name }}">
+                {% endfor %}
             {% else %}
-                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.png" alt="{{ listing.name }}">
+                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.jpg" alt="{{ listing.name }}">
             {% endif %}
         </div>
         <div class="col-12 col-md-6">
