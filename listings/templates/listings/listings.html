@@ -333,5 +333,7 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    {% include 'listings/includes/facility_icons_script.html' %}
+    <script type="text/javascript">
+            $('[data-toggle="tooltip"]').tooltip()
+    </script>
 {% endblock %}
