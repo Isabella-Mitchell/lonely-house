@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="header-container-lg"></div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h2>Cart</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {% if cart_items %}
+                <div class="table-responsive">
+
+                </div>
+            {% else %}
+                <p>Your cart is empty</p>
+                <a href="{%  url 'listings' %}" class="btn btn-dark">Explore Listings</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
