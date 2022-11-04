@@ -2,32 +2,71 @@
 
     //sample available dates. Need to replace with a database
     // Please improve LongForm checker process
-    var availableDates = ["15-11-2022","16-11-2022"];
-    var availableDatesLongForm = ["Tue Nov 15 2022 00:00:00 GMT+0000 (Greenwich Mean Time)", "Wed Nov 16 2022 00:00:00 GMT+0000 (Greenwich Mean Time)"];
-
+    // Also note its not currently counting the 'Checkout date' - it would need to be one fewer date if this is the case
+    var unavailableDates = ["15-11-2022","16-11-2022"];
+    var unavailableDatesLongForm = ["Tue Nov 15 2022 00:00:00 GMT+0000 (Greenwich Mean Time)", "Wed Nov 16 2022 00:00:00 GMT+0000 (Greenwich Mean Time)"];
 
     /**
-     * To add
+     * Calculates the total price the user will pay based on the dates they have selected
+     * Multiplies the number of nights by the price per night
+     * Updates the UI to show user the total price.
+    */
+    function calculatePrice(nights) {
+        let pricePerNight = $("#price-per-night").text();
+        let pricePerNightInt = parseInt(pricePerNight);
+        let nightsInt = parseInt(nights);
+        let totalPrice = nightsInt * pricePerNightInt;
+        $("#total-price").text(totalPrice);
+        $("#total-price-container").removeClass("d-none");
+    }
+
+    /**
+     * Updates the UI based on the number of nights stay 
+     * Uses Night or Nights depending if stay is 1 night or more
+     * Has a clause in case selection is 0
+     * To do - make 0 night impossible or grey out button
+    */
+    function showNights(nights) {
+        if (nights == "0") {
+            $("#selectedNoNights").text("Please select a valid number of nights");
+        } else if (nights == "1") {
+            $("#selectedNoNights").text(`${nights} Night`);
+        } else {
+            $("#selectedNoNights").text(`${nights} Nights`);
+        };
+    }
+
+    /**
+     * Uses maths to calculate the number of nights between two dates.
+     * Takes the user's selected start date and end as parameters
+     * Prompts function to show the number of nights to the user
+     * Prompts function to calculate the total price
      * */
-    function calculateDays(selectedStartDate, selectedEndDate) {
+    function calculateNights(selectedStartDate, selectedEndDate) {
         var date1 = new Date(selectedStartDate);
         var date2 = new Date(selectedEndDate);
         var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-        //console.log(timeDiff);
 
-        var days = Math.floor(timeDiff / (1000 * 3600 * 24)); 
-        //var months = Math.floor(days / 31);
+        var nights = Math.floor(timeDiff / (1000 * 3600 * 24)); 
+        //var months = Math.floor(nights / 31);
         //var years = Math.floor(months / 12);
 
-        showNights(days);
-        calculatePrice(days);
+        showNights(nights);
+        calculatePrice(nights);
     }
 
+    /**
+     * Uses maths to calculate the number of nights between two dates.
+     * Takes the user's selected start date and end as parameters
+     * If ok - Prompts functions to show the number of nights to the user, and calulcate the total price
+     * If not ok - will prompt the user to pick new dates
+     * To do - Make prompt. Also refactor
+     * */
     function checkDatesAreValid(dateArray, selectedStartDate, selectedEndDate) {
             console.log(dateArray)
             let okToContinue = true
             for (let i=0; i<dateArray.length; i++) {
-                if ($.inArray(dateArray[i], availableDatesLongForm) != -1) {
+                if ($.inArray(dateArray[i], unavailableDatesLongForm) != -1) {
                     console.log("Sorry you can't do that");
                     let okToContinue = false
                     console.log(okToContinue)
@@ -35,31 +74,34 @@
                 };
             };
             //ifoktocontinue
-            calculateDays(selectedStartDate, selectedEndDate)
+            calculateNights(selectedStartDate, selectedEndDate)
     };
 
-    //function to make array of inbetween dates
-
+    //function to make array of inbetween dates. To do - understand!
     Date.prototype.addDays = function(days) {
         var date = new Date(this.valueOf());
         date.setDate(date.getDate() + days);
         return date;
     }
 
-    //function to make array of inbetween dates
-
+    //function to make array of inbetween dates. To do - understand!
     function getDates(startDate, stopDate) {
         var dateArray = new Array();
         var currentDate = startDate;
         while (currentDate <= stopDate) {
+            // Data needs to be strings for checking against sample array. Otherwise could be:
             //dateArray.push(new Date (currentDate));
-            // testing to string
             dateArray.push(String(new Date (currentDate)));
             currentDate = currentDate.addDays(1);
         }
         return dateArray;
     }
 
+    /**
+     * Makes an array of dates included in date range. Includes start date, end date and every day inbetween.
+     * uses above two functions
+     * To do - understand this better and refactor!
+    */
     function makeArrayOfDates(selectedStartDate, selectedEndDate){
         //calling function to make array of inbetween dates
         var dateArray = getDates(new Date(selectedStartDate), (new Date(selectedEndDate)).addDays(0));
@@ -70,63 +112,48 @@
         checkDatesAreValid(dateArray, selectedStartDate, selectedEndDate);
     }
 
+    /**
+     * Gets the date from the datepicker, formatted in a specific way.
+     * Calls a function to make an array of all dates
+     * To do - see if this is the best format - and can I make this a more generic function?
+    */
     function getSelectedDates() {
         var selectedStartDate = $("#startDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
         //console.log(selectedStartDate);
         var selectedEndDate = $("#endDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
         //console.log(selectedEndDate);
         makeArrayOfDates(selectedStartDate, selectedEndDate)
-        //$("#selectedStartDateText").text(selectedStartDate);
-        //$("#selectedEndDateText").text(selectedEndDate);
     }
 
-    function showNights(days) {
-        console.log(days);
-        //$("#selectedNoNights").text(`${days} Nights`);
-        if (days == "0") {
-            $("#selectedNoNights").text("Please select a valid number of nights");
-        } else if (days == "1") {
-            $("#selectedNoNights").text(`${days} Night`);
-        } else {
-            $("#selectedNoNights").text(`${days} Nights`);
-        };
-    }
 
-    function clearDatesAndPrice() {
+    /**
+     * Resets 'Number of nights' text
+     * Hides the total price container and removes content
+     * Allows the user to select different dates and see nights/ price live update without needing to refresh page.
+    */
+    function resetNightsAndPrice() {
         $("#selectedNoNights").text("");
         $("#total-price-container").addClass("d-none");
         $("#total-price").text("");
     }
 
-    function calculatePrice(days) {
-        let pricePerNight = $("#price-per-night").text();
-        console.log(pricePerNight);
-        let pricePerNightInt = parseInt(pricePerNight);
-        console.log(pricePerNightInt);
-        let daysInt = parseInt(days);
-        console.log(daysInt);
-        let totalPrice = daysInt * pricePerNightInt;
-        console.log(totalPrice);
-        $("#total-price").text(totalPrice);
-        $("#total-price-container").removeClass("d-none");
-    }
-
-    //need to add function to iterate over every date picked and cross reference to available dates. 
-    // If there is a match, an error message occurs and asks the user to check their dates
-    // maybe I do need moment
-
     $(document).ready(function() {
 
-        $('.input-daterange').datepicker( {
+        $('.input-daterange').datepicker({
             format: 'dd-mm-yyyy',
             startDate: '+1d',
             autoclose: true,
-            //for grey out dates - can still jump ranges over
             beforeShowDay:
-                    function available(date) {
+                /**
+                * Checks whether dates are available - Currently pulling from variable array. Needs updating to work with database.
+                * If date is unavailable it greys out the date in the datepicker.
+                * To do - find a better solution to combines both unavailable date arrays.
+                * To do -  take this function out of document ready
+                */
+                function available(date) {
                     dateMonthYear = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
                     //console.log(dateMonthYear)
-                    if ($.inArray(dateMonthYear, availableDates) != -1) {
+                    if ($.inArray(dateMonthYear, unavailableDates) != -1) {
                         return false;
                     } else {
                         return true;
@@ -135,26 +162,30 @@
             });
         
     
-    //change date
-    //$('#startDate').val('2022/01/19');  
-    //$('#endDate').val('2022/01/29');      
-
+        // Updates either  theselect check-in or check-out dates
+        // Means that the user cannot set a check-out date earlier than check-in, and vice versa
+        //To do - put in function and take content out of on page ready
         var startDate = new Date($('#startDate').val());
         var endDate = new Date($('#endDate').val());
-
         var $start = $(".input-daterange").find('#startDate');
         var $end = $(".input-daterange").find('#endDate')  
         $start.datepicker('setDate', startDate);
         $end.datepicker('setDate', endDate);
 
         
-
+        /**
+         * Event listener for date submit button. User to press once they have selected dates
+         * Calls function to reset nights and total price
+         * Calls function to get selected dates...
+         * To do - grey out button so it cannot be pressed if no dates selected.
+        */
         $('#click-me').click(function() { 
-            clearDatesAndPrice();
+            resetNightsAndPrice();
             getSelectedDates();
         });
 
-        // Tooltip hover script
+        // Tooltip hover script. Also present on All Listings page
+        // To do - only have in one place?
         $('[data-toggle="tooltip"]').tooltip()
 
     });
