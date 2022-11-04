@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+{% endblock %}
+
+
 {% block page_header %}
     <div class="header-container-lg"></div>
 {% endblock %}
@@ -46,6 +55,29 @@
                 <div class="card-body p-4">
                     <h3>{{ listing.name }}</h3>
                     <h4>Order Details</h4>
+
+                    <!--With range select with form formatting-->
+                    <form>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <div class="row labels">
+                                    <div class="col-6">
+                                        <label for="startDate">Start Date</label>    
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="endDate">End Date</label>
+                                    </div>
+                                </div>
+                            
+                                <div class="input-daterange row">
+                                        <input type="text" id="startDate" class="form-control col-6" name="startDate">
+                                        <input type="text" id="endDate" class="form-control col-6" name="endDate">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!--End bootstrap-datepicker-->
+
                     <p>{{ listing.price }}</p>
                     <a href="#" class="btn btn-dark">Book Now</a>
                 </div>
@@ -80,4 +112,31 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+                        $('.input-daterange').datepicker( {
+                            format: 'dd-mm-yyyy',
+                            startDate: '+1d',
+                            autoclose: true,
+                        });         
+               
+            //change date
+           //$('#startDate').val('2022/01/19');  
+            //$('#endDate').val('2022/01/29');      
+            
+            var startDate = new Date($('#startDate').val());
+            var endDate = new Date($('#endDate').val());
+        
+            var $start = $(".input-daterange").find('#startDate');
+            var $end = $(".input-daterange").find('#endDate')   
+            $start.datepicker('setDate', startDate);
+            $end.datepicker('setDate', endDate);
+        });  
+
+        </script>
 {% endblock %}
