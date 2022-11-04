@@ -1,10 +1,14 @@
 <script type="text/javascript">
 
-     //sample available dates
-     var availableDates = ["15-11-2022","16-11-2022"];
+    //sample available dates. Need to replace with a database
+    // Please improve LongForm checker process
+    var availableDates = ["15-11-2022","16-11-2022"];
     var availableDatesLongForm = ["Tue Nov 15 2022 00:00:00 GMT+0000 (Greenwich Mean Time)", "Wed Nov 16 2022 00:00:00 GMT+0000 (Greenwich Mean Time)"];
 
 
+    /**
+     * To add
+     * */
     function calculateDays(selectedStartDate, selectedEndDate) {
         var date1 = new Date(selectedStartDate);
         var date2 = new Date(selectedEndDate);
@@ -21,14 +25,17 @@
 
     function checkDatesAreValid(dateArray, selectedStartDate, selectedEndDate) {
             console.log(dateArray)
+            let okToContinue = true
             for (let i=0; i<dateArray.length; i++) {
                 if ($.inArray(dateArray[i], availableDatesLongForm) != -1) {
-                    console.log(`${dateArray[i]} exists!`)
-                } else {
-                    console.log(`${dateArray[i]} is ok`)
-                }
-            }
-        calculateDays(selectedStartDate, selectedEndDate)
+                    console.log("Sorry you can't do that");
+                    let okToContinue = false
+                    console.log(okToContinue)
+                    return okToContinue
+                };
+            };
+            //ifoktocontinue
+            calculateDays(selectedStartDate, selectedEndDate)
     };
 
     //function to make array of inbetween dates
@@ -45,7 +52,9 @@
         var dateArray = new Array();
         var currentDate = startDate;
         while (currentDate <= stopDate) {
-            dateArray.push(new Date (currentDate));
+            //dateArray.push(new Date (currentDate));
+            // testing to string
+            dateArray.push(String(new Date (currentDate)));
             currentDate = currentDate.addDays(1);
         }
         return dateArray;
