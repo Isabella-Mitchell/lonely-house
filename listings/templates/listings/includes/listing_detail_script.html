@@ -1,90 +1,153 @@
 <script type="text/javascript">
 
-function calculateDays(selectedStartDate, selectedEndDate) {
-    var date1 = new Date(selectedStartDate);
-    var date2 = new Date(selectedEndDate);
-    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-    //console.log(timeDiff);
+     //sample available dates
+     var availableDates = ["15-11-2022","16-11-2022"];
+    var availableDatesLongForm = ["Tue Nov 15 2022 00:00:00 GMT+0000 (Greenwich Mean Time)", "Wed Nov 16 2022 00:00:00 GMT+0000 (Greenwich Mean Time)"];
 
-    var days = Math.floor(timeDiff / (1000 * 3600 * 24)); 
-    //var months = Math.floor(days / 31);
-    //var years = Math.floor(months / 12);
 
-    showNights(days);
-    calculatePrice(days);
-}
+    function calculateDays(selectedStartDate, selectedEndDate) {
+        var date1 = new Date(selectedStartDate);
+        var date2 = new Date(selectedEndDate);
+        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        //console.log(timeDiff);
 
-function getSelectedDates() {
-    var selectedStartDate = $("#startDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
-    //console.log(selectedStartDate);
-    var selectedEndDate = $("#endDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
-    //console.log(selectedEndDate);
-    calculateDays(selectedStartDate, selectedEndDate)
-    //$("#selectedStartDateText").text(selectedStartDate);
-    //$("#selectedEndDateText").text(selectedEndDate);
-}
+        var days = Math.floor(timeDiff / (1000 * 3600 * 24)); 
+        //var months = Math.floor(days / 31);
+        //var years = Math.floor(months / 12);
 
-function showNights(days) {
-    console.log(days);
-    //$("#selectedNoNights").text(`${days} Nights`);
-    if (days == "0") {
-        $("#selectedNoNights").text("Please select a valid number of nights");
-    } else if (days == "1") {
-        $("#selectedNoNights").text(`${days} Night`);
-    } else {
-        $("#selectedNoNights").text(`${days} Nights`);
+        showNights(days);
+        calculatePrice(days);
+    }
+
+    function checkDatesAreValid(dateArray, selectedStartDate, selectedEndDate) {
+            console.log(dateArray)
+            for (let i=0; i<dateArray.length; i++) {
+                if ($.inArray(dateArray[i], availableDatesLongForm) != -1) {
+                    console.log(`${dateArray[i]} exists!`)
+                } else {
+                    console.log(`${dateArray[i]} is ok`)
+                }
+            }
+        calculateDays(selectedStartDate, selectedEndDate)
     };
-}
 
-function clearDatesAndPrice() {
-    $("#selectedNoNights").text("");
-    $("#total-price-container").addClass("d-none");
-    $("#total-price").text("");
-}
+    //function to make array of inbetween dates
 
-function calculatePrice(days) {
-    let pricePerNight = $("#price-per-night").text();
-    console.log(pricePerNight);
-    let pricePerNightInt = parseInt(pricePerNight);
-    console.log(pricePerNightInt);
-    let daysInt = parseInt(days);
-    console.log(daysInt);
-    let totalPrice = daysInt * pricePerNightInt;
-    console.log(totalPrice);
-    $("#total-price").text(totalPrice);
-    $("#total-price-container").removeClass("d-none");
-}
+    Date.prototype.addDays = function(days) {
+        var date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+    }
 
+    //function to make array of inbetween dates
 
-$(document).ready(function() {
-    $('.input-daterange').datepicker( {
-        format: 'dd-mm-yyyy',
-        startDate: '+1d',
-        autoclose: true,
-    });         
-   
-//change date
-//$('#startDate').val('2022/01/19');  
-//$('#endDate').val('2022/01/29');      
+    function getDates(startDate, stopDate) {
+        var dateArray = new Array();
+        var currentDate = startDate;
+        while (currentDate <= stopDate) {
+            dateArray.push(new Date (currentDate));
+            currentDate = currentDate.addDays(1);
+        }
+        return dateArray;
+    }
 
-    var startDate = new Date($('#startDate').val());
-    var endDate = new Date($('#endDate').val());
+    function makeArrayOfDates(selectedStartDate, selectedEndDate){
+        //calling function to make array of inbetween dates
+        var dateArray = getDates(new Date(selectedStartDate), (new Date(selectedEndDate)).addDays(0));
+        for (i = 0; i < dateArray.length; i ++ ) {
+            console.log(dateArray[i]);
+        }
+        // refactor so selected dates do not need to be passed as an arguement.
+        checkDatesAreValid(dateArray, selectedStartDate, selectedEndDate);
+    }
 
-    var $start = $(".input-daterange").find('#startDate');
-    var $end = $(".input-daterange").find('#endDate')  
-    $start.datepicker('setDate', startDate);
-    $end.datepicker('setDate', endDate);
+    function getSelectedDates() {
+        var selectedStartDate = $("#startDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
+        //console.log(selectedStartDate);
+        var selectedEndDate = $("#endDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
+        //console.log(selectedEndDate);
+        makeArrayOfDates(selectedStartDate, selectedEndDate)
+        //$("#selectedStartDateText").text(selectedStartDate);
+        //$("#selectedEndDateText").text(selectedEndDate);
+    }
 
+    function showNights(days) {
+        console.log(days);
+        //$("#selectedNoNights").text(`${days} Nights`);
+        if (days == "0") {
+            $("#selectedNoNights").text("Please select a valid number of nights");
+        } else if (days == "1") {
+            $("#selectedNoNights").text(`${days} Night`);
+        } else {
+            $("#selectedNoNights").text(`${days} Nights`);
+        };
+    }
+
+    function clearDatesAndPrice() {
+        $("#selectedNoNights").text("");
+        $("#total-price-container").addClass("d-none");
+        $("#total-price").text("");
+    }
+
+    function calculatePrice(days) {
+        let pricePerNight = $("#price-per-night").text();
+        console.log(pricePerNight);
+        let pricePerNightInt = parseInt(pricePerNight);
+        console.log(pricePerNightInt);
+        let daysInt = parseInt(days);
+        console.log(daysInt);
+        let totalPrice = daysInt * pricePerNightInt;
+        console.log(totalPrice);
+        $("#total-price").text(totalPrice);
+        $("#total-price-container").removeClass("d-none");
+    }
+
+    //need to add function to iterate over every date picked and cross reference to available dates. 
+    // If there is a match, an error message occurs and asks the user to check their dates
+    // maybe I do need moment
+
+    $(document).ready(function() {
+
+        $('.input-daterange').datepicker( {
+            format: 'dd-mm-yyyy',
+            startDate: '+1d',
+            autoclose: true,
+            //for grey out dates - can still jump ranges over
+            beforeShowDay:
+                    function available(date) {
+                    dateMonthYear = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
+                    //console.log(dateMonthYear)
+                    if ($.inArray(dateMonthYear, availableDates) != -1) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            });
+        
     
+    //change date
+    //$('#startDate').val('2022/01/19');  
+    //$('#endDate').val('2022/01/29');      
 
-    $('#click-me').click(function() { 
-        clearDatesAndPrice();
-        getSelectedDates();
+        var startDate = new Date($('#startDate').val());
+        var endDate = new Date($('#endDate').val());
+
+        var $start = $(".input-daterange").find('#startDate');
+        var $end = $(".input-daterange").find('#endDate')  
+        $start.datepicker('setDate', startDate);
+        $end.datepicker('setDate', endDate);
+
+        
+
+        $('#click-me').click(function() { 
+            clearDatesAndPrice();
+            getSelectedDates();
+        });
+
+        // Tooltip hover script
+        $('[data-toggle="tooltip"]').tooltip()
+
     });
-
-    // Tooltip hover script
-    $('[data-toggle="tooltip"]').tooltip()
-
-});  
 
 </script>
