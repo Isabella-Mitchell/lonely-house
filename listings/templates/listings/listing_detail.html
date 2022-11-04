@@ -57,29 +57,46 @@
                     <h4>Order Details</h4>
 
                     <!--With range select with form formatting-->
-                    <form>
-                        <div class="form-group row">
-                            <div class="col-sm-12">
-                                <div class="row labels">
-                                    <div class="col-6">
-                                        <label for="startDate">Start Date</label>    
+                    <div class="container">
+                        <form>
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <div class="row labels">
+                                        <div class="col-lg-6">
+                                            <label for="startDate" class="small">Check In Date</label>    
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label for="endDate" class="small">Check Out Date</label>
+                                        </div>
                                     </div>
-                                    <div class="col-6">
-                                        <label for="endDate">End Date</label>
+                                
+                                    <div class="input-daterange row">
+                                            <input type="text" id="startDate" class="form-control col-6" name="startDate">
+                                            <input type="text" id="endDate" class="form-control col-6" name="endDate">
                                     </div>
-                                </div>
-                            
-                                <div class="input-daterange row">
-                                        <input type="text" id="startDate" class="form-control col-6" name="startDate">
-                                        <input type="text" id="endDate" class="form-control col-6" name="endDate">
                                 </div>
                             </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="click-me" class="btn btn-dark w-100">Click Me</button>
                         </div>
-                    </form>
+                    </div>
+                        <p id="selectedStartDateText"></p>
+                        <p id="selectedEndDateText"></p>
+                        <p id="selectedNoNights"></p>
                     <!--End bootstrap-datepicker-->
+                    
 
-                    <p>{{ listing.price }}</p>
-                    <a href="#" class="btn btn-dark">Book Now</a>
+                    <p class="small" id="price-per-night-container">Price per night: £<span id="price-per-night">{{ listing.price }}</span></p>
+                    <p class="d-none" id="total-price-container">Total Price: £<span id="total-price"></span></p>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="#" class="btn btn-dark">Book Now</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,25 +135,89 @@
     {{ block.super }}
         <script type="text/javascript">
 
+            function calculateDays(selectedStartDate, selectedEndDate) {
+                var date1 = new Date(selectedStartDate);
+                var date2 = new Date(selectedEndDate);
+                var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+                //console.log(timeDiff);
+
+                var days = Math.floor(timeDiff / (1000 * 3600 * 24)); 
+                //var months = Math.floor(days / 31);
+                //var years = Math.floor(months / 12);
+
+                showNights(days);
+                calculatePrice(days);
+            }
+
+            function getSelectedDates() {
+                var selectedStartDate = $("#startDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
+                //console.log(selectedStartDate);
+                var selectedEndDate = $("#endDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
+                //console.log(selectedEndDate);
+                calculateDays(selectedStartDate, selectedEndDate)
+                //$("#selectedStartDateText").text(selectedStartDate);
+                //$("#selectedEndDateText").text(selectedEndDate);
+            }
+
+            function showNights(days) {
+                console.log(days);
+                //$("#selectedNoNights").text(`${days} Nights`);
+                if (days == "0") {
+                    $("#selectedNoNights").text("Please select a valid number of nights");
+                } else if (days == "1") {
+                    $("#selectedNoNights").text(`${days} Night`);
+                } else {
+                    $("#selectedNoNights").text(`${days} Nights`);
+                };
+            }
+
+            function clearDatesAndPrice() {
+                $("#selectedNoNights").text("");
+                $("#total-price-container").addClass("d-none");
+                $("#total-price").text("");
+            }
+
+            function calculatePrice(days) {
+                let pricePerNight = $("#price-per-night").text();
+                console.log(pricePerNight);
+                let pricePerNightInt = parseInt(pricePerNight);
+                console.log(pricePerNightInt);
+                let daysInt = parseInt(days);
+                console.log(daysInt);
+                let totalPrice = daysInt * pricePerNightInt;
+                console.log(totalPrice);
+                $("#total-price").text(totalPrice);
+                $("#total-price-container").removeClass("d-none");
+            }
+            
+
             $(document).ready(function() {
-                        $('.input-daterange').datepicker( {
-                            format: 'dd-mm-yyyy',
-                            startDate: '+1d',
-                            autoclose: true,
-                        });         
+                $('.input-daterange').datepicker( {
+                    format: 'dd-mm-yyyy',
+                    startDate: '+1d',
+                    autoclose: true,
+                });         
                
             //change date
            //$('#startDate').val('2022/01/19');  
             //$('#endDate').val('2022/01/29');      
             
-            var startDate = new Date($('#startDate').val());
-            var endDate = new Date($('#endDate').val());
-        
-            var $start = $(".input-daterange").find('#startDate');
-            var $end = $(".input-daterange").find('#endDate')   
-            $start.datepicker('setDate', startDate);
-            $end.datepicker('setDate', endDate);
-        });  
+                var startDate = new Date($('#startDate').val());
+                var endDate = new Date($('#endDate').val());
+
+                var $start = $(".input-daterange").find('#startDate');
+                var $end = $(".input-daterange").find('#endDate')  
+                $start.datepicker('setDate', startDate);
+                $end.datepicker('setDate', endDate);
+
+                
+
+                $('#click-me').click(function() { 
+                    clearDatesAndPrice();
+                    getSelectedDates();
+                });
+
+            });  
 
         </script>
 {% endblock %}
