@@ -46,6 +46,7 @@
                                 </td>
                                 <td class="py-3">
                                     <p class="my-0">${{ item.listing.price }}</p>
+                                    <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -80,5 +81,25 @@
         </div>
     </div>
 </div>
+
+{% endblock %}
+
+{% block postload.js %}
+
+<script type="text/javascript">
+    //remove item from cart anmd reload
+    $('.remove-item').click(function(e) {
+        var csrf_token = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var url =`/cart/remove/${itemId}`;
+        var data = {'csrfmiddlewaretoken': csrfToken};
+
+        $.post(url, data)
+        .done(function() {
+            location.reload();
+        });
+    })
+
+</script>
 
 {% endblock %}
