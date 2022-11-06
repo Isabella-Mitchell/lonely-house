@@ -34,6 +34,7 @@
         } else {
             $("#selectedNoNights").text(`${nights} Nights`);
         };
+        $('#selected-no-nights-input').val(nights)
     }
 
     /**
@@ -133,6 +134,7 @@
     */
     function resetNightsAndPrice() {
         $("#selectedNoNights").text("");
+        $('#selected-no-nights-input').val("")
         $("#total-price-container").addClass("d-none");
         $("#total-price").text("");
     }

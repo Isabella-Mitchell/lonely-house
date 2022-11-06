@@ -84,11 +84,13 @@
                                     <a id="click-me" class="btn btn-dark w-100">Check Availability</a>
                                 </div>
                             </div>
-                            <p id="selectedNoNights"></p>
-                            <!--End bootstrap-datepicker-->
 
+                            <!--End bootstrap-datepicker-->
+                            <p id="selectedNoNights"></p>
                             <p class="small" id="price-per-night-container">Price per night: £<span id="price-per-night">{{ listing.price }}</span></p>
                             <p class="d-none" id="total-price-container">Total Price: £<span id="total-price"></span></p>
+
+                            <input type="hidden" id="selected-no-nights-input" name="selected-no-nights-input" value="">
 
                             <div class="form-row">
                                 <div class="col-12">

@@ -12,18 +12,28 @@ def add_to_cart(request, item_id):
     print("I'm adding to bag")
 
     start_date = request.POST.get('startDate')
-    print(start_date)
+    # print(start_date)
     end_date = request.POST.get('endDate')
-    print(end_date)
+    # print(end_date)
+    no_nights = int(request.POST.get('selected-no-nights-input'))
+    # print(no_nights)
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
-    print(cart)
+    # print(cart)
 
     # walkthrough has a if else statement here for quantity selector
     if item_id in list(cart.keys()):
-        cart[item_id] = [start_date, end_date]
+        cart[item_id] = {
+            'no_nights': no_nights,
+            'start_date': start_date,
+            'end_date': end_date,
+        }
     else:
-        cart[item_id] = [start_date, end_date]
+        cart[item_id] = {
+            'no_nights': no_nights,
+            'start_date': start_date,
+            'end_date': end_date,
+        }
 
     request.session['cart'] = cart
     print(request.session['cart'])
