@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 
 
 def view_cart(request):
@@ -8,18 +8,13 @@ def view_cart(request):
 
 
 def add_to_cart(request, item_id):
-    """Add the dates of the specified listing to the shopping bag"""
-    print("I'm adding to bag")
+    """Add the listing booking details to the cart"""
 
     start_date = request.POST.get('startDate')
-    # print(start_date)
     end_date = request.POST.get('endDate')
-    # print(end_date)
     no_nights = int(request.POST.get('selected-no-nights-input'))
-    # print(no_nights)
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
-    # print(cart)
 
     # walkthrough has a if else statement here for quantity selector
     if item_id in list(cart.keys()):
@@ -36,5 +31,18 @@ def add_to_cart(request, item_id):
         }
 
     request.session['cart'] = cart
-    print(request.session['cart'])
     return redirect(redirect_url)
+
+
+def remove_from_cart(request, item_id):
+    """Removes the listing booking details from the cart"""
+
+    cart = request.session.get('cart', {})
+
+    try:
+        cart.pop(item_id)
+
+        request.session['cart'] = cart
+        return HttpResponse(status=200)
+    except Exception as e:
+        return HttpResponse(status=500)
