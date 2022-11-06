@@ -120,7 +120,9 @@
     */
     function getSelectedDates() {
         var selectedStartDate = $("#startDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
-        //console.log(selectedStartDate);
+        // var x = $("#startDate").data('datepicker').getFormattedDate('yyyy-mm-dd');
+        // console.log(x);
+        console.log(selectedStartDate);
         var selectedEndDate = $("#endDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
         //console.log(selectedEndDate);
         makeArrayOfDates(selectedStartDate, selectedEndDate)
