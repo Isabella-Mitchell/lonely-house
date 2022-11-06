@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cart_tools %}
 
 {% block page_header %}
     <div class="header-container-lg"></div>
@@ -45,7 +46,7 @@
                                     <p class="my-0">{{ item.no_nights }}</p>
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0">${{ item.listing.price }}</p>
+                                    <p class="my-0">${{ item.listing.price | calc_subtotal:item.no_nights }}</p>
                                     <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                 </td>
                             </tr>
