@@ -57,43 +57,48 @@
                     <h4>Order Details</h4>
 
                     <!--With range select with form formatting-->
-                    <div class="container">
-                        <form>
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <div class="row labels">
-                                        <div class="col-lg-6">
-                                            <label for="startDate" class="small">Check In Date</label>    
+                        <form class="form" action="{% url 'add_to_cart' listing.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="container">
+                                <div class="form-row">
+                                    <div class="col-lg-12">
+                                        <div class="row labels">
+                                            <div class="col-lg-6">
+                                                <label for="startDate" class="small">Check In Date</label>    
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label for="endDate" class="small">Check Out Date</label>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <label for="endDate" class="small">Check Out Date</label>
+                                    
+                                        <div class="input-daterange row">
+                                                <input type="text" id="startDate" class="form-control col-6" name="startDate">
+                                                <input type="text" id="endDate" class="form-control col-6" name="endDate">
                                         </div>
-                                    </div>
-                                
-                                    <div class="input-daterange row">
-                                            <input type="text" id="startDate" class="form-control col-6" name="startDate">
-                                            <input type="text" id="endDate" class="form-control col-6" name="endDate">
                                     </div>
                                 </div>
                             </div>
+                        
+                            <div class="form-row">
+                                <div class="col-12">
+                                    <a id="click-me" class="btn btn-dark w-100">Check Availability</a>
+                                </div>
+                            </div>
+                            <p id="selectedNoNights"></p>
+                            <!--End bootstrap-datepicker-->
+
+                            <p class="small" id="price-per-night-container">Price per night: £<span id="price-per-night">{{ listing.price }}</span></p>
+                            <p class="d-none" id="total-price-container">Total Price: £<span id="total-price"></span></p>
+
+                            <div class="form-row">
+                                <div class="col-12">
+                                    
+                                    <input type="submit" class="btn btn-dark w-100" value="Book Now"></input>
+
+                                </div>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            </div>
                         </form>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <button id="click-me" class="btn btn-dark w-100">Check Availability</button>
-                        </div>
-                    </div>
-                        <p id="selectedNoNights"></p>
-                    <!--End bootstrap-datepicker-->
-
-                    <p class="small" id="price-per-night-container">Price per night: £<span id="price-per-night">{{ listing.price }}</span></p>
-                    <p class="d-none" id="total-price-container">Total Price: £<span id="total-price"></span></p>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="#" class="btn btn-dark">Book Now</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
