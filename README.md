@@ -1,108 +1,293 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Lonely House
 
-Welcome Isabella-Mitchell,
+## Milestone Project 4 - Full Stack Development
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+* Lonely House is...
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+* This is my Milestone Project 4 submission for Code Institute's Diploma in Web Application Development course. My website uses....
 
-## Gitpod Reminders
+## Live Project
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+[View the live project here.](#)
 
-`python3 -m http.server`
+## Repository
 
-A blue button should appear to click: _Make Public_,
+[Find the project repository here.](https://github.com/Isabella-Mitchell/lonely-house)
 
-Another blue button should appear to click: _Open Browser_.
+# Table of Contents
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+## Contents
+- [User experience](#user-experience)
+  * [User Stories](#user-stories)
+    + [First-time Users](#first-time-users)
+    + [Returning Users](#returning-users)
+    + [Business Owner](#business-owner)
+- [Design](#design)
+  + [Overview](#overview)
+  + [Colour Scheme](#colour-scheme)
+  + [Typography](#typography)
+  + [Imagery and Aesthetics](#imagery-and-aesthetics)
+  + [Icons](#icons)
+  + [Cards](#cards)
+- [Wireframes](#wireframes)
+- [Features](#features)
+- [Future Features](#future-features)
+  + [User Experience Features](#user-experience-features)
+  + [Development Features](#development-features)
+- [Data Model](#data-model)
+- [Technologies used](#technologies-used)
+  + [Languages Used](#languages-used)
+  + [Frameworks Libraries and Programs](#frameworks-libraries-and-programs)
+- [Testing](#testing)
+- [Deployment](#deployment)
+  + [Creating a Gitpod Workspace](#creating-a-gitpod-workspace)
+  + [GitHub Pages](#github-pages)
+  + [Forking the GitHub Repository](#forking-the-github-repository)
+  + [Making a Local Clone](#making-a-local-clone)
+  + [Creating an application with Heroku](#creating-an-application-with-heroku)
+- [Credits](#credits)
+  + [Code](#code)
+  + [Media](#media)
+  + [Content](#content)
+  + [Acknowledgements](#acknowledgements)
 
-A blue button should appear to click: _Make Public_,
+# User Experience
 
-Another blue button should appear to click: _Open Browser_.
+## User stoires
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### First-time Users
 
-To log into the Heroku toolbelt CLI:
+### Returning Users
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### Buisness Owner
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Design
 
-------
+### Overview
 
-## Release History
+- The website design is ...
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### Colour
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+- Lonely House uses a simple colour scheme of ....
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+### Typography
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+- Headings are in...
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+### Imagery 
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+- ...
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+### Icons
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+- I have used icons on ...
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+### Cards
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+- I have used ...
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+# Wireframes
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+- [View my wireframes in PDF form here](#).
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+# Features
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+# Future Features
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+## User Experience Features 
 
-------
+## Development Features
 
-## FAQ about the uptime script
+# Data Model
 
-**Why have you added this script?**
+- [View my Database structure in PDF form here](#).
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+# Technologies Used
 
-**How will this affect me?**
+## Languages Used
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+- [CSS3](https://en.wikipedia.org/wiki/CSS)
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 
-**So….?**
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+## Frameworks Libraries and Programs
 
-**Can I opt out?**
+- [Heroku](https://id.heroku.com/login)
+  - Heroku is the deployment source I used for this project. I'm also using it for the Postgres relational database
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+- [MongoDB](https://www.mongodb.com/)
+    - I'm using MongoDB for my non-relational database.
+
+- [Flask](https://flask.palletsprojects.com/en/2.2.x/templating/)
+  - Templating language I've used with Python to add logic to my html templates.
+
+- [Jinja](https://jinja.palletsprojects.com/en/3.0.x/)
+  - Templating language I've used with Python to add logic to my html templates.
+
+- [Materialize CSS](https://materializecss.com/)
+  - Front-end library with HTML, CSS and Javascript based componants. I used features including Nav bar, Cards, Buttons and Forms.
+
+- [jQuery](https://jquery.com/)
+  - I used jQuery to add functionality to MaterialiseCSS componants.
+
+- [Google Fonts](https://fonts.google.com/)
+  - Two fonts are imported from google fonts.
+  
+- [Font awesome](https://fontawesome.com/)
+  - I used icons from font awesome on buttons.
+
+- [Git](https://git-scm.com/)
+  - Git was used as a version control in the terminal.
+
+- [Github](https://github.com/)
+  - Github was used to create and store the project repository.
+
+- [Gitpod](https://gitpod.io/)
+  - Gitpod was used to create my files and where I wrote the code.
+
+- [Balsamiq](https://balsamiq.com/)
+  - Balsamiq was used to create Wireframes for the project during the initial planning stage.
+
+- [Techsini](https://techsini.com/multi-mockup/)
+  - Techsini was used to help check responsiveness and take screenshots of the page at different screen sizes.
+
+- [Adobe Photoshop](https://www.adobe.com/ie/products/photoshop.html)
+  - Photoshop was used to resize images for the website.
+
+- [TinyPNG](https://tinypng.com/)
+  - TinyPNG was used to compress images for a faster loading time.
+
+- [WebFormatter](https://webformatter.com/html)
+  - WebFormatter was used to help beautify the code.
+
+- [Google Chrome Dev Tools](https://developer.chrome.com/docs/devtools/)
+  - Google Chrome's Dev Tools were used while building the project to test responsiveness and for debugging.
+
+- [dbdiagram](https://dbdiagram.io/)
+  - Tool used to mock up database structure diagram.
+
+- [Unsplash](https://unsplash.com/)
+  - Unsplash was used to source the jumbatron imager.
+
+# Testing
+
+- Please refer [here](TESTING.md) for more information on testing of the Gather website
+
+# Deployment
+
+## Creating a Gitpod Workspace
+
+The project was created in Gitpod using the Code Institute Gitpod Full Template using these steps:
+
+1. Log in to GitHub and go to the [Code Institute student template for Gitpod](https://github.com/Code-Institute-Org/gitpod-full-template)
+2. Click 'Use this Template' next to the Green Gitpod button.
+3. Add a repository name and click 'Create reposiory from template'.
+4. This will create a copy of the template in your own repository. Now you can click the green 'Gitpod' button to open a workspace in Gitpod.
+
+## Forking the GitHub Repository
+
+Forks are used to propose changes to someone else's project or to use someone else's project as a starting point for your own idea. By forking the GitHub Repository you make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository.
+
+To Fork a Github Repository:
+
+1. Log in to GitHub and go to the [GitHub Repository](https://github.com/Isabella-Mitchell/gather-recipe-website)
+2. Locate the Fork button in the top-right corner of the page, click Fork.
+3. You should now have a copy of the original repository in your GitHub account.
+
+## Making a Local Clone
+
+You will now have a fork of the repository, but you don't have the files in that repository locally on your computer.
+
+To make a local clone:
+
+1. Log in to GitHub and go to the [GitHub Repository](https://github.com/Isabella-Mitchell/gather-recipe-website)
+2. Above the list of files, click  Code.
+3. To clone the repository using HTTPS, under "Clone with HTTPS", click the 'Copy' icon. To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click Use SSH, then click the 'Copy' icon. To clone a repository using GitHub CLI, click Use GitHub CLI, then click the 'Copy' icon.
+4. Open Git Bash.
+5. Change the current working directory to the location where you want the cloned directory.
+6. Type git clone, and then paste the URL you copied earlier. It will look like this, with your GitHub AE username instead of YOUR-USERNAME:
 
 ```
-pkill uptime.sh
-rm .vscode/uptime.sh
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 ```
 
-**Anything more?**
+7. Press Enter. Your local clone will be created.
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+> Cloning into `gather-recipe-website`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+```
 
----
+Click [Here](https://docs.github.com/en/github-ae@latest/get-started/quickstart/fork-a-repo) for the GitHub quick start guide with images and more detailed explanations of the above process.
 
-Happy coding!
+## Creating an application with Heroku
+
+You will need to deploy the application using Heroku.
+
+1. Create a requirements.txt file by typing ``` pip3 freeze --local > requirements.txt ``` into the Gitpod CLI. Ensure this is added to your .gitignore file.
+2. Create a Procfile by typing ```echo web: python app.py > Procfile```. Open it and ensure it doesn't have a new line, as this can create errors. Ensure it starts with a capital P.
+3. Add and commit these files to Github.
+4. Go to [Heroku](https://dashboard.heroku.com/apps). Log in or create an account
+5. Click the 'New' button and click 'Create new app'.
+6. Enter a unique name for your project with no capital letters or spaces and select your region. Click 'Create App'.
+7. Inside your project, go to the Resources tab and create a Heroku Postgres Database
+8. Inside your project, go to the 'Settings' tab. Scroll down and click 'Reveal Config Vars'.
+9. Add in the following variables
+  - IP : 0.0.0.0
+  - PORT : 5000
+  - MONGO_DBNAME : Your MongoDB database name
+  - MONGO_URI : This can be found on MongoDB by going to Clusters, Connect, Connect to your application
+  - SECRET_KEY : Your secret key
+10. Deploy your project by going to the Deploy tab and choose 'Connect to Github'
+11. Find your repository name and select Connect.
+12. To connect your Heroku database, go to 'More' in the top right and select run console. Enter ```python3``` to access the python intepreter.
+13. Then type ```From gather import db```. Then type ```db.create_all()```. You can then exit the console.
+
+# Credits
+
+## Code
+
+- Bootstrap
+
+- Code Institute:
+
+- Stack Overflow: 
+
+- W3Schools: 
+
+- Geekflare: 
+
+- Documentation:
+
+## Content
+
+- 
+
+## Media
+
+- Credit 
+
+## Acknowledgements
+
+- Thank you to my Mentor Akshat Garg for helpful feedback, industry insights and recommended tools.
+
+- Thank you to ... for participating in the peer code review on the Code Institute Slack channel. Thank you to my family for manually testing the website and for feedback.
+
+- Thank you to the Code Institute London Community for their encouragement and technical support.
+
+- Thank you to the tutors and staff at Code Institute for their support.
+
+- Thank you to Ben Smith and Pasquale Fasulo at City of Bristol College for their support.
+
+Please note this is a personal project. This website is purely for the sake of the developer's portfolio and not for public consumption.
+
+Isabella Mitchell, 2022.
