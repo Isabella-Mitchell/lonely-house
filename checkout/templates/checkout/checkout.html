@@ -21,38 +21,56 @@
         <div class="row">
             <div class="col-12 col-lg-6 order-lg-last mb-5">
                 <p class="text-muted">Order Summary ({{ listing_count }})</p>
-                <div class="row">
-                    <div class="col-7 offset-2">
-                        <p class="mb-1 mt-0 small text-muted">Item</p>
-                    </div>
-                    <div class="col-3 text-right">
-                        <p class="mb-1 mt-0 small text-muted">Subtotal</p>
-                    </div>
-                </div>
+                <hr>
                 {% for item in cart_items %}
+                <p>Booking Details</p>
                     <div class="row">
-                        <div class="col-2 mb-1">
+                        <div class="col-4 mb-1">
                             <a href="{% url 'listing_detail' item.listing.id %}">
-                                {% if item.product.image %}
+                                {% if item.listing.lead_image %}
                                     <img class="w-100" src="{{ MEDIA_URL }}/{{ item.listing.lead_image }}" alt="{{ listing.name }}">
                                 {% else %}
                                     <img class="w-100" src="{{ MEDIA_URL }}/holding-image.jpg" alt="{{ listing.name }}">
                                 {% endif %}
                             </a>
                         </div>
-                        <div class="col-7">
+                        <div class="col-8">
                             <p class="my-0"><strong>{{ item.listing.name }}</strong></p>
-                        </div>
-                        <div class="col-3 text-right">
                             <p class="my-0">Check in: {{ item.start_date }}</p>
                             <p class="my-0">Check out: {{ item.end_date }}</p>
-                            <p class="my-0 small text-muted">${{ item.listing.price }}</p>
+                            <p class="my-0">No nights: {{ item.no_nights }}</p>
                         </div>
                     </div>
+                    <hr>
+                    <div class="row mb-1">
+                        <div class="col-4">
+                            <p class="my-0">Booking Breakdown</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="my-0">Date</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="my-0">Price</p>
+                        </div>
+                    </div>
+                    {% for date in item.selected_dates %}
+                    <div class="row">
+                        <div class="col-4">
+                        </div>
+                        <div class="col-3">
+                            <p class="my-0">{{ date }}</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="my-0">£{{ item.listing.price }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
                 {% endfor %}
-                <hr class="my-0">
-                <div class="row text-black text-right">
-                    <div class="col-7 offset-2">
+                <hr>
+                <div class="row ">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-3">
                         <p class="my-0">Order Total:</p>
                     </div>
                     <div class="col-3">
