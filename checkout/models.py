@@ -54,7 +54,7 @@ class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     listing = models.ForeignKey(Listing, null=False, blank=False, on_delete=models.CASCADE)
     type = models.CharField(max_length=50, null=False, blank=False, default="Reservation")  # Reservation
-    date = models.CharField(max_length=50, null=True, blank=True)
+    date = models.DateField(null=True, blank=True)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
 
     def save(self, *args, **kwargs):
