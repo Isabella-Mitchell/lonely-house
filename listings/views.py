@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.http import QueryDict
 from .models import Listing, Category, Image, Facility
+from checkout.models import OrderLineItem
 
 
 def all_listings(request):
@@ -91,8 +92,18 @@ def listing_detail(request, listing_id):
 
     listing = get_object_or_404(Listing, pk=listing_id)
 
+    listing_bookings = []
+
+    all_bookings = OrderLineItem.objects.all()
+    listing_bookings_filtered = all_bookings.filter(listing_id=listing_id)
+    for item in listing_bookings_filtered:
+        # to string for js
+        booked_date = str(item.date)
+        listing_bookings.append(booked_date)
+
     context = {
         'listing': listing,
+        'listing_bookings': listing_bookings,
     }
 
     return render(request, 'listings/listing_detail.html', context)

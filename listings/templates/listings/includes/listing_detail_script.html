@@ -1,8 +1,19 @@
 <script type="text/javascript">
 
+    function getUnavailableDates() {
+            let bookedDatesString = $("#hidden-field-booked-dates").text();
+            let bookedDatesStringReplaced = bookedDatesString.replace("[", "").replace("]", "").replaceAll("'", "");
+            let bookedDatesArray = bookedDatesStringReplaced.split(",");
+            console.log(typeof(bookedDatesArray));
+            return bookedDatesArray
+        }
+
+    const unavailableDates = getUnavailableDates();
+        console.log(unavailableDates)
+
     //sample available dates. Need to replace with a database
     // Also note its not currently counting the 'Checkout date' - it would need to be one fewer date if this is the case
-    var unavailableDates = ["2022-11-15","2022-11-16"]
+    // var unavailableDates = ["2022-11-15","2022-11-16"]
 
     const showBookNowButton = () => {
         $("#book-now-button").removeClass("d-none");
