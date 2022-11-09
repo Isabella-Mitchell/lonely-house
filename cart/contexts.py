@@ -7,6 +7,7 @@ from listings.models import Listing
 def cart_contents(request):
 
     cart_items = []
+    subtotal = 0
     total = 0
     listing_count = 0
     cart = request.session.get('cart', {})
@@ -14,7 +15,7 @@ def cart_contents(request):
     for item_id, booking_details in cart.items():
         listing = get_object_or_404(Listing, pk=item_id)
     # need to add in nights calculator
-        total = booking_details['no_nights'] * listing.price
+        subtotal += booking_details['no_nights'] * listing.price
         listing_count += 1
         cart_items.append({
             'item_id': item_id,
@@ -24,6 +25,8 @@ def cart_contents(request):
             'selected_dates': booking_details['selected_dates'],
             'listing': listing,
         })
+
+    total = subtotal
 
     context = {
         'cart_items':  cart_items,

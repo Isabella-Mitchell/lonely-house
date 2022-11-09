@@ -24,7 +24,8 @@ def add_to_cart(request, item_id):
     end_date = request.POST.get('endDate')
     selected_dates = dates_string_to_list(request.POST.get('selected-dates-array-input'))
     no_nights = int(request.POST.get('selected-no-nights-input'))
-    redirect_url = request.POST.get('redirect_url')
+    # Nice to have - make it easier for users to nav back to the listing page to amend booking
+    # redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
 
     # walkthrough has a if else statement here for quantity selector
@@ -37,7 +38,7 @@ def add_to_cart(request, item_id):
     messages.success(request, f'Added {listing.name} to your cart')
 
     request.session['cart'] = cart
-    return redirect(redirect_url)
+    return render(request, 'cart/cart.html')
 
 
 def remove_from_cart(request, item_id):
