@@ -1,10 +1,12 @@
 <script type="text/javascript">
 
     //sample available dates. Need to replace with a database
-    // Please improve LongForm checker process
     // Also note its not currently counting the 'Checkout date' - it would need to be one fewer date if this is the case
-    var unavailableDates = ["15-11-2022","16-11-2022"];
-    var unavailableDatesLongForm = ["Tue Nov 15 2022 00:00:00 GMT+0000 (Greenwich Mean Time)", "Wed Nov 16 2022 00:00:00 GMT+0000 (Greenwich Mean Time)"];
+    var unavailableDates = ["2022-11-15","2022-11-16"]
+
+    const showBookNowButton = () => {
+        $("#book-now-button").removeClass("d-none");
+    }
 
     /**
      * Calculates the total price the user will pay based on the dates they have selected
@@ -18,7 +20,12 @@
         let totalPrice = nightsInt * pricePerNightInt;
         $("#total-price").text(totalPrice);
         $("#total-price-container").removeClass("d-none");
+        showBookNowButton();
     }
+
+    function setHiddenInputFieldValue(inputFieldId, value) {
+        $(`"${inputFieldId}"`).val(value)
+    } 
 
     /**
      * Updates the UI based on the number of nights stay 
@@ -34,7 +41,7 @@
         } else {
             $("#selectedNoNights").text(`${nights} Nights`);
         };
-        $('#selected-no-nights-input').val(nights)
+        
     }
 
     /**
@@ -53,7 +60,12 @@
         //var years = Math.floor(months / 12);
 
         showNights(nights);
+        $('#selected-no-nights-input').val(nights)
         calculatePrice(nights);
+    }
+
+    const displaysDatesNotValidToUser = () => {
+        $("#dates-invalid-alert").removeClass("d-none");
     }
 
     /**
@@ -63,18 +75,17 @@
      * If not ok - will prompt the user to pick new dates
      * To do - Make prompt. Also refactor
      * */
-    function checkDatesAreValid(dateArray, selectedStartDate, selectedEndDate) {
-            console.log(dateArray)
+    function checkDatesAreValid(newDateArray, selectedStartDate, selectedEndDate) {
             let okToContinue = true
-            for (let i=0; i<dateArray.length; i++) {
-                if ($.inArray(dateArray[i], unavailableDatesLongForm) != -1) {
-                    console.log("Sorry you can't do that");
+            for (let i=0; i<newDateArray.length; i++) {
+                if ($.inArray(newDateArray[i], unavailableDates) != -1) {
                     let okToContinue = false
-                    console.log(okToContinue)
+                    displaysDatesNotValidToUser();
                     return okToContinue
                 };
             };
-            //ifoktocontinue
+            //if oktocontinue
+            $('#selected-dates-array-input').val(newDateArray)
             calculateNights(selectedStartDate, selectedEndDate)
     };
 
@@ -90,9 +101,7 @@
         var dateArray = new Array();
         var currentDate = startDate;
         while (currentDate <= stopDate) {
-            // Data needs to be strings for checking against sample array. Otherwise could be:
-            //dateArray.push(new Date (currentDate));
-            dateArray.push(String(new Date (currentDate)));
+            dateArray.push(new Date (currentDate));
             currentDate = currentDate.addDays(1);
         }
         return dateArray;
@@ -106,11 +115,12 @@
     function makeArrayOfDates(selectedStartDate, selectedEndDate){
         //calling function to make array of inbetween dates
         var dateArray = getDates(new Date(selectedStartDate), (new Date(selectedEndDate)).addDays(0));
+        var newDateArray = [];
         for (i = 0; i < dateArray.length; i ++ ) {
-            console.log(dateArray[i]);
+            newDateArray.push(dateArray[i].toISOString().split('T')[0]);
         }
         // refactor so selected dates do not need to be passed as an arguement.
-        checkDatesAreValid(dateArray, selectedStartDate, selectedEndDate);
+        checkDatesAreValid(newDateArray, selectedStartDate, selectedEndDate);
     }
 
     /**
@@ -119,12 +129,8 @@
      * To do - see if this is the best format - and can I make this a more generic function?
     */
     function getSelectedDates() {
-        var selectedStartDate = $("#startDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
-        // var x = $("#startDate").data('datepicker').getFormattedDate('yyyy-mm-dd');
-        // console.log(x);
-        console.log(selectedStartDate);
-        var selectedEndDate = $("#endDate").data('datepicker').getFormattedDate('mm/dd/yyyy');
-        //console.log(selectedEndDate);
+        var selectedStartDate = $("#startDate").data('datepicker').getFormattedDate('yyyy-mm-dd');
+        var selectedEndDate = $("#endDate").data('datepicker').getFormattedDate('yyyy-mm-dd');
         makeArrayOfDates(selectedStartDate, selectedEndDate)
     }
 
@@ -139,12 +145,15 @@
         $('#selected-no-nights-input').val("")
         $("#total-price-container").addClass("d-none");
         $("#total-price").text("");
+        $("#dates-invalid-alert").addClass("d-none");
+        $("#book-now-button").addClass("d-none");
     }
 
     $(document).ready(function() {
 
         $('.input-daterange').datepicker({
-            format: 'dd-mm-yyyy',
+            // format to match python - beware of 0-11 or 1-12 months
+            format: 'yyyy-mm-dd',
             startDate: '+1d',
             autoclose: true,
             beforeShowDay:
@@ -155,9 +164,9 @@
                 * To do -  take this function out of document ready
                 */
                 function available(date) {
-                    dateMonthYear = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
-                    //console.log(dateMonthYear)
-                    if ($.inArray(dateMonthYear, unavailableDates) != -1) {
+                    // handles 0-11 difference with +1 to month
+                    YearMonthDay = date.getFullYear() +  "-" + (date.getMonth()+1) + "-" + date.getDate();
+                    if ($.inArray(YearMonthDay, unavailableDates) != -1) {
                         return false;
                     } else {
                         return true;

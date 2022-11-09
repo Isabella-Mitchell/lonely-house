@@ -87,15 +87,18 @@
 
                             <!--End bootstrap-datepicker-->
                             <p id="selectedNoNights"></p>
+                            <p id="dates-invalid-alert" class="d-none">Some of those dates are not available. Please select new dates.</p>
+
                             <p class="small" id="price-per-night-container">Price per night: £<span id="price-per-night">{{ listing.price }}</span></p>
                             <p class="d-none" id="total-price-container">Total Price: £<span id="total-price"></span></p>
 
                             <input type="hidden" id="selected-no-nights-input" name="selected-no-nights-input" value="">
+                            <input type="hidden" id="selected-dates-array-input" name="selected-dates-array-input" value="">
 
                             <div class="form-row">
                                 <div class="col-12">
                                     
-                                    <input type="submit" class="btn btn-dark w-100" value="Book Now"></input>
+                                    <input type="submit" id="book-now-button" class="btn btn-dark w-100 d-none" value="Book Now"></input>
 
                                 </div>
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">

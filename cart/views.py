@@ -9,12 +9,19 @@ def view_cart(request):
     return render(request, 'cart/cart.html')
 
 
+def dates_string_to_list(str):
+    selected_dates_list = str.split(',')
+    print(selected_dates_list)
+    return selected_dates_list
+
+
 def add_to_cart(request, item_id):
     """Add the listing booking details to the cart"""
 
     listing = get_object_or_404(Listing, pk=item_id)
     start_date = request.POST.get('startDate')
     end_date = request.POST.get('endDate')
+    selected_dates = dates_string_to_list(request.POST.get('selected-dates-array-input'))
     no_nights = int(request.POST.get('selected-no-nights-input'))
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
@@ -22,6 +29,7 @@ def add_to_cart(request, item_id):
     # walkthrough has a if else statement here for quantity selector
     cart[item_id] = {
         'no_nights': no_nights,
+        'selected_dates': selected_dates,
         'start_date': start_date,
         'end_date': end_date,
     }

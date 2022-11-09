@@ -21,6 +21,7 @@ def cart_contents(request):
             'no_nights': booking_details['no_nights'],
             'start_date': booking_details['start_date'],
             'end_date': booking_details['end_date'],
+            'selected_dates': booking_details['selected_dates'],
             'listing': listing,
         })
 

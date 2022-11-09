@@ -38,6 +38,7 @@
                                     <p class="my-0"><strong>{{ item.listing.name }}</strong></p>
                                     <p class="my-0">Check in: {{ item.start_date }}</p>
                                     <p class="my-0">Check out: {{ item.end_date }}</p>
+                                    <p class="my-0">Selected Dates: {{ item.selected_dates }}</p>
                                 </td>
                                 <td class="py-3">
                                     <p class="my-0">${{ item.listing.price }}</p>
@@ -50,6 +51,21 @@
                                     <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <p>Breakdown</p>
+                                </td>
+                            </tr>
+                            {% for date in item.selected_dates %}
+                                <tr>
+                                    <td>
+                                        <p>Date: {{ date }}</p>
+                                    </td>
+                                    <td>
+                                        <p>Price per night: {{ item.listing.price }}</p>
+                                    </td>
+                                </tr>
+                            {% endfor %}
                         {% endfor %}
                         <tr>
                             <td colspan="5" class="pt-5 text-right">
