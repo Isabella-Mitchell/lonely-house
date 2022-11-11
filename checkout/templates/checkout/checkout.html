@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+<!-- {% load cart_tools %} -->
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
@@ -138,7 +139,7 @@
 							<span class="icon">
 								<i class="fas fa-exclamation-circle"></i>
 							</span>
-							<span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span>
+							<span>Your card will be charged <strong>£{{ total|floatformat:2 }}</strong></span>
 						</p>
 					</div>
                 </form>
