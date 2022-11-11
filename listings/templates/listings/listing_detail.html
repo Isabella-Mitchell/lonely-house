@@ -108,9 +108,6 @@
             </div>
         </div>
 
-        <!--Allows me to pass Python into JS - find better way-->
-        <p id="hidden-field-booked-dates" class="d-none">{{ listing_bookings }}</p>
-
         <div class="card-body">
             <div class="row p-2 mb-4">
                 <div class="col-12">
@@ -143,5 +140,6 @@
 
 {% block postloadjs %}
     {{ block.super }}
+    {{ listing_bookings|json_script:"id_listing_bookings" }}
     {% include 'listings/includes/listing_detail_script.html' %}
 {% endblock %}

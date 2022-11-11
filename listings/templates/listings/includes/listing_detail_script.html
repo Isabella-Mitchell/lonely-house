@@ -1,11 +1,9 @@
 <script type="text/javascript">
 
     function getUnavailableDates() {
-            let bookedDatesString = $("#hidden-field-booked-dates").text();
-            let bookedDatesStringReplaced = bookedDatesString.replace("[", "").replace("]", "").replaceAll("'", "");
-            let bookedDatesArray = bookedDatesStringReplaced.split(",");
-            // console.log(typeof(bookedDatesArray));
-            return bookedDatesArray
+            let listingBookings = $("#id_listing_bookings").text().replace("[", "").replace("]", "").replaceAll('"', "").replaceAll(" ", "");
+            let unavailableDatesArray = listingBookings.split(",");
+            return unavailableDatesArray;
         }
 
     const unavailableDates = getUnavailableDates();
