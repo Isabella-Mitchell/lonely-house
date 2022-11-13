@@ -34,30 +34,17 @@ def all_listings(request):
     if request.GET:
 
         if 'category' in request.GET:
-            # category_list = request.GET['category']
             category_query = request.GET.getlist('category')
-            # print(category_list)
-            # for item in category_list:
-            #     categories_query_name = item
-            #     print(categories_query_name)
             listings = listings.filter(category__name__in=category_query)
             categories_query = Category.objects.filter(name__in=category_query)
-                # categories_query = request.GET['category'].split(',')
-                # listings = listings.filter(category__name__in=categories_query_name)
-                # categories_query = Category.objects.filter(name__in=categories_query)
 
         if 'sleeps' in request.GET:
-            # sleeps_query = request.GET['sleeps']
             # # gte means greater than or equal too
             # listings = listings.filter(no_sleeps__gte=sleeps_query)
             sleeps_query = request.GET.getlist('sleeps')
             listings = listings.filter(no_sleeps__in=sleeps_query)
 
         if 'facility' in request.GET:
-            # facilities_query_name = request.GET['facility']
-            # facilities_query = request.GET['facility'].split(',')
-            # listings = listings.filter(facilities__name__in=facilities_query)
-            # facilities_query = Facility.objects.filter(name__in=facilities_query)
             facilities_query = request.GET.getlist('facility')
             listings = listings.filter(facilities__name__in=facilities_query)
             facilities_query = Facility.objects.filter(name__in=facilities_query)
@@ -94,10 +81,11 @@ def listing_detail(request, listing_id):
 
     listing_bookings = []
 
+    # Getting Booked Dates from Orders. Passing into JS via template variable.
     all_bookings = OrderLineItem.objects.all()
     listing_bookings_filtered = all_bookings.filter(listing_id=listing_id)
     for item in listing_bookings_filtered:
-        # to string for js
+        # to string for js. Otherwise would be a date object.
         booked_date = str(item.date)
         listing_bookings.append(booked_date)
 
