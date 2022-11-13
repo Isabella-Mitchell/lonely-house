@@ -8,6 +8,7 @@ from checkout.models import OrderLineItem
 
 def get_filters(model):
     """Gets content from database to populate drop down filters"""
+
     filter_list = []
     get_instances = model.objects.all()
     for item in get_instances:

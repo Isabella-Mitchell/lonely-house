@@ -57,8 +57,6 @@ def checkout(request):
             order.save()
             for item_id, booking_details in cart.items():
                 try:
-                    # add if statement to check if a reservation?
-                    # could refactor following Strip video part 6
                     listing = Listing.objects.get(id=item_id)
                     selected_dates = booking_details['selected_dates']
                     for date in selected_dates:
