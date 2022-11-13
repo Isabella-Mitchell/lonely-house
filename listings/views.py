@@ -6,6 +6,18 @@ from .models import Listing, Category, Image, Facility
 from checkout.models import OrderLineItem
 
 
+def get_filters(model):
+    """Gets content from database to populate drop down filters"""
+    filter_list = []
+    get_instances = model.objects.all()
+    for item in get_instances:
+        newdict = {
+            "name": item.name,
+            "friendly_name": item.friendly_name}
+        filter_list.append(newdict)
+    return filter_list
+
+
 def all_listings(request):
     """A view to return all listings including sorting and search queries"""
 
@@ -15,21 +27,9 @@ def all_listings(request):
     categories_query = None
     facilities_query = None
 
-    category_filters = [{
-        'name': 'wetlands',
-        'friendly_name': 'Wetlands',
-    }, {
-        'name': 'forest',
-        'friendly_name': 'Forest',
-    }]
+    category_filters = get_filters(Category)
     sleep_filters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-    facility_filters = [{
-        'name': 'dog_friendly',
-        'friendly_name': 'Dog Friendly'
-    }, {
-        'name': 'wheelchair_accessible',
-        'friendly_name': 'Wheelchair Accessible'
-    }]
+    facility_filters = get_filters(Facility)
 
     if request.GET:
 
@@ -39,9 +39,8 @@ def all_listings(request):
             categories_query = Category.objects.filter(name__in=category_query)
 
         if 'sleeps' in request.GET:
-            # # gte means greater than or equal too
-            # listings = listings.filter(no_sleeps__gte=sleeps_query)
             sleeps_query = request.GET.getlist('sleeps')
+            # Could also be gte instead of in (greater than or equal too)
             listings = listings.filter(no_sleeps__in=sleeps_query)
 
         if 'facility' in request.GET:

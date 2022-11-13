@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Listing
+from .models import Listing, Category
 
 
 class TestViews(TestCase):
@@ -16,29 +16,32 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'listings/listing_detail.html')
 
-    # test that filter queries are not applied when page is loaded
+    # add test for get_filters
 
-    # test that filters load with page (e.g so user can apply filter)
-
-    # test that user can apply filter (if request.GET:...)
-
-# Test category by making a listing with a category, applying filter, seeing if that category is present, 
-# also not applying that filter and seeing if not present e.g
-
-# class TestFilters(TestCase):
-
-#     def test_category_filter_wetlands(self):
-#         listing = Listing.objects.create(
-#             name='Test Wetlands Category', price='20.00', no_sleeps="2", category="wetlands")
-#         response = self.client.get('/listings/?category=wetlands')
+    # add test for filters appearing on page
 
 
-# test form (for filters)
+class TestFilters(TestCase):
+
+    def test_category_filter_wetlands(self):
+        category = Category.objects.create(
+            name='test_wetlands_category', friendly_name="Test Wetlands Category")
+        # need to add a line where I'm actually applying this category?
+        response = self.client.get('/listings/?category=wetlands')
+        self.assertEqual(response.status_code, 200)
+
+    # Test category by making a listing with a category, applying filter, seeing if that category is present, 
+    # also not applying that filter and seeing if not present
 
 
 class TestModels(TestCase):
 
-    def test_featured_defaults_to_false(self):
+    def test_featured_defaults_to_false_category(self):
+        category = Category.objects.create(
+            name='test_category', friendly_name="Test Category")
+        self.assertFalse(category.featured)
+
+    def test_featured_defaults_to_false_listing(self):
         listing = Listing.objects.create(
             name='Test Get Listing Details', price='20.00', no_sleeps="2")
         self.assertFalse(listing.featured)

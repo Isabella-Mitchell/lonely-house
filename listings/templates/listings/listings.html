@@ -20,12 +20,8 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <p>Filters</p>
+
                                 <!--Category-->
-                                <!-- <label for="exampleFormControlSelect1">Category</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="category" multiple>
-                                <option value="wetlands">Wetlands</option>
-                                <option value="forest">Forest</option>
-                                </select> -->
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                       Category
@@ -42,6 +38,7 @@
                                     </div>
                                 </div>
 
+                                <!--Sleeps-->
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                       Guests
@@ -58,6 +55,7 @@
                                     </div>
                                 </div>
 
+                                <!--Facilties-->
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                       Facilties
@@ -74,30 +72,6 @@
                                     </div>
                                 </div>
 
-                                <!-- {% for filter in category_filters %}
-                                    {{ filter.friendly_name }}
-                                {% endfor %}
-                                {% for filter in sleep_filters %}
-                                    {{ filter }}
-                                {% endfor %}
-                                {% for filter in facility_filters %}
-                                    {{ filter.friendly_name }}
-                                {% endfor %} -->
-                                <!-- Sleeps -->
-                                <!-- <label for="exampleFormControlSelect2">Sleeps</label>
-                                <select class="form-control" id="exampleFormControlSelect2" name="sleeps">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="12">12</option>
-                                </select> -->
-                                <!-- Facility -->
-                                <!-- <label for="exampleFormControlSelect3">Facility</label>
-                                <select class="form-control" id="exampleFormControlSelect3" name="facility">
-                                <option value="dog_friendly">Dog Friendly</option>
-                                <option value="wheelchair_accessible">Wheelchair Accessible</option>
-                                </select> -->
                                 <div class="input-group-append">
                                     <button class="form-control btn" type="submit">
                                         <span class="icon">
@@ -230,101 +204,6 @@
                     </div>
                 </div>
             <!-- end landscape card-->
-
-                
-            <!--portrait card card-->
-            <!-- <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="card">
-
-                       
-                        {% if listing.lead_image %}
-                            {% if listing.images.all %}
-                                <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <a href="{% url 'listing_detail' listing.id %}">
-                                                <img src="{{ MEDIA_URL }}/{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
-                                            </a>
-                                        </div>
-                                        {% for image in listing.images.all %}
-                                            <div class="carousel-item">
-                                                <a href="{% url 'listing_detail' listing.id %}">
-                                                    <img src="{{ MEDIA_URL }}/{{ image.name }}" class="d-block w-100" alt="{{ listing.name }}">
-                                                </a>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                    <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                    </button>
-                                </div>
-                            {% else %}
-                                <a href="{% url 'listing_detail' listing.id %}">
-                                    <img src="{{ MEDIA_URL }}/{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
-                                </a>
-                            {% endif %}
-                        {% else %}
-                            <a href="{% url 'listing_detail' listing.id %}">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.jpg" alt="{{ listing.name }}">
-                            </a>
-                        {% endif %}
-
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h5 class="card-title">{{ listing.name }}</h5>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <p class="card-text small"><i class="fas fa-star mr-1"></i>N/A</p>
-                                </div>
-                            </div>
-                            
-                            <hr class="mt-0">
-
-                            <div class="row">
-                                <div class="col-6">
-                                    {% if listing.region and listing.country %}
-                                        <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ listing.region }}, {{ listing.country }}</p>
-                                    {% elif listing.country %}
-                                        <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ listing.country }}</p>
-                                    {% endif %}
-                                </div>
-                                <div class="col-6 text-right">
-                                    <p class="card-text"><i class="fa-solid fa-bed"></i> Sleeps {{ listing.no_sleeps }}</p>
-                                </div>
-                            </div>
-
-                            {% if listing.facilities %}
-                            <div class="row pt-2 pb-2">
-                                <div class="col-12">
-                                    {% for facility in listing.facilities.all %}
-                                    <span data-toggle="tooltip" data-placement="top" title="{{ facility.friendly_name }}"><i class="{{ facility.font_awesome_class }}"></i></span>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            {% endif %}
-
-                            <hr class="mt-0">
-
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="card-text">£{{ listing.price }} <span class="small">per night</span></p>
-                                </div>
-                                <div class="col-6 text-right">
-                                    <a href="{% url 'listing_detail' listing.id %}" class="btn btn-dark">Book</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            
             {% endfor %}
         </div>
     </div>
