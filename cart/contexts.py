@@ -1,5 +1,5 @@
 from django.conf import settings
-# think I can remove this settings import, could also add decimal
+# Could add in decimal import
 from django.shortcuts import get_object_or_404
 from listings.models import Listing
 
@@ -14,7 +14,7 @@ def cart_contents(request):
 
     for item_id, booking_details in cart.items():
         listing = get_object_or_404(Listing, pk=item_id)
-    # need to add in nights calculator
+        # Could in nights calculator. Currently taking from product page
         subtotal += booking_details['no_nights'] * listing.price
         listing_count += 1
         cart_items.append({
