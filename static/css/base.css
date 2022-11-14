@@ -179,6 +179,16 @@ footer {
     cursor: pointer;
 }
 
+/* --------------------- Forms --------------------- */
+
+.dropdown-toggle {
+    width: 100%;
+}
+
+.dropdown-menu {
+    width: 100%;
+}
+
 /* --------------------- Toasts --------------------- */
 
 .message-container {
