@@ -50,7 +50,6 @@ def all_listings(request):
             listings = listings.filter(facilities__name__in=facility_query)
             facilities_query = Facility.objects.filter(name__in=facility_query)
 
-
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:

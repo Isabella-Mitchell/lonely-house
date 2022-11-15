@@ -41,19 +41,19 @@
     <header>
         <div class="fixed-top">
             <nav class="navbar container">
-                <div class="mr-auto bd-highlight">
+                <div class="mr-auto">
                     <a href="{% url 'home' %}" class="navbar-brand">
                         <h1 class="logo">Lonely House</h1>
                     </a>
                 </div>
-                <div class="p-2 bd-highlight">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#search-bar" aria-controls="search-bar" aria-expanded="false" aria-label="Toggle navigation">
+                <div>
+                    <button class="navbar-toggler nav-link" type="button" data-toggle="collapse" data-target="#search-bar" aria-controls="search-bar" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </span>
                     </button>
                 </div>
-                <div class="p-2 bd-highlight">
+                <div>
                     <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon">
                             <i class="fa-solid fa-user"></i>
@@ -71,6 +71,15 @@
                             <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
                         {% endif %}
                     </div>
+                </div>
+                <div>
+                    <button type="button" class="nav-link" >
+                        <a class="{% if total %}ochre-text{% else %}green-text{% endif %}" href="{% url 'view_cart' %}">
+                        <span>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </span>
+                        </a>
+                    </button>
                 </div>
             </nav>
 
