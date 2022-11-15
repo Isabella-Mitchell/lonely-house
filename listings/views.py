@@ -44,6 +44,7 @@ def all_listings(request):
             # Could also be gte instead of in (greater than or equal too)
             listings = listings.filter(no_sleeps__in=sleeps_query)
 
+        # change so not overwriting variable
         if 'facility' in request.GET:
             facilities_query = request.GET.getlist('facility')
             listings = listings.filter(facilities__name__in=facilities_query)

@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                    <div class="container">
+                <div class="container">
                     <!--Collapse Button Hidden on larger screens-->
                     <button class="btn form-control d-lg-none btn-full-width" type="button" data-toggle="collapse" data-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
                         Show/ Hide Filters <i class="fa-solid fa-sliders"></i>
@@ -26,15 +26,9 @@
                 <div class="collapse collapse-smaller-screens" id="collapseFilters">
 
                     <form method="GET" action="{% url 'listings' %}">
-                        <div class="container">
                             <div class="form-group mb-0">
                                 <div class="input-group row d-flex align-items-center m-0">
 
-
-                                    <!--Filters title - hidden on smaller screen sizes -->
-                                    <div class="col-12 col-lg-1 d-none d-lg-block">
-                                        <p class="mb-0 font-weight-bold">Filters:</p>
-                                    </div>
                                     
                                         <!--Category-->
                                         <div class="col-12 col-lg-3 p-1">
@@ -94,29 +88,30 @@
                                         </div>
                                         
                                         <!--Submit Button-->
-                                        <div class="col-12 col-lg-2 p-1">
+                                        <div class="col-6 col-lg-2 p-1">
                                             <button class="btn btn-dark btn-full-width" type="submit">
                                                 Apply Filters
                                             </button>
                                         </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <!--Testing showing selected checkoboxes-->
-                        <p id="selected-filters-text"></p>
-                    </form>
-
-                    
                                         <!--Reset Filters Button-->
-                                        <div class="col-12">
-                                            <a class="btn btn-warning btn-full-width" href="{% url 'listings' %}" id="reset-filters">
-                                                Reset Filters
+                                        <div class="col-6 col-lg-1 p-1">
+                                            <a class="btn btn-light btn-full-width" href="{% url 'listings' %}" id="reset-filters">
+                                                Reset
                                             </button>
                                         </a>
+                                    </div>
 
-
+                                </div>
+                            </div>
+                    </form>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!--Testing showing selected checkoboxes-->
+                <p id="selected-filters-text"></p>
             </div>
         </div>
 
@@ -129,10 +124,6 @@
                         <span class="small"><a href="{% url 'listings' %}">View All Listings</a> | </span>
                     {% endif %}
                     {{ listings|length }} Listings
-                    {% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
-                    {% if sleeps_query %} found for <strong>"Sleeps {{ sleeps_query }}" | </strong>{% endif %}
-                    {% if categories_query %} found for <strong>"Category: {{ categories_query }}" | </strong>{% endif %}
-                    {% if facilities_query %} found for <strong>"Facility: {{ facilities_query }}" | </strong>{% endif %}
                 </p>
             </div>
         </div>
@@ -259,9 +250,26 @@
             let enabledFilters = [];
 
             function updatePageWithSelectedFilters(enabledFilters) {
-                $('#selected-filters').val(enabledFilters);
-                $('#selected-filters-text').text(enabledFilters)
-                console.log(enabledFilters)
+                if (enabledFilters != null) {
+                    for (let i=0; i<enabledFilters.length; i++) {
+                        let filterName = enabledFilters[i]
+                        let filterNameAddPrefix = ""
+                        if (filterName.length <= 2) {
+                            filterNameAddPrefix = `Sleeps: ${filterName}`
+                        } else {
+                            filterNameAddPrefix = filterName
+                        }
+                        let filterNameFormatted = filterNameAddPrefix.toUpperCase().replace("_", " ");
+                        let newEl = $("<p></p>").text(filterNameFormatted).addClass("filter-tag");
+                        $('#selected-filters-text').append(newEl);
+                    }
+                    // $('#selected-filters-text').text(`Selected Filters: ${enabledFiltersFormatted}`)
+                    // $('#selected-filters-text').removeClass('d-none')
+                }
+            }
+
+            function removeSelectedPageFilters(enabledFilters){
+                $('#selected-filters-text').text("");
             }
 
             function addEnabledFiltersToStorage(enabledFilters) {
@@ -280,6 +288,7 @@
                 }) 
                 .get() // Get array.
 
+                removeSelectedPageFilters(enabledFilters);
                 updatePageWithSelectedFilters(enabledFilters);
                 addEnabledFiltersToStorage(enabledFilters);
             });
@@ -287,12 +296,14 @@
             $("#reset-filters").click(function() {
                 localStorage.removeItem('selectedFilters');
                 window.location.href = window.location.href;
+                // $('#selected-filters-text').addClass('d-none')
             });
 
             
 
             window.onload = function() {
                 let checkboxes = $("input[type=checkbox]")
+                console.log(checkboxes);
                 var userFilters = JSON.parse(localStorage.getItem("selectedFilters"))
                 // could refactor to use Map
                 for (const property in userFilters) {
@@ -302,10 +313,8 @@
                         };
                     };
                 };
+                updatePageWithSelectedFilters(userFilters);
             };
 
-            // var userFilters = localStorage.getItem('selectedFilters');
-            var userFilters = JSON.parse(localStorage.getItem("selectedFilters"))
-            console.log(userFilters); //  To print the value of localStorage variable name
     </script>
 {% endblock %}
