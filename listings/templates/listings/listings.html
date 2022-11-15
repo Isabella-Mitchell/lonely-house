@@ -29,6 +29,11 @@
                             <div class="form-group mb-0">
                                 <div class="input-group row d-flex align-items-center m-0">
 
+                                        <!--Filters title - hidden on smaller screen sizes -->
+                                        <div class="col-12 col-lg-1 d-none d-lg-block">
+                                            <p class="mb-0 font-weight-bold">Filters:</p>
+                                        </div>
+
                                     
                                         <!--Category-->
                                         <div class="col-12 col-lg-3 p-1">
@@ -88,19 +93,11 @@
                                         </div>
                                         
                                         <!--Submit Button-->
-                                        <div class="col-6 col-lg-2 p-1">
-                                            <button class="btn btn-dark btn-full-width" type="submit">
+                                        <div class="col-12 col-lg-2 p-1">
+                                            <button class="btn btn-dark btn-full-width" type="submit" id="submit-form">
                                                 Apply Filters
                                             </button>
                                         </div>
-
-                                        <!--Reset Filters Button-->
-                                        <div class="col-6 col-lg-1 p-1">
-                                            <a class="btn btn-light btn-full-width" href="{% url 'listings' %}" id="reset-filters">
-                                                Reset
-                                            </button>
-                                        </a>
-                                    </div>
 
                                 </div>
                             </div>
@@ -111,7 +108,7 @@
         <div class="row">
             <div class="col-12">
                 <!--Testing showing selected checkoboxes-->
-                <p id="selected-filters-text"></p>
+                
             </div>
         </div>
 
@@ -121,9 +118,10 @@
             <div class="col-12">
                 <p>
                     {% if search_term or sleep_query != 'None_None' %}
-                        <span class="small"><a href="{% url 'listings' %}">View All Listings</a> | </span>
+                        <span class="btn btn-dark"><a href="{% url 'listings' %}" id="reset-filters" class="light-text">Reset Filters</a></span>
                     {% endif %}
-                    {{ listings|length }} Listings
+                    <span>| {{ listings|length }} Listings</span>
+                    <span id="selected-filters-text"></span>
                 </p>
             </div>
         </div>
@@ -288,8 +286,6 @@
                 }) 
                 .get() // Get array.
 
-                removeSelectedPageFilters(enabledFilters);
-                updatePageWithSelectedFilters(enabledFilters);
                 addEnabledFiltersToStorage(enabledFilters);
             });
 
@@ -299,6 +295,10 @@
                 // $('#selected-filters-text').addClass('d-none')
             });
 
+            $("#submit-form").click(function() {
+                removeSelectedPageFilters(enabledFilters);
+                updatePageWithSelectedFilters(enabledFilters);
+            });
             
 
             window.onload = function() {
