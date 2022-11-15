@@ -179,6 +179,10 @@ footer {
     cursor: pointer;
 }
 
+.btn-full-width {
+    width: 100%;
+}
+
 /* --------------------- Forms --------------------- */
 
 .dropdown-toggle {
@@ -227,3 +231,11 @@ footer {
         font-size: large;
     }
 }
+
+@media (min-width: 1024px) {
+    .collapse.collapse-smaller-screens {
+      display: block;
+      height: auto !important;
+      visibility: visible;
+    }
+  }
