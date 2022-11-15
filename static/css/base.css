@@ -181,7 +181,7 @@ footer {
     min-height: 600px; 
 }
 
-/* --------------------- Icons & Buttons --------------------- */
+/* --------------------- Icons & Buttons & Links --------------------- */
 
 .icon {
     /* color: #111f24; */
@@ -214,6 +214,11 @@ footer {
 
 .btn-full-width {
     width: 100%;
+}
+
+a:hover {
+    color: #fff;
+    text-decoration: none;
 }
 
 /* --------------------- Forms --------------------- */
