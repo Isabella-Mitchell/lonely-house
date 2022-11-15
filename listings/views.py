@@ -44,11 +44,12 @@ def all_listings(request):
             # Could also be gte instead of in (greater than or equal too)
             listings = listings.filter(no_sleeps__in=sleeps_query)
 
-        # change so not overwriting variable
+        # also check if this is what's causing multiples of same listings
         if 'facility' in request.GET:
-            facilities_query = request.GET.getlist('facility')
-            listings = listings.filter(facilities__name__in=facilities_query)
-            facilities_query = Facility.objects.filter(name__in=facilities_query)
+            facility_query = request.GET.getlist('facility')
+            listings = listings.filter(facilities__name__in=facility_query)
+            facilities_query = Facility.objects.filter(name__in=facility_query)
+
 
         if 'q' in request.GET:
             query = request.GET['q']
