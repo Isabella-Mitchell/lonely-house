@@ -135,6 +135,10 @@ footer {
     color: #e1e2e7;
 }
 
+.dropdown-toggle::after {
+    display: none;
+}
+
 /* --------------------- Cards --------------------- */
 
 .card-full-width {
