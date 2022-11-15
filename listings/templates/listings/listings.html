@@ -100,12 +100,21 @@
                                             </button>
                                         </div>
 
-
-
                                 </div>
                             </div>
                         </div>
+                        <!--Testing showing selected checkoboxes-->
+                        <p id="selected-filters-text"></p>
                     </form>
+
+                    
+                                        <!--Reset Filters Button-->
+                                        <div class="col-12">
+                                            <a class="btn btn-warning btn-full-width" href="{% url 'listings' %}" id="reset-filters">
+                                                Reset Filters
+                                            </button>
+                                        </a>
+
 
                 </div>
             </div>
@@ -241,6 +250,62 @@
 {% block postloadjs %}
     {{ block.super }}
     <script type="text/javascript">
+            // Enable tooltips - Bootstrap
             $('[data-toggle="tooltip"]').tooltip()
+
+            // Get all checkboxes on page
+            let checkboxes = $("input[type=checkbox]")
+            // Make empty array to store user's selected filters
+            let enabledFilters = [];
+
+            function updatePageWithSelectedFilters(enabledFilters) {
+                $('#selected-filters').val(enabledFilters);
+                $('#selected-filters-text').text(enabledFilters)
+                console.log(enabledFilters)
+            }
+
+            function addEnabledFiltersToStorage(enabledFilters) {
+                // Saves currently selected filters in local storage. 
+                // Should put in it's own function
+                localStorage.setItem("selectedFilters", JSON.stringify(enabledFilters));
+            }
+
+
+            // Attach a change event handler to the checkboxes. Handler sourced from Stack Overflow
+            checkboxes.change(function() {
+            enabledFilters = checkboxes
+                .filter(":checked") // Filter out unchecked boxes.
+                .map(function() { // Extract values using jQuery map.
+                return this.value;
+                }) 
+                .get() // Get array.
+
+                updatePageWithSelectedFilters(enabledFilters);
+                addEnabledFiltersToStorage(enabledFilters);
+            });
+
+            $("#reset-filters").click(function() {
+                localStorage.removeItem('selectedFilters');
+                window.location.href = window.location.href;
+            });
+
+            
+
+            window.onload = function() {
+                let checkboxes = $("input[type=checkbox]")
+                var userFilters = JSON.parse(localStorage.getItem("selectedFilters"))
+                // could refactor to use Map
+                for (const property in userFilters) {
+                    for (let i=0; i<checkboxes.length; i++) {
+                        if (checkboxes[i].value == userFilters[property]) {
+                            $(`#${checkboxes[i].id}`).prop('checked', true);
+                        };
+                    };
+                };
+            };
+
+            // var userFilters = localStorage.getItem('selectedFilters');
+            var userFilters = JSON.parse(localStorage.getItem("selectedFilters"))
+            console.log(userFilters); //  To print the value of localStorage variable name
     </script>
 {% endblock %}
