@@ -40,3 +40,13 @@
     margin: 0;
     height: 100%;
 }
+
+select,
+select option {
+    color: #495057;
+}
+
+select:invalid,
+select option[value=""] {
+    color: #6c757d !important;
+}
