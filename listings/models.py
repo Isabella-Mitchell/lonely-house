@@ -42,11 +42,10 @@ class Listing(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)  # required
     no_sleeps = models.DecimalField(max_digits=6, decimal_places=0)  # required
     description = models.TextField(null=True, blank=True)
-    map_embed = models.TextField(null=True, blank=True)
     latitude = models.DecimalField(
-        max_digits=12, decimal_places=10, null=True, blank=True)
+        max_digits=12, decimal_places=10, null=False, blank=False)
     longitude = models.DecimalField(
-        max_digits=12, decimal_places=10, null=True, blank=True)
+        max_digits=12, decimal_places=10, null=False, blank=False)
     featured = models.BooleanField(default=False)
     lead_image = models.ImageField(null=True, blank=True)
     lead_image_url = models.URLField(max_length=1024, null=True, blank=True)
