@@ -194,9 +194,15 @@
     </div>
     <div class="row text-center">
         <div class="col-12">
+            {% if from_profile %}
+            <a href="{% url 'profile' %}" class="btn btn-dark">
+                <span>Back To Profile</span>
+            </a>
+            {% else %}
             <a href="{% url 'listings' %}" class="btn btn-dark">
                 <span>Explore More Listings</span>
             </a>
+            {% endif %}
         </div>
     </div>
 </div>
