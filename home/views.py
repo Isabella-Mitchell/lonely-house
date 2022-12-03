@@ -7,12 +7,12 @@ from listings.models import Listing, Category
 def get_featured(model):
     """A view to return all featured listings or categories"""
 
-    print("getting featured")
     instances = model.objects.all()
     featured_instances = instances.filter(featured=True)
-    print(featured_instances)
+    # limits returned instances to three. Will show oldest first.
+    three_featured_instances = featured_instances[:3]
 
-    return featured_instances
+    return three_featured_instances
 
 
 def index(request):

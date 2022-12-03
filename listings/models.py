@@ -8,6 +8,7 @@ class Category(models.Model):
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
     featured = models.BooleanField(default=False)
+    image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -50,6 +51,8 @@ class Listing(models.Model):
     lead_image = models.ImageField(null=True, blank=True)
     lead_image_url = models.URLField(max_length=1024, null=True, blank=True)
     facilities = models.ManyToManyField(Facility, blank=True)
+    capacity = models.DecimalField(
+        max_digits=2, decimal_places=0, null=True, blank=True, default=1)
 
     def __str__(self):
         return self.name

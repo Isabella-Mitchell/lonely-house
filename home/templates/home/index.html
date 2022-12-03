@@ -29,8 +29,16 @@
         <div class="row">
             <div class="col">
                 {% for featured_listing in featured_listings %}
-                    <p>1</p>
                     {{featured_listing.name}}
+                    <img src="{{ MEDIA_URL }}/{{ featured_listing.lead_image }}" class="d-block w-100" alt="{{ featured_listing.name }}">
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {% for featured_category in featured_categories %}
+                    {{featured_category.friendly_name}}
+                    <img src="{{ MEDIA_URL }}/{{ featured_category.image }}" class="d-block w-100" alt="{{ featured_category.name }}">
                 {% endfor %}
             </div>
         </div>

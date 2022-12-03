@@ -16,6 +16,7 @@ class ListingAdmin(admin.ModelAdmin):
         'price',
         'country',
         'no_sleeps',
+        'featured',
     )
 
     ordering = ('name',)
@@ -24,7 +25,8 @@ class ListingAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_name',
-        'name'
+        'name',
+        'featured',
     )
 
 
