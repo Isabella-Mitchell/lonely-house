@@ -253,6 +253,12 @@ a:hover {
     height: 2px;
 }
 
+/*--------------------------------------------Map*/
+#map {
+    min-height: 360px;
+}
+
+
 /* Allauth form formatting - to add - see Profile App - Part 4 */
 
 /* --------------------- Media Queries --------------------- */
