@@ -26,5 +26,13 @@
                 </p>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                {% for featured_listing in featured_listings %}
+                    <p>1</p>
+                    {{featured_listing.name}}
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}
