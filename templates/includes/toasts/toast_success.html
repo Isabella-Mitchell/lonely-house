@@ -14,7 +14,7 @@
                 <hr class="mt-1 mb-3">
             </div>
         </div>
-        {% if total %}
+        {% if total and not on_profile_page %}
             <a href="{% url 'view_cart' %}" class="btn btn-dark">
                 <span class="text-uppercase">Go To Secure Checkout</span>
                 <span>
