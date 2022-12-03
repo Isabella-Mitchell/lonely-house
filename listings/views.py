@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
-from django.db.models import Q
+from django.db.models import Q, Avg
 from django.http import QueryDict
 from .models import Listing, Category, Image, Facility
 from checkout.models import OrderLineItem
+from reviews.models import Review
 
 
 def get_filters(model):
@@ -19,6 +20,22 @@ def get_filters(model):
     return filter_list
 
 
+def get_ratings(listings):
+    """ Gets reviews. To update ny adding listing logic """
+    reviews = Review.objects.all()
+    rating_aggregates = []
+    for listing in listings:
+        filtered_reviews = reviews.filter(listing=listing)
+        get_avg_rating = filtered_reviews.aggregate(Avg('rating'))
+        if get_avg_rating['rating__avg'] is not None:
+            newdict = {
+                "listing": listing.name,
+                "rating": get_avg_rating['rating__avg'],
+            }
+            rating_aggregates.append(newdict)
+    return rating_aggregates
+
+
 def all_listings(request):
     """A view to return all listings including sorting and search queries"""
 
@@ -27,6 +44,9 @@ def all_listings(request):
     sleeps_query = None
     categories_query = None
     facilities_query = None
+
+    average_ratings = get_ratings(listings)
+    print(average_ratings)
 
     category_filters = get_filters(Category)
     sleep_filters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
@@ -70,6 +90,7 @@ def all_listings(request):
         'category_filters': category_filters,
         'sleep_filters': sleep_filters,
         'facility_filters': facility_filters,
+        'average_ratings': average_ratings,
     }
 
     return render(request, 'listings/listings.html', context)

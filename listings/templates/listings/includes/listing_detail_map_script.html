@@ -8,14 +8,14 @@
     // get values
     let latitude = Number(document.getElementById("latitude").textContent);
     let longitude = Number(document.getElementById("longitude").textContent);
-    // The location of Uluru
+    // Listing location
     const listing_location = { lat: latitude, lng: longitude };
-    // The map, centered at Uluru
+    // The map, centered at listing location
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 16,
         center: listing_location,
     });
-    // The marker, positioned at Uluru
+    // The marker, positioned at listing location
     const marker = new google.maps.Marker({
         position: listing_location,
         map: map,
