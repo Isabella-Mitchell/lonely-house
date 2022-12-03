@@ -27,20 +27,30 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                {% for featured_listing in featured_listings %}
-                    {{featured_listing.name}}
-                    <img src="{{ MEDIA_URL }}/{{ featured_listing.lead_image }}" class="d-block w-100" alt="{{ featured_listing.name }}">
-                {% endfor %}
+            {% for featured_listing in featured_listings %}
+            <div class="col-12 col-md-4">
+                <!--add in holding image logic-->
+                <div class="card text-white">
+                    <img src="{{ MEDIA_URL }}/{{ featured_listing.lead_image }}" class="card-img" alt="{{ featured_listing.name }}">
+                    <div class="card-img-overlay">
+                    <h5 class="card-title">{{ featured_listing.name }}</h5>
+                    </div>
+                </div>
             </div>
+            {% endfor %}
         </div>
         <div class="row">
-            <div class="col">
-                {% for featured_category in featured_categories %}
-                    {{featured_category.friendly_name}}
-                    <img src="{{ MEDIA_URL }}/{{ featured_category.image }}" class="d-block w-100" alt="{{ featured_category.name }}">
-                {% endfor %}
+            {% for featured_category in featured_categories %}
+            <div class="col-12 col-md-4">
+                <!--add in holding image logic-->
+                <div class="card text-white">
+                    <img src="{{ MEDIA_URL }}/{{ featured_category.image }}" class="card-img" alt="{{ featured_category.name }}">
+                    <div class="card-img-overlay">
+                    <h5 class="card-title">{{ featured_category.friendly_name }}</h5>
+                    </div>
+                </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
