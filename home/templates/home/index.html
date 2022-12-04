@@ -13,8 +13,10 @@
                     <a class="btn btn-dark dark-bg" href="{% url 'listings' %}" role="button">Search & Book</a>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
+
+    <!--Featured Listings -->
+    <div class="container pt-4 pb-5 mb-2">
+        <!-- <div class="row">
             <div class="col">
                 <a href="{% url 'view_cart' %}">View Cart</a>
                 <p class="my-0">
@@ -25,32 +27,67 @@
                     {% endif %}
                 </p>
             </div>
+        </div> -->
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mb-4 mt-2 text-center">Featured Listings</h3>
+            </div>
         </div>
         <div class="row">
             {% for featured_listing in featured_listings %}
             <div class="col-12 col-md-4">
                 <!--add in holding image logic-->
-                <div class="card text-white">
-                    <img src="{{ MEDIA_URL }}/{{ featured_listing.lead_image }}" class="card-img" alt="{{ featured_listing.name }}">
-                    <div class="card-img-overlay">
-                    <h5 class="card-title">{{ featured_listing.name }}</h5>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="row">
-            {% for featured_category in featured_categories %}
-            <div class="col-12 col-md-4">
-                <!--add in holding image logic-->
-                <div class="card text-white">
-                    <img src="{{ MEDIA_URL }}/{{ featured_category.image }}" class="card-img" alt="{{ featured_category.name }}">
-                    <div class="card-img-overlay">
-                    <h5 class="card-title">{{ featured_category.friendly_name }}</h5>
+                <div class="card mb-4">
+                    <a href="{% url 'listing_detail' featured_listing.id %}" aria-label="View listing {{ featured_listing.name }}">
+                        <img src="{{ MEDIA_URL }}/{{ featured_listing.lead_image }}" class="card-img" alt="{{ featured_listing.name }}">
+                    </a>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="h5 card-title">{{ featured_listing.name }}</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-lg-5">
+                                <p class="card-text"><i class="fa-solid fa-bed"></i> Sleeps {{ featured_listing.no_sleeps }}</p>
+                            </div>
+                            <div class="col-12 col-lg-7">
+                                {% if featured_listing.region and featured_listing.country %}
+                                    <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ featured_listing.region }}, {{ featured_listing.country }}</p>
+                                {% elif featured_listing.country %}
+                                    <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ featured_listing.country }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+
+    <!--Featured Categories -->
+    <div class="container-fluid" id="featured-categories">
+        <div class="container pt-4 pb-5 mt-4 mb-2">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="mb-3 mt-2 text-center text-white">Featured Categories</h3>
+                </div>
+            </div>
+            <div class="row">
+                {% for featured_category in featured_categories %}
+                <div class="col-12 col-md-4">
+                    <!--add in holding image logic-->
+                    <div class="card text-white mb-4">
+                        <img src="{{ MEDIA_URL }}/{{ featured_category.image }}" class="card-img" alt="{{ featured_category.name }}">
+                        <div class="card-img-overlay  d-flex justify-content-center align-items-center">
+                        <h4 class="card-title category-card-title">{{ featured_category.friendly_name }}</h4>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
 {% endblock %}

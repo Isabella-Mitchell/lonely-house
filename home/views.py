@@ -2,6 +2,7 @@ from django.shortcuts import render
 import datetime
 from datetime import date, timedelta
 from listings.models import Listing, Category
+from listings.views import listing_detail
 
 
 def get_featured(model):

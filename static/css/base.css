@@ -149,6 +149,23 @@ footer {
     color: #e1e2e7;
 }
 
+.category-card-title {
+    font-size: x-large;
+    font-family: Jost, sans-serif;
+}
+
+.card-img-overlay {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+#featured-categories {
+    background-color: #474d23;
+}
+
+#featured-categories .card {
+    border: none;
+}
+
 /* --------------------- Listings Page --------------------- */
 
 .listings-image {
@@ -177,6 +194,10 @@ footer {
 
 .card-full-width {
     width: 100%;
+}
+
+.card-body {
+    min-height: 148px;
 }
 
 /* --------------------- Map Embed --------------------- */
