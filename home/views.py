@@ -5,23 +5,23 @@ from listings.models import Listing, Category
 from reviews.models import Review
 
 
-def get_featured(model):
+def get_featured(model, no_instances):
     """A view to return all featured listings or categories"""
 
     instances = model.objects.all()
     featured_instances = instances.filter(featured=True)
     # limits returned instances to three. Will show oldest first.
-    three_featured_instances = featured_instances[:3]
+    no_featured_instances = featured_instances[:no_instances]
 
-    return three_featured_instances
+    return no_featured_instances
 
 
 def index(request):
     """A view to return the index page including featured content"""
 
-    featured_listings = get_featured(Listing)
-    featured_categories = get_featured(Category)
-    featured_reviews = get_featured(Review)
+    featured_listings = get_featured(Listing, 3)
+    featured_categories = get_featured(Category, 3)
+    featured_reviews = get_featured(Review, 4)
 
     context = {
         'featured_listings': featured_listings,
