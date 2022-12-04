@@ -117,30 +117,33 @@ h6 {
 footer {
     min-height: 10vh;
     width: 100%;
-  }
+}
   
-  footer .row {
+footer .row {
     padding-top: 20px;
     text-align: center;
-  }
-  
-  /* class name and css originally from CV CI project */
-  .social-links li a i {
+}
+
+.social-links li a i {
     font-size: 32px;
     text-align: center;
-    color:#474d23;
     margin: 0;
+}
+  
+/* class name and css originally from CV CI project */
+a {
+    color:#474d23;
     transition: all 0.35s ease-in-out;
     -moz-transition: all 0.35s ease-in-out;
     -webkit-transition: all 0.35s ease-in-out;
     -o-transition: all 0.35s ease-in-out;
-  }
-  
-  .social-links li a i:hover {
-    color: #111f24
-  }
+}
 
-/* --------------------- Hopmepage --------------------- */
+a:hover {
+    color: #111f24
+}
+
+/* --------------------- Homepage --------------------- */
 
 .jumbotron {
     background: url('/media/holding-image.jpg') no-repeat;
@@ -242,10 +245,10 @@ footer {
     width: 100%;
 }
 
-a:hover {
-    color: #fff;
+/* a:hover {
+    color: #111f24;
     text-decoration: none;
-}
+} */
 
 /* --------------------- Forms --------------------- */
 
