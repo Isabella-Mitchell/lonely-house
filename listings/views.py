@@ -30,7 +30,7 @@ def get_average_ratings(listings):
         if get_avg_rating['rating__avg'] is not None:
             newdict = {
                 "listing": listing.name,
-                "rating": get_avg_rating['rating__avg'],
+                "rating": round(get_avg_rating['rating__avg'], 1),
             }
             rating_aggregates.append(newdict)
     return rating_aggregates
