@@ -12,12 +12,16 @@
                 <h2>My Reviews</h2>
             </div>
         </div>
+        <div class="row m-4">
+            <div class="col-12 text-center">
+                <a href="{% url 'add_review' %}" class="btn btn-dark">Add Review</a>
+            </div>
+        </div>
         <div class="row">
                 {% if user_reviews %}
                     {% for review in user_reviews %}
                     <div class="col-12 col-lg-6">
                         <div class="card p-4 mb-2">
-
                             {% if review.review_title %}
                                 <h4>"{{ review.review_title }}"</h4>
                             {% endif %}
@@ -27,19 +31,14 @@
                                 <p>"{{ review.review }}"</p>
                             {% endif %}
                             <a href="{% url 'edit_review' review.id %}">Edit Review</a>
-                            <a href="{% url 'delete_review' review.id %}">Delete Review</a>
-                    
+                            <a class="text-danger" href="{% url 'delete_review' review.id %}">Delete Review</a>
                         </div>
                     </div>
-
                     {% endfor %}
-            {% else %}
-
+                {% else %}
                     <p>No reviews yet</p>
-
-            {% endif %}
-
-            </div>
+                {% endif %}
         </div>
+        
     </div>
 {% endblock %}
