@@ -1,5 +1,7 @@
+from django.shortcuts import get_object_or_404
 from django import forms
 from .models import Review
+from profiles.models import UserProfile
 
 
 class ReviewForm(forms.ModelForm):
@@ -13,7 +15,7 @@ class ReviewForm(forms.ModelForm):
         labels and set autofocus on first field
         """
         super().__init__(*args, **kwargs)
-        placeholders = {
-            'review_title': 'Review Title (max 50 characters)',
-            'review': 'Enter your review',
-        }
+
+    def form_valid(self, form):
+        form.instance.user_profile = self.request.user
+        return super().form_valid(form)
