@@ -20,7 +20,7 @@ def get_filters(model):
     return filter_list
 
 
-def get_ratings(listings):
+def get_average_ratings(listings):
     """ Gets reviews. To update ny adding listing logic """
     reviews = Review.objects.all()
     rating_aggregates = []
@@ -36,6 +36,12 @@ def get_ratings(listings):
     return rating_aggregates
 
 
+def get_listing_reviews(listing_id):
+    reviews = Review.objects.all()
+    listing_reviews = reviews.filter(listing_id=listing_id)
+    return listing_reviews
+
+
 def all_listings(request):
     """A view to return all listings including sorting and search queries"""
 
@@ -45,8 +51,7 @@ def all_listings(request):
     categories_query = None
     facilities_query = None
 
-    average_ratings = get_ratings(listings)
-    print(average_ratings)
+    average_ratings = get_average_ratings(listings)
 
     category_filters = get_filters(Category)
     sleep_filters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
@@ -101,6 +106,8 @@ def listing_detail(request, listing_id):
 
     listing = get_object_or_404(Listing, pk=listing_id)
 
+    reviews = get_listing_reviews(listing_id)
+
     listing_bookings = []
 
     # Getting Booked Dates from Orders. Passing into JS via template variable.
@@ -114,6 +121,7 @@ def listing_detail(request, listing_id):
     context = {
         'listing': listing,
         'listing_bookings': listing_bookings,
+        'reviews': reviews,
     }
 
     return render(request, 'listings/listing_detail.html', context)

@@ -137,7 +137,39 @@
                     <p id="longitude" class="d-none">{{ listing.longitude }}</p>
                 </div>
             </div>
+            <div class="row p-2">
+                <div class="col-12">
+                    <h4>Reviews</h4>
+                </div>
+            </div>
+            {% if reviews %}
+                <div class="row p-2 mb-4">
+                    {% for review in reviews %}
+                    <div class="col-12 col-md-6">
+                        <div class="card p-4 mb-2">
+
+                            {% if review.review_title %}
+                                <h4>"{{ review.review_title }}"</h4>
+                            {% endif %}
+                            <p><i class="fas fa-star mr-1"></i>{{ review.rating }} / 5.0</p>
+                            <p class="small">By {{ review.user_profile }}</p>
+                            {% if review.review %}
+                                <p>"{{ review.review }}"</p>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+            <div class="row p-2 mb-4">
+                <div class="col-12">
+                    <p>No reviews yet</p>
+                </div>
+            </div>
+            {% endif %}
         </div>
+
     </div>
 </div>
 

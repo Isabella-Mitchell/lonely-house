@@ -181,8 +181,6 @@
                                         {% for average_rating in average_ratings %}
                                             {% if average_rating.listing == listing.name %}
                                                 <p class="card-text small"><i class="fas fa-star mr-1"></i>{{ average_rating.rating }} / 5.0</p>
-                                            {% else %}
-                                            <p class="card-text small">No ratings yet</p>
                                             {%  endif %}
                                         {% endfor %}
                                     </div>
