@@ -78,11 +78,13 @@
                 {% for featured_category in featured_categories %}
                 <div class="col-12 col-md-4">
                     <!--add in holding image logic-->
-                    <div class="card text-white mb-4">
-                        <img src="{{ MEDIA_URL }}/{{ featured_category.image }}" class="card-img" alt="{{ featured_category.name }}">
+                    <div class="card mb-4">
+                        <a href="{% url 'listings'%}?category={{ featured_category.name }}">
+                        <img src="{{ MEDIA_URL }}/{{ featured_category.image }}" class="card-img" alt="{{ featured_category.friendly_name }}">
                         <div class="card-img-overlay  d-flex justify-content-center align-items-center">
-                        <h4 class="card-title category-card-title">{{ featured_category.friendly_name }}</h4>
+                        <h4 class="card-title category-card-title light-text">{{ featured_category.friendly_name }}</h4>
                         </div>
+                        </a>
                     </div>
                 </div>
                 {% endfor %}
