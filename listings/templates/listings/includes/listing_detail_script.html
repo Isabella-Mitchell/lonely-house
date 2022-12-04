@@ -1,5 +1,10 @@
 <script type="text/javascript">
 
+    /**
+     * gets unavailable dates for booking 
+     * passed into page as JSON
+     * formats and returns as a JS array
+    */
     function getUnavailableDates() {
             let listingBookings = $("#id_listing_bookings").text().replace("[", "").replace("]", "").replaceAll('"', "").replaceAll(" ", "");
             let unavailableDatesArray = listingBookings.split(",");
@@ -7,11 +12,6 @@
         }
 
     const unavailableDates = getUnavailableDates();
-        // console.log(unavailableDates)
-
-    //sample available dates. Need to replace with a database
-    // Also note its not currently counting the 'Checkout date' - it would need to be one fewer date if this is the case
-    // var unavailableDates = ["2022-11-15","2022-11-16"]
 
     const showBookNowButton = () => {
         $("#book-now-button").removeClass("d-none");
@@ -47,8 +47,10 @@
             $("#selectedNoNights").text("Please select a valid number of nights");
         } else if (nights == "1") {
             $("#selectedNoNights").text(`${nights} Night`);
+            calculatePrice(nights);
         } else {
             $("#selectedNoNights").text(`${nights} Nights`);
+            calculatePrice(nights);
         };
         
     }
@@ -71,7 +73,6 @@
 
         showNights(nights);
         $('#selected-no-nights-input').val(nights)
-        calculatePrice(nights);
     }
 
     const displaysDatesNotValidToUser = () => {
@@ -99,14 +100,14 @@
             calculateNights(selectedStartDate, selectedEndDate)
     };
 
-    //function to make array of inbetween dates. To do - understand!
+    //Used by function to make array of inbetween dates.
     Date.prototype.addDays = function(days) {
         var date = new Date(this.valueOf());
         date.setDate(date.getDate() + days);
         return date;
     }
 
-    //function to make array of inbetween dates. To do - understand!
+    //function to make array of inbetween dates.
     function getDates(startDate, stopDate) {
         var dateArray = new Array();
         var currentDate = startDate;
@@ -129,8 +130,14 @@
         for (i = 0; i < dateArray.length; i ++ ) {
             newDateArray.push(dateArray[i].toISOString().split('T')[0]);
         }
-        // refactor so selected dates do not need to be passed as an arguement.
-        checkDatesAreValid(newDateArray, selectedStartDate, selectedEndDate);
+        if (newDateArray.length == 0) {
+            $('#dates-not-selected-alert').removeClass('d-none')
+        }
+        else {
+            // refactor so selected dates do not need to be passed as an arguement.
+            $('#dates-not-selected-alert').addClass('d-none')
+            checkDatesAreValid(newDateArray, selectedStartDate, selectedEndDate);
+        }
     }
 
     /**
@@ -168,7 +175,7 @@
             autoclose: true,
             beforeShowDay:
                 /**
-                * Checks whether dates are available - Currently pulling from variable array. Needs updating to work with database.
+                * Checks whether dates are available
                 * If date is unavailable it greys out the date in the datepicker.
                 * To do - find a better solution to combines both unavailable date arrays.
                 * To do -  take this function out of document ready
