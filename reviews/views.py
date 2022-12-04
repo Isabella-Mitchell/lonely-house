@@ -8,16 +8,25 @@ from .forms import ReviewForm
 
 
 def reviews(request):
+    """A view to return the reviews page"""
+
+    profile = get_object_or_404(UserProfile, user=request.user)
+
+    reviews = Review.objects.all()
+    user_reviews = reviews.filter(user_profile=profile)
 
     template = 'reviews/reviews.html'
 
-    return render(request, template)
+    context = {
+        'profile': profile,
+        'user_reviews': user_reviews,
+    }
+
+    return render(request, template, context)
 
 
 def add_review(request):
-    """A view to return the reviews page"""
-
-    # profile = get_object_or_404(UserProfile, user=request.user)
+    """Users can add a review"""
 
     if request.method == 'POST':
         form = ReviewForm(request.POST, request.user)
@@ -32,8 +41,6 @@ def add_review(request):
     else:
         form = ReviewForm()
 
-    # reviews = Review.objects.all()
-    # user_reviews = reviews.filter(user_profile=profile)
 
     template = 'reviews/add_review.html'
     context = {
@@ -46,6 +53,7 @@ def add_review(request):
 
 
 def edit_review(request, review_id):
+    """User can edit their reviews"""
 
     review = get_object_or_404(Review, pk=review_id)
     if request.method == 'POST':
@@ -67,3 +75,11 @@ def edit_review(request, review_id):
     }
 
     return render(request, template, context)
+
+
+def delete_review(request, review_id):
+    """User can delete their reviews"""
+    review = get_object_or_404(Review, pk=review_id)
+    review.delete()
+    messages.success(request, 'Review successfully deleted')
+    return redirect(reviews)
