@@ -31,11 +31,13 @@ def reviews(request):
 def add_review(request):
     """Users can add a review"""
 
+    profile = get_object_or_404(UserProfile, user=request.user)
+
     if request.method == 'POST':
-        form = ReviewForm(request.POST, request.user)
+        form = ReviewForm(request.POST)
      
         if form.is_valid():
-            print(form)
+            form.instance.user_profile = profile
             form.save()
             messages.success(request, 'Review saved successfully')
             return redirect(reverse('add_review'))
@@ -58,6 +60,8 @@ def add_review(request):
 def edit_review(request, review_id):
     """User can edit their reviews"""
 
+    profile = get_object_or_404(UserProfile, user=request.user)
+
     review = get_object_or_404(Review, pk=review_id)
     # print(request.user)
     # print(review.user_profile.user)
@@ -68,6 +72,7 @@ def edit_review(request, review_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
+            form.instance.user_profile = profile
             form.save()
             messages.success(request, 'Successfully updated review!')
             return redirect(reviews)

@@ -19,6 +19,7 @@
                     <p id="user_name_hidden" class="d-none">{{ profile }}</p>
                     {% csrf_token %}
                     {{ form|crispy }}
+                    <input class="hidden" value="{{ profile }}">
                     <button class="btn text-uppercase float-right" type="submit">Submit review</button>
                 </form>
             </div>
