@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from profiles.models import UserProfile
 
@@ -7,6 +8,7 @@ from .models import Review
 from .forms import ReviewForm
 
 
+@login_required
 def reviews(request):
     """A view to return the reviews page"""
 
@@ -25,6 +27,7 @@ def reviews(request):
     return render(request, template, context)
 
 
+@login_required
 def add_review(request):
     """Users can add a review"""
 
@@ -41,7 +44,6 @@ def add_review(request):
     else:
         form = ReviewForm()
 
-
     template = 'reviews/add_review.html'
     context = {
         'form': form,
@@ -52,10 +54,17 @@ def add_review(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_review(request, review_id):
     """User can edit their reviews"""
 
     review = get_object_or_404(Review, pk=review_id)
+    # print(request.user)
+    # print(review.user_profile.user)
+    if request.user != review.user_profile.user:
+        messages.error(request, "You do not have permission to edit this review")
+        return redirect('home')
+
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
@@ -77,9 +86,14 @@ def edit_review(request, review_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_review(request, review_id):
     """User can delete their reviews"""
     review = get_object_or_404(Review, pk=review_id)
+    if request.user != review.user_profile.user:
+        messages.error(request, "You do not have permission to delete this review")
+        return redirect('home')
+
     review.delete()
     messages.success(request, 'Review successfully deleted')
     return redirect(reviews)
