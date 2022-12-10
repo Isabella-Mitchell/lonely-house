@@ -139,13 +139,13 @@
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
                                                 <a href="{% url 'listing_detail' listing.id %}">
-                                                    <img src="{{ MEDIA_URL }}/{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
+                                                    <img src="{{ MEDIA_URL }}{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
                                                 </a>
                                             </div>
                                             {% for image in listing.images.all %}
                                                 <div class="carousel-item">
                                                     <a href="{% url 'listing_detail' listing.id %}">
-                                                        <img src="{{ MEDIA_URL }}/{{ image.name }}" class="d-block w-100" alt="{{ listing.name }}">
+                                                        <img src="{{ MEDIA_URL }}{{ image.name }}" class="d-block w-100" alt="{{ listing.name }}">
                                                     </a>
                                                 </div>
                                             {% endfor %}
@@ -161,12 +161,12 @@
                                     </div>
                                 {% else %}
                                     <a href="{% url 'listing_detail' listing.id %}">
-                                        <img src="{{ MEDIA_URL }}/{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
+                                        <img src="{{ MEDIA_URL }}{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
                                     </a>
                                 {% endif %}
                             {% else %}
                                 <a href="{% url 'listing_detail' listing.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.jpg" alt="{{ listing.name }}">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}holding-image.jpg" alt="{{ listing.name }}">
                                 </a>
                             {% endif %}
 
