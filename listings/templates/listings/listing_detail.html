@@ -17,7 +17,7 @@
 {% block content %}
 <div class="container">
     <div class="card">
-        <div class="row align-items-center mb-lg-4">
+        <div class="row mb-lg-4">
             <div class="col-12 col-lg-8">
                     
             <!--Bootstrap carousel - conditional if set image-->
@@ -51,48 +51,49 @@
                 {% endif %}
             </div>
 
-            <div class="col-12 col-lg-4">
+            <div class="col-12 pt-lg-4 col-lg-4">
                 <div class="card-body p-4">
                     <h3>{{ listing.name }}</h3>
-                    <h4>Order Details</h4>
+                    <h4 id="price-per-night-container">£<span id="price-per-night">{{ listing.price }}</span><span class="small"> (per night)</span></h4>
+
+                    <hr>
 
                     <!--With range select with form formatting-->
                         <form class="form" action="{% url 'add_to_cart' listing.id %}" method="POST">
                             {% csrf_token %}
+                            <h5>Select Dates</h5>
                             <div class="container">
-                                <div class="form-row">
-                                    <div class="col-lg-12">
-                                        <div class="row labels">
-                                            <div class="col-lg-6">
-                                                <label for="startDate" class="small">Check In Date</label>    
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <label for="endDate" class="small">Check Out Date</label>
-                                            </div>
-                                        </div>
+
+
                                     
                                         <div class="input-daterange row">
-                                                <input type="text" id="startDate" class="form-control col-6" name="startDate">
-                                                <input type="text" id="endDate" class="form-control col-6" name="endDate">
+                                                <input type="text" id="startDate" class="form-control col-6" name="startDate" placeholder="Check in">
+                                                <input type="text" id="endDate" class="form-control col-6" name="endDate" placeholder="Check out">
                                         </div>
-                                    </div>
-                                </div>
+
                             </div>
                         
-                            <div class="form-row">
+                            <div class="form-row mb-2">
                                 <div class="col-12">
                                     <a id="click-me" class="btn btn-dark w-100">Check Availability</a>
                                 </div>
                             </div>
 
+                            <hr>
+
                             <!--End bootstrap-datepicker-->
-                            <p id="selectedNoNights"></p>
                             <p id="dates-invalid-alert" class="d-none">Some of those dates are not available. Please select new dates.</p>
                             <p id="dates-not-selected-alert" class="d-none">No dates selected. Please select dates.</p>
 
-                            <p class="small" id="price-per-night-container">Price per night: £<span id="price-per-night">{{ listing.price }}</span></p>
-                            <p class="d-none" id="total-price-container">Total Price: £<span id="total-price"></span></p>
+                            <div class="form-row mb-2">
+                                <div class="col-12">
+                                    <h5 class="hidden-booking-form d-none">Booking Details</h5>
+                                    <p class="hidden-booking-form d-none mb-2"><span id="selectedNoNights"></span> x £{{listing.price}} per night</p>
+                                    <p class="d-none" id="total-price-container">Total Price: £<span id="total-price"></span></p>
+                                </div>
+                            </div>
 
+                            
                             <input type="hidden" id="selected-no-nights-input" name="selected-no-nights-input" value="">
                             <input type="hidden" id="selected-dates-array-input" name="selected-dates-array-input" value="">
 

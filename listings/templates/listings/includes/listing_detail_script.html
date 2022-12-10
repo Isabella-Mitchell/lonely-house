@@ -13,8 +13,9 @@
 
     const unavailableDates = getUnavailableDates();
 
-    const showBookNowButton = () => {
+    const showBookingForm = () => {
         $("#book-now-button").removeClass("d-none");
+        $(".hidden-booking-form").removeClass("d-none");
     }
 
     /**
@@ -29,7 +30,7 @@
         let totalPrice = nightsInt * pricePerNightInt;
         $("#total-price").text(totalPrice);
         $("#total-price-container").removeClass("d-none");
-        showBookNowButton();
+        showBookingForm();
     }
 
     function setHiddenInputFieldValue(inputFieldId, value) {
@@ -164,6 +165,7 @@
         $("#total-price").text("");
         $("#dates-invalid-alert").addClass("d-none");
         $("#book-now-button").addClass("d-none");
+        $(".hidden-booking-form").addClass("d-none");
     }
 
     $(document).ready(function() {
