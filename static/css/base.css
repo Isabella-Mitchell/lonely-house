@@ -66,7 +66,7 @@ h6 {
 }
 
 .header-container-lg {
-    padding-top: 107px;
+    padding-top: 108px;
 }
 
 .header-container-sm {
@@ -95,7 +95,7 @@ h6 {
 .nav-link {
     display: block;
     padding: 0.5rem 1rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1;
     background-color: transparent;
     border: 1px solid transparent;
@@ -113,6 +113,11 @@ h6 {
     height: 74px;
     z-index: -10;
 } */
+
+#banner {
+    background-color: #474d23;
+    color:#f2f2f2
+}
 
 footer {
     min-height: 10vh;
@@ -321,3 +326,22 @@ a:hover {
       visibility: visible;
     }
   }
+
+  @media (min-width: 1024px) {
+    .nav-link {
+        font-size: 1.25rem;
+    }
+  }
+
+
+
+/* Search and book banner adjustments */
+@media (max-width: 425px) {
+    .header-container-lg {
+        padding-top: 124px;
+    }
+    
+    .header-container-sm {
+        padding-top: 96px;
+    }
+}
