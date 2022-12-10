@@ -255,6 +255,15 @@ a:hover {
     text-decoration: none;
 } */
 
+.btn-noborder {
+    color: #343a40;
+    border: 0px;
+}
+
+.btn-noborder:hover {
+    text-decoration: underline;
+}
+
 /* --------------------- Forms --------------------- */
 
 .dropdown-toggle {
