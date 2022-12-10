@@ -1,1 +1,1 @@
-web: gunicorn lonely_house.wsqi:application
+web: gunicorn lonely_house.wsgi:application
