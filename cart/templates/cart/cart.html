@@ -100,35 +100,28 @@
             {% endfor %}
             <div class="row">
                 <div class="col-7 col-md-10">
-                </div>
-                <div class="col-5 col-md-2">
                     <p class="my-0 font-weight-bold">Cart Total</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-7 col-md-10">
                 </div>
                 <div class="col-5 col-md-2">
                     <p><strong>£{{ total|floatformat:2 }}</strong></p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-6 order-sm-2">
-                    <a href="{% url 'listings' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                        <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                        <span class="text-uppercase">Amend or Add To Booking</span>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 order-sm-1">
-                    <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg">
-                        <span class="text-uppercase">Secure Checkout</span>
-                        <span class="icon">
+                <div class="col-12 col-md-6 order-md-2 text-center text-md-right">
+                    <a href="{% url 'checkout' %}" class="btn btn-dark rounded-0 btn-lg w-100 mb-4 mb-md-0">
+                        <span>Secure Checkout</span>
+                        <span>
                             <i class="fas fa-lock"></i>
                         </span>
                     </a>
-
+                </div>
+                <div class="col-12 col-md-6 text-center text-md-right">
+                    <a href="{% url 'listings' %}" class="btn btn-outline-dark rounded-0 btn-lg w-100">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span>Amend or Add To Booking</span>
+                    </a>
                 </div>
 
 
