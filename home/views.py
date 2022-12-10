@@ -1,19 +1,8 @@
 from django.shortcuts import render
-import datetime
-from datetime import date, timedelta
 from listings.models import Listing, Category
 from reviews.models import Review
-
-
-def get_featured(model, no_instances):
-    """A view to return all featured listings or categories"""
-
-    instances = model.objects.all()
-    featured_instances = instances.filter(featured=True)
-    # limits returned instances to three. Will show oldest first.
-    no_featured_instances = featured_instances[:no_instances]
-
-    return no_featured_instances
+from .utils import get_featured
+from reviews.utils import get_single_listing_average_rating
 
 
 def index(request):

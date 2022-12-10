@@ -1,45 +1,13 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
-from django.db.models import Q, Avg
+from django.db.models import Q
 from django.http import QueryDict
 from .models import Listing, Category, Image, Facility
+from .constants import sleep_filters_constant
 from checkout.models import OrderLineItem
 from reviews.models import Review
-
-
-def get_filters(model):
-    """Gets content from database to populate drop down filters"""
-
-    filter_list = []
-    get_instances = model.objects.all()
-    for item in get_instances:
-        newdict = {
-            "name": item.name,
-            "friendly_name": item.friendly_name}
-        filter_list.append(newdict)
-    return filter_list
-
-
-def get_average_ratings(listings):
-    """ Gets reviews. To update ny adding listing logic """
-    reviews = Review.objects.all()
-    rating_aggregates = []
-    for listing in listings:
-        filtered_reviews = reviews.filter(listing=listing)
-        get_avg_rating = filtered_reviews.aggregate(Avg('rating'))
-        if get_avg_rating['rating__avg'] is not None:
-            newdict = {
-                "listing": listing.name,
-                "rating": round(get_avg_rating['rating__avg'], 1),
-            }
-            rating_aggregates.append(newdict)
-    return rating_aggregates
-
-
-def get_listing_reviews(listing_id):
-    reviews = Review.objects.all()
-    listing_reviews = reviews.filter(listing_id=listing_id)
-    return listing_reviews
+from .utils import get_filters, get_listing_reviews
+from reviews.utils import get_average_ratings, get_single_listing_average_rating
 
 
 def all_listings(request):
@@ -54,7 +22,7 @@ def all_listings(request):
     average_ratings = get_average_ratings(listings)
 
     category_filters = get_filters(Category)
-    sleep_filters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    sleep_filters = sleep_filters_constant
     facility_filters = get_filters(Facility)
 
     if request.GET:
@@ -108,6 +76,8 @@ def listing_detail(request, listing_id):
 
     reviews = get_listing_reviews(listing_id)
 
+    average_rating = get_single_listing_average_rating(listing_id)
+
     listing_bookings = []
 
     # Getting Booked Dates from Orders. Passing into JS via template variable.
@@ -122,6 +92,7 @@ def listing_detail(request, listing_id):
         'listing': listing,
         'listing_bookings': listing_bookings,
         'reviews': reviews,
+        'average_rating': average_rating,
     }
 
     return render(request, 'listings/listing_detail.html', context)

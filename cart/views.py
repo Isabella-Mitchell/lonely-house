@@ -1,19 +1,13 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib import messages
 from listings.models import Listing
+from .utils import dates_string_to_list
 
 
 def view_cart(request):
     """A view to renders the cart contents page"""
 
     return render(request, 'cart/cart.html')
-
-
-def dates_string_to_list(str):
-    selected_dates_list = str.split(',')
-    # remove check out date from list so not included in price
-    del selected_dates_list[-1]
-    return selected_dates_list
 
 
 def add_to_cart(request, item_id):

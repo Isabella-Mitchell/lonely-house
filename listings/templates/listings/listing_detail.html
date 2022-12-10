@@ -92,7 +92,7 @@
                                 <div class="col-12">
                                     <h5 class="hidden-booking-form d-none">Booking Details</h5>
                                     <p class="hidden-booking-form d-none mb-2"><span id="selectedNoNights"></span> x £{{listing.price}} per night</p>
-                                    <p class="d-none" id="total-price-container">Total Price: £<span id="total-price"></span></p>
+                                    <p class="d-none font-weight-bold" id="total-price-container">Total Price: £<span id="total-price"></span></p>
                                 </div>
                             </div>
 
@@ -144,7 +144,7 @@
             </div>
             <div class="row p-2">
                 <div class="col-12">
-                    <h4>Reviews</h4>
+                    <h4>Reviews {% if reviews %}<i class="fas fa-star mr-1"></i>{{ average_rating }} / 5.0{% endif %}</h4>
                 </div>
             </div>
             {% if reviews %}
