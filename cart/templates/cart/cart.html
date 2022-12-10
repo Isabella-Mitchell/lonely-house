@@ -13,90 +13,136 @@
             <h2>Cart</h2>
         </div>
     </div>
-    <div class="card p-2">
-        <div class="row">
-            <div class="col">
-                {% if cart_items %}
-                <div class="table-responsive rounded">
-                    <table class="table table-sm table-borderless">
-                        <thead class="text-black">
-                            <tr>
-                                <th scope="col">Booking Details</th>
-                                <th scope="col"></th>
-                                <th scope="col">Price</th>
-                                <th scope="col">No Nights</th>
-                                <th scope="col">Subtotal</th>
-                            </tr>
-                        </thead>
 
-                        {% for item in cart_items %}
-                            <tr>
-                                <td class="p-3 w-25">
-                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}/{{ item.listing.lead_image }}">
-                                </td>
-                                <td class="py-3">
-                                    <p class="my-0"><strong>{{ item.listing.name }}</strong></p>
-                                    <p class="my-0">Check in: {{ item.start_date }}</p>
-                                    <p class="my-0">Check out: {{ item.end_date }}</p>
-                                    <p class="my-0">Selected Dates: {{ item.selected_dates }}</p>
-                                </td>
-                                <td class="py-3">
-                                    <p class="my-0">£{{ item.listing.price }}</p>
-                                </td>
-                                <td class="py-3">
-                                    <p class="my-0">{{ item.no_nights }}</p>
-                                </td>
-                                <td class="py-3">
-                                    <p class="my-0">£{{ item.listing.price | calc_subtotal:item.no_nights }}</p>
-                                    <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>Breakdown</p>
-                                </td>
-                            </tr>
-                            {% for date in item.selected_dates %}
-                                <tr>
-                                    <td>
-                                        <p>Date: {{ date }}</p>
-                                    </td>
-                                    <td>
-                                        <p>Price per night: {{ item.listing.price }}</p>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        {% endfor %}
-                        <tr>
-                            <td colspan="5" class="pt-5 text-right">
-                                <h6><strong>Cart Total: £{{ total|floatformat:2 }}</strong></h6>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="5" class="text-right">
-                                <a href="{% url 'listings' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                                    <span class="icon">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="text-uppercase">Amend or Add To Booking</span>
-                                </a>
-                                <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg">
-                                    <span class="text-uppercase">Secure Checkout</span>
-                                    <span class="icon">
-                                        <i class="fas fa-lock"></i>
-                                    </span>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
+
+
+<div class="card p-2 p-md-5">
+    <div class="row">
+        <div class="col-12 mb-5">
+            {% if cart_items %}
+            {% for item in cart_items %}
+            <div class="row">
+                <div class="col-6">
+                    <p class="font-weight-bold">Booking Details</p>
                 </div>
-                {% else %}
-                    <p>Your cart is empty</p>
-                    <a href="{%  url 'listings' %}" class="btn btn-dark">Explore Listings</a>
-                {% endif %}
+                <div class="col-6 text-right">
+                    <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
+                </div>
             </div>
+            
+            
+                <div class="row">
+                    <div class="col-2 col-md-4 mb-1">
+                        <a href="{% url 'listing_detail' item.listing.id %}">
+                            {% if item.listing.lead_image %}
+                                <img class="w-100" src="{{ MEDIA_URL }}/{{ item.listing.lead_image }}" alt="{{ listing.name }}">
+                            {% else %}
+                                <img class="w-100" src="{{ MEDIA_URL }}/holding-image.jpg" alt="{{ listing.name }}">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="col-10 col-md-8">
+                        <p class="my-0"><strong>{{ item.listing.name }}</strong></p>
+                        <p class="my-0">Check in: {{ item.start_date }}</p>
+                        <p class="my-0">Check out: {{ item.end_date }}</p>
+                        <p class="my-0">{{ item.no_nights }} Night(s)</p>
+                    </div>
+                </div>
+                <div class="row mb-1 mt-2">
+                    <div class="col-2 col-md-4">
+                    </div>
+                    <div class="col-5 col-md-4">
+                        <p class="my-0 font-weight-bold">Dates</p>
+                    </div>
+                    <div class="col-5 col-md-4">
+                        <p class="my-0 font-weight-bold">Price</p>
+                    </div>
+                </div>
+                {% for date in item.selected_dates %}
+                <div class="row">
+                    <div class="col-2 col-md-4">
+                    </div>
+                    <div class="col-5 col-md-4">
+                        <p class="my-0">{{ date }}</p>
+                    </div>
+                    <div class="col-5 col-md-4">
+                        <p class="my-0">£{{ item.listing.price }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="row mb-1 mt-2">
+                    <div class="col-7 col-md-4">
+                    </div>
+                    <div class="d-none d-md-block col-md-4">
+                        <p class="my-0 font-weight-bold">Total Nights</p>
+                    </div>
+                    <div class="d-none d-md-block col-md-2">
+                        <p class="my-0 font-weight-bold">Price</p>
+                    </div>
+                    <div class="col-5 col-md-2">
+                        <p class="my-0 font-weight-bold">Subtotal</p>
+                    </div>
+                </div>
+                <div class="row mb-1 mt-2">
+                    <div class="col-7 col-md-4">
+                    </div>
+                    <div class="d-none d-md-block col-md-4">
+                        <p class="my-0">{{ item.no_nights }}</p>
+                    </div>
+                    <div class="d-none d-md-block col-md-2">
+                        <p class="my-0">£{{ item.listing.price }}</p>
+                    </div>
+                    <div class="col-5 col-md-2">
+                        <p class="my-0">£{{ item.listing.price | calc_subtotal:item.no_nights }}</p>
+                    </div>
+                </div>
+                <hr>
+            {% endfor %}
+            <div class="row">
+                <div class="col-7 col-md-10">
+                </div>
+                <div class="col-5 col-md-2">
+                    <p class="my-0 font-weight-bold">Cart Total</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7 col-md-10">
+                </div>
+                <div class="col-5 col-md-2">
+                    <p><strong>£{{ total|floatformat:2 }}</strong></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 order-sm-2">
+                    <a href="{% url 'listings' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="text-uppercase">Amend or Add To Booking</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 order-sm-1">
+                    <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg">
+                        <span class="text-uppercase">Secure Checkout</span>
+                        <span class="icon">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </a>
+
+                </div>
+
+
+
+            </div>
+    </div>
+    {% else %}
+        <p>Your cart is empty</p>
+        <a href="{%  url 'listings' %}" class="btn btn-dark">Explore Listings</a>
+    {% endif %}
         </div>
     </div>
+</div>
+
 </div>
 
 {% endblock %}
