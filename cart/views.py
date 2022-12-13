@@ -16,6 +16,7 @@ def add_to_cart(request, item_id):
     listing = get_object_or_404(Listing, pk=item_id)
     start_date = request.POST.get('startDate')
     end_date = request.POST.get('endDate')
+    # string passed in with comma seperators and no spaces
     selected_dates = dates_string_to_list(request.POST.get('selected-dates-array-input'))
     no_nights = int(request.POST.get('selected-no-nights-input'))
     # Nice to have - make it easier for users to nav back to the listing page to amend booking
@@ -40,6 +41,7 @@ def remove_from_cart(request, item_id):
 
     listing = get_object_or_404(Listing, pk=item_id)
     cart = request.session.get('cart', {})
+    print(cart)
 
     try:
         cart.pop(item_id)
