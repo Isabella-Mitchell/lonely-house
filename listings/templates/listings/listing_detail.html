@@ -29,11 +29,11 @@
                         <div id="carouselExampleControls" class="carousel slide  carousel-fade" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="{{ MEDIA_URL }}/{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
+                                    <img src="{{ MEDIA_URL }}{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
                                 </div>
                                 {% for image in listing.images.all %}
                                     <div class="carousel-item">
-                                        <img src="{{ MEDIA_URL }}/{{ image.name }}" class="d-block w-100" alt="{{ listing.name }}">
+                                        <img src="{{ MEDIA_URL }}{{ image.name }}" class="d-block w-100" alt="{{ listing.name }}">
                                     </div>
                                 {% endfor %}
                             </div>
@@ -47,10 +47,10 @@
                             </button>
                         </div>
                     {% else %}
-                        <img src="{{ MEDIA_URL }}/{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
+                        <img src="{{ MEDIA_URL }}{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
                     {% endif %}
                 {% else %}
-                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/holding-image.jpg" alt="{{ listing.name }}">
+                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}holding-image.jpg" alt="{{ listing.name }}">
                 {% endif %}
             </div>
 

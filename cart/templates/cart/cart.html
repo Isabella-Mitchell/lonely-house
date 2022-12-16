@@ -35,9 +35,9 @@
                     <div class="col-2 col-md-4 mb-1">
                         <a href="{% url 'listing_detail' item.listing.id %}">
                             {% if item.listing.lead_image %}
-                                <img class="w-100" src="{{ MEDIA_URL }}/{{ item.listing.lead_image }}" alt="{{ listing.name }}">
+                                <img class="w-100" src="{{ MEDIA_URL }}{{ item.listing.lead_image }}" alt="{{ listing.name }}">
                             {% else %}
-                                <img class="w-100" src="{{ MEDIA_URL }}/holding-image.jpg" alt="{{ listing.name }}">
+                                <img class="w-100" src="{{ MEDIA_URL }}holding-image.jpg" alt="{{ listing.name }}">
                             {% endif %}
                         </a>
                     </div>
