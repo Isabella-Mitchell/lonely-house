@@ -116,7 +116,11 @@ h6 {
 
 #banner {
     background-color: #474d23;
-    color:#f2f2f2
+}
+
+
+#banner a {
+    color:#f2f2f2;
 }
 
 footer {
