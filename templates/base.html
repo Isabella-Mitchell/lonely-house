@@ -4,15 +4,15 @@
 <html lang="en">
     <head>
         {% block meta %}
-            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         {% endblock %} 
         {% block extra_meta %} 
         {% endblock %} 
         {% block corecss %}
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
-            <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+            <link rel="stylesheet" href="{% static 'css/base.css' %}">
         {% endblock %} 
         {% block extra_css %} 
         {% endblock %} 
@@ -67,23 +67,21 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div>
-                        <button type="button" class="nav-link">
+                    <div class="nav-link">
                             <a class="{% if total %}ochre-text{% else %}green-text{% endif %}" href="{% url 'view_cart' %}">
                                 <span>
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </span>
                             </a>
-                        </button>
                     </div>
                 </nav>
 
                 <div class="collapse" id="search-bar">
-                    <hr class="nav-hr" />
+                    <hr class="nav-hr">
                     <form method="GET" action="{% url 'listings' %}">
                         <div class="container">
                             <div class="input-group">
-                                <input class="form-control" type="text" name="q" placeholder="Search our site" />
+                                <input class="form-control" type="text" name="q" placeholder="Search our site">
                                 <div class="input-group-append">
                                     <button class="form-control btn" type="submit">
                                         <span class="icon">
@@ -95,7 +93,7 @@
                         </div>
                     </form>
                 </div>
-                <hr class="nav-hr" />
+                <hr class="nav-hr">
                 <div id="banner" class="d-md-none text-center">
                     <a href="{% url 'listings' %}">Search & Book</a>
                 </div>
@@ -128,7 +126,7 @@
 
         <footer class="mt-auto d-flex">
             <div class="container-fluid">
-                <hr />
+                <hr>
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 text-sm-left">
@@ -172,7 +170,7 @@
         </footer>
 
         {% block postloadjs %}
-        <script type="text/javascript">
+        <script>
             $(".toast").toast("show");
         </script>
         {% endblock %}

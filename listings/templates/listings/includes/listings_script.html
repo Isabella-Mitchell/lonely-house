@@ -11,6 +11,7 @@
             for (let i=0; i<enabledFilters.length; i++) {
                 let filterName = enabledFilters[i];
                 let filterNameAddPrefix = "";
+                // refactor so it checks for a num type, not a length
                 if (filterName.length <= 2) {
                     filterNameAddPrefix = `Sleeps: ${filterName}`;
                 } else {

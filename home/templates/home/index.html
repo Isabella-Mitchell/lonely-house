@@ -22,7 +22,7 @@
             <div class="card mb-4">
                 {% if featured_listing.lead_image %}
                     <a href="{% url 'listing_detail' featured_listing.id %}" aria-label="View listing {{ featured_listing.name }}">
-                        <img src="{{ MEDIA_URL }}{{ featured_listing.lead_image }}" class="card-img" alt="{{ featured_listing.name }}" />
+                        <img src="{{ MEDIA_URL }}{{ featured_listing.lead_image }}" class="card-img" alt="{{ featured_listing.name }}">
                     </a>
                 {% else %}
                     <a href="{% url 'listing_detail' featured_listing.id %}" aria-label="View listing {{ featured_listing.name }}">
@@ -73,9 +73,9 @@
                 <div class="card mb-4">
                     <a href="{% url 'listings'%}?category={{ featured_category.name }}">
                         {% if featured_category.image %}
-                            <img src="{{ MEDIA_URL }}{{ featured_category.image }}" class="card-img" alt="{{ featured_category.friendly_name }}" />
+                            <img src="{{ MEDIA_URL }}{{ featured_category.image }}" class="card-img" alt="{{ featured_category.friendly_name }}">
                         {% else %}
-                            <img src="{{ MEDIA_URL }}holding-image-cd.jpg" class="card-img" alt="{{ featured_category.friendly_name }}" />
+                            <img src="{{ MEDIA_URL }}holding-image-cd.jpg" class="card-img" alt="{{ featured_category.friendly_name }}">
                         {% endif %}
                         <div class="card-img-overlay d-flex justify-content-center align-items-center">
                             <h4 class="card-title category-card-title light-text">{{ featured_category.friendly_name }}</h4>
