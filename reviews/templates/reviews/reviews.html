@@ -28,7 +28,7 @@
                             <p><i class="fas fa-star mr-1"></i>{{ review.rating }} / 5.0</p>
                             <p class="small">By {{ review.user_profile }}</p>
                             {% if review.review %}
-                                <p>"{{ review.review }}"</p>
+                                <p>"{{ review.review|linebreaksbr }}"</p>
                             {% endif %}
                             <p class="dark-text small">Listing: {{ review.listing }}</p>
                             <a href="{% url 'edit_review' review.id %}">Edit Review</a>

@@ -127,7 +127,7 @@
             <div class="row p-2 mb-4">
                 <div class="col-12">
                     <h4>Description</h4>
-                    <p>{{ listing.description }}</p>
+                    <p>{{ listing.description|linebreaksbr }}</p>
                 </div>
             </div>
             <!--Map-->
@@ -156,7 +156,7 @@
                             <p><i class="fas fa-star mr-1"></i>{{ review.rating }} / 5.0</p>
                             <p class="small">By {{ review.user_profile }}</p>
                             {% if review.review %}
-                                <p>"{{ review.review }}"</p>
+                                <p>"{{ review.review|linebreaksbr }}"</p>
                             {% endif %}
 
                         </div>
