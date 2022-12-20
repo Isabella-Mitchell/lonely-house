@@ -37,23 +37,12 @@ def all_listings(request):
             # Could also be gte instead of in (greater than or equal too)
             listings = listings.filter(no_sleeps__in=sleeps_query)
 
-        # also check if this is what's causing multiples of same listings
         if 'facility' in request.GET:
             print(request)
             facility_query = request.GET.getlist('facility')
-            # prints ['dog_friendly', 'wheelchair_accessible']
-            print(facility_query)
-            print(type(facility_query))
-            print(len(facility_query))
-            # still work to do here - 
-            for facility in facility_query:
-                print(facility)
-                listings = listings.filter(facilities__name=facility)
-            # # I want it to filter by all that match. It's actually doing any
-                print(listings)
-            # printing duplicate listings
-            # facilities_query = Facility.objects.filter(name__in=facility_query)
-            # print(facilities_query)
+            listings = listings.filter(
+                facilities__name__in=facility_query).distinct()
+            facilities_query = Facility.objects.filter(name__in=facility_query)
 
         if 'q' in request.GET:
             query = request.GET['q']
