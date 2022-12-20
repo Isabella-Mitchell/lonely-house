@@ -30,6 +30,7 @@
                             {% if review.review %}
                                 <p>"{{ review.review }}"</p>
                             {% endif %}
+                            <p class="dark-text small">Listing: {{ review.listing }}</p>
                             <a href="{% url 'edit_review' review.id %}">Edit Review</a>
                             <a class="text-danger" href="{% url 'delete_review' review.id %}">Delete Review</a>
                         </div>

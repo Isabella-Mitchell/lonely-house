@@ -19,7 +19,6 @@
     <div class="row">
         {% for featured_listing in featured_listings %}
         <div class="col-12 col-md-4">
-            <!--add in holding image logic-->
             <div class="card mb-4">
                 {% if featured_listing.lead_image %}
                     <a href="{% url 'listing_detail' featured_listing.id %}" aria-label="View listing {{ featured_listing.name }}">
@@ -71,7 +70,6 @@
         <div class="row">
             {% for featured_category in featured_categories %}
             <div class="col-12 col-md-4">
-                <!--add in holding image logic-->
                 <div class="card mb-4">
                     <a href="{% url 'listings'%}?category={{ featured_category.name }}">
                         {% if featured_category.image %}
