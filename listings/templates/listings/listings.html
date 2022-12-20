@@ -45,7 +45,7 @@
                                                     <fieldset>
                                                         {% for filter in category_filters %}
                                                             <div>
-                                                                <input type="checkbox" id="{{ filter.name }}" name="category" value="{{ filter.name }}">
+                                                                <input type="checkbox" class="larger" id="{{ filter.name }}" name="category" value="{{ filter.name }}">
                                                                 <label for="{{ filter.name }}">{{ filter.friendly_name }}</label>
                                                             </div>
                                                         {% endfor %}
@@ -64,7 +64,7 @@
                                                     <fieldset>
                                                         {% for filter in sleep_filters %}
                                                             <div>
-                                                                <input type="checkbox" id="sleep_filter_{{ filter }}" name="sleeps" value="{{ filter }}">
+                                                                <input type="checkbox" class="larger" id="sleep_filter_{{ filter }}" name="sleeps" value="{{ filter }}">
                                                                 <label for="sleep_filter_{{ filter }}">{{ filter }}</label>
                                                             </div>
                                                         {% endfor %}
@@ -83,7 +83,7 @@
                                                     <fieldset>
                                                         {% for filter in facility_filters %}
                                                         <div>
-                                                            <input type="checkbox" id="{{ filter.name }}" name="facility" value="{{ filter.name }}">
+                                                            <input type="checkbox" class="larger" id="{{ filter.name }}" name="facility" value="{{ filter.name }}">
                                                             <label for="{{ filter.name }}">{{ filter.friendly_name }}</label>
                                                         </div>
                                                         {% endfor %}

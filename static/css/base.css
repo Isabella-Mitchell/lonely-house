@@ -282,6 +282,12 @@ a:hover {
     width: 100%;
 }
 
+input.larger {
+    transform: scale(2);
+    margin-right: 0.5rem;
+    accent-color: #474d23;
+  }
+
 /* --------------------- Toasts --------------------- */
 
 .message-container {
