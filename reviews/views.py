@@ -22,6 +22,7 @@ def reviews(request):
     context = {
         'profile': profile,
         'user_reviews': user_reviews,
+        'on_review_page': True,
     }
 
     return render(request, template, context)
