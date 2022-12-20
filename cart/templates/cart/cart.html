@@ -3,8 +3,8 @@
 {% load cart_tools %}
 
 {% block page_header %}
-    <div class="header-container-lg"></div>
-{% endblock %}
+<div class="header-container-lg"></div>
+{% endblock %} 
 
 {% block content %}
 <div class="container">
@@ -14,30 +14,27 @@
         </div>
     </div>
 
-
-
-<div class="card p-2 p-md-5">
-    <div class="row">
-        <div class="col-12 mb-5">
-            {% if cart_items %}
-            {% for item in cart_items %}
-            <div class="row">
-                <div class="col-6">
-                    <p class="font-weight-bold">Booking Details</p>
+    <div class="card p-2 p-md-5">
+        <div class="row">
+            <div class="col-12 mb-5">
+                {% if cart_items %} 
+              	{% for item in cart_items %}
+                <div class="row">
+                    <div class="col-6">
+                        <p class="font-weight-bold">Booking Details</p>
+                    </div>
+                    <div class="col-6 text-right">
+                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
+                    </div>
                 </div>
-                <div class="col-6 text-right">
-                    <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
-                </div>
-            </div>
-            
-            
+
                 <div class="row">
                     <div class="col-2 col-md-4 mb-1">
                         <a href="{% url 'listing_detail' item.listing.id %}">
                             {% if item.listing.lead_image %}
-                                <img class="w-100" src="{{ MEDIA_URL }}{{ item.listing.lead_image }}" alt="{{ listing.name }}">
+                            <img class="w-100" src="{{ MEDIA_URL }}{{ item.listing.lead_image }}" alt="{{ listing.name }}">
                             {% else %}
-                                <img class="w-100" src="{{ MEDIA_URL }}holding-image-cd.jpg" alt="{{ listing.name }}">
+                            <img class="w-100" src="{{ MEDIA_URL }}holding-image-cd.jpg" alt="{{ listing.name }}">
                             {% endif %}
                         </a>
                     </div>
@@ -49,8 +46,7 @@
                     </div>
                 </div>
                 <div class="row mb-1 mt-2">
-                    <div class="col-2 col-md-4">
-                    </div>
+                    <div class="col-2 col-md-4"></div>
                     <div class="col-5 col-md-4">
                         <p class="my-0 font-weight-bold">Dates</p>
                     </div>
@@ -60,8 +56,7 @@
                 </div>
                 {% for date in item.selected_dates %}
                 <div class="row">
-                    <div class="col-2 col-md-4">
-                    </div>
+                    <div class="col-2 col-md-4"></div>
                     <div class="col-5 col-md-4">
                         <p class="my-0">{{ date }}</p>
                     </div>
@@ -71,8 +66,7 @@
                 </div>
                 {% endfor %}
                 <div class="row mb-1 mt-2">
-                    <div class="col-7 col-md-4">
-                    </div>
+                    <div class="col-7 col-md-4"></div>
                     <div class="d-none d-md-block col-md-4">
                         <p class="my-0 font-weight-bold">Total Nights</p>
                     </div>
@@ -84,8 +78,7 @@
                     </div>
                 </div>
                 <div class="row mb-1 mt-2">
-                    <div class="col-7 col-md-4">
-                    </div>
+                    <div class="col-7 col-md-4"></div>
                     <div class="d-none d-md-block col-md-4">
                         <p class="my-0">{{ item.no_nights }}</p>
                     </div>
@@ -97,71 +90,62 @@
                     </div>
                 </div>
                 <hr>
-            {% endfor %}
-            <div class="row">
-                <div class="col-7 col-md-10">
-                    <p class="my-0 font-weight-bold">Cart Total</p>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-7 col-md-10">
+                        <p class="my-0 font-weight-bold">Cart Total</p>
+                    </div>
+                    <div class="col-5 col-md-2">
+                        <p><strong>£{{ total|floatformat:2 }}</strong></p>
+                    </div>
                 </div>
-                <div class="col-5 col-md-2">
-                    <p><strong>£{{ total|floatformat:2 }}</strong></p>
+                <div class="row">
+                    <div class="col-12 col-md-6 order-md-2 text-center text-md-right">
+                        <a href="{% url 'checkout' %}" class="btn btn-dark rounded-0 btn-lg w-100 mb-4 mb-md-0">
+                            <span>Secure Checkout</span>
+                            <span>
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-6 text-center text-md-right">
+                        <a href="{% url 'listings' %}" class="btn btn-outline-dark rounded-0 btn-lg w-100">
+                            <span>
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span>Add To Booking</span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-md-6 order-md-2 text-center text-md-right">
-                    <a href="{% url 'checkout' %}" class="btn btn-dark rounded-0 btn-lg w-100 mb-4 mb-md-0">
-                        <span>Secure Checkout</span>
-                        <span>
-                            <i class="fas fa-lock"></i>
-                        </span>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 text-center text-md-right">
-                    <a href="{% url 'listings' %}" class="btn btn-outline-dark rounded-0 btn-lg w-100">
-                        <span>
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                        <span>Add To Booking</span>
-                    </a>
-                </div>
-
-
-
-            </div>
-    </div>
-    {% else %}
-        <p>Your cart is empty</p>
-        <a href="{%  url 'listings' %}" class="btn btn-dark">Explore Listings</a>
-    {% endif %}
+            {% else %}
+            <p>Your cart is empty</p>
+            <a href="{%  url 'listings' %}" class="btn btn-dark">Explore Listings</a>
+            {% endif %}
         </div>
     </div>
 </div>
-
-</div>
-
 {% endblock %}
 
-{% block postloadjs %}
+{% block postloadjs %} 
 {{ block.super }}
 
 <script>
-
     //remove item from cart anmd reload
-    $('.remove-item').click(function(e) {
-        console.log("click")
+    $(".remove-item").click(function (e) {
+        console.log("click");
         var csrfToken = "{{ csrf_token }}";
-        var itemId = $(this).attr('id').split('remove_')[1];
+        var itemId = $(this).attr("id").split("remove_")[1];
         console.log(itemId);
-        var url =`/cart/remove/${itemId}/`;
+        var url = `/cart/remove/${itemId}/`;
         console.log(url);
-        var data = {'csrfmiddlewaretoken': csrfToken};
+        var data = { csrfmiddlewaretoken: csrfToken };
         console.log(data);
 
-        $.post(url, data)
-        .done(function() {
+        $.post(url, data).done(function () {
             location.reload();
         });
-    })
-
+    });
 </script>
 
 {% endblock %}
