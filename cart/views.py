@@ -13,27 +13,32 @@ def view_cart(request):
 def add_to_cart(request, item_id):
     """Add the listing booking details to the cart"""
 
-    listing = get_object_or_404(Listing, pk=item_id)
-    start_date = request.POST.get('startDate')
-    end_date = request.POST.get('endDate')
-    # string passed in with comma seperators and no spaces
-    selected_dates = dates_string_to_list(request.POST.get('selected-dates-array-input'))
-    no_nights = int(request.POST.get('selected-no-nights-input'))
-    # Nice to have - make it easier for users to nav back to the listing page to amend booking
-    redirect_url = request.POST.get('redirect_url')
-    cart = request.session.get('cart', {})
+    try:
 
-    # walkthrough has a if else statement here for quantity selector
-    cart[item_id] = {
-        'no_nights': no_nights,
-        'selected_dates': selected_dates,
-        'start_date': start_date,
-        'end_date': end_date,
-    }
-    messages.success(request, f'Added {listing.name} to your cart')
+        listing = get_object_or_404(Listing, pk=item_id)
+        start_date = request.POST.get('startDate')
+        end_date = request.POST.get('endDate')
+        # string passed in with comma seperators and no spaces
+        selected_dates = dates_string_to_list(request.POST.get('selected-dates-array-input'))
+        no_nights = int(request.POST.get('selected-no-nights-input'))
+        redirect_url = request.POST.get('redirect_url')
+        cart = request.session.get('cart', {})
 
-    request.session['cart'] = cart
-    return redirect(redirect_url)
+        # walkthrough has a if else statement here for quantity selector
+        cart[item_id] = {
+            'no_nights': no_nights,
+            'selected_dates': selected_dates,
+            'start_date': start_date,
+            'end_date': end_date,
+        }
+        messages.success(request, f'Added {listing.name} to your cart')
+
+        request.session['cart'] = cart
+        return redirect(redirect_url)
+
+    except Exception as e:
+        messages.error(request, f'Error adding item to cart. Please ensure you have selected dates and try again.')
+        return redirect('view_cart')
 
 
 def remove_from_cart(request, item_id):
@@ -51,4 +56,5 @@ def remove_from_cart(request, item_id):
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, f'Error removing item {e}')
-        return HttpResponse(status=500)
+        messages.error(request, f'Error removing item from cart. Please ensure you have this listing in your cart.')
+        return redirect('view_cart')
