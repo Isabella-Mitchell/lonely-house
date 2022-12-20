@@ -1,152 +1,145 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} {% load static %} {% block page_header %}
+<div class="header-container-sm"></div>
+{% endblock %} {% block content %}
+<div class="jumbotron jumbotron-fluid d-flex align-items-end">
+    <div class="container">
+        <h2 class="display-4">Escape Into Nature</h2>
+        <p class="lead">Secluded holiday rentals for remote getaways</p>
+        <a class="btn btn-dark dark-bg" href="{% url 'listings' %}" role="button">Search & Book</a>
+    </div>
+</div>
 
-{% block page_header %}
-    <div class="header-container-sm"></div>
-{% endblock %}
-
-{% block content %}
-    <div class="jumbotron jumbotron-fluid d-flex align-items-end">
-        <div class="container">
-                    <h2 class="display-4">Escape Into Nature</h2>
-                    <p class="lead">Secluded holiday rentals for remote getaways</p>
-                    <a class="btn btn-dark dark-bg" href="{% url 'listings' %}" role="button">Search & Book</a>
+<!--Featured Listings -->
+<div class="container pt-4 pb-5 mb-2">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="mb-4 mt-2 text-center">Featured Listings</h3>
         </div>
     </div>
-
-    <!--Featured Listings -->
-    <div class="container pt-4 pb-5 mb-2">
-        <!-- <div class="row">
-            <div class="col">
-                <a href="{% url 'view_cart' %}">View Cart</a>
-                <p class="my-0">
-                    {% if total %}
-                        £{{ total|floatformat:2 }}
-                    {% else %}
-                        $0.00
-                    {% endif %}
-                </p>
+    <div class="row">
+        {% for featured_listing in featured_listings %}
+        <div class="col-12 col-md-4">
+            <!--add in holding image logic-->
+            <div class="card mb-4">
+                {% if featured_listing.lead_image %}
+                    <a href="{% url 'listing_detail' featured_listing.id %}" aria-label="View listing {{ featured_listing.name }}">
+                        <img src="{{ MEDIA_URL }}{{ featured_listing.lead_image }}" class="card-img" alt="{{ featured_listing.name }}" />
+                    </a>
+                {% else %}
+                    <a href="{% url 'listing_detail' featured_listing.id %}" aria-label="View listing {{ featured_listing.name }}">
+                        <img src="{{ MEDIA_URL }}holding-image-cd.jpg" class="card-img" alt="{{ listing.name }}">
+                    </a>
+                {% endif %}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 class="h5 card-title">{{ featured_listing.name }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <p class="card-text"><i class="fa-solid fa-bed"></i> Sleeps {{ featured_listing.no_sleeps }}</p>
+                        </div>
+                        <div class="col-12 col-lg-7">
+                            {% if featured_listing.region and featured_listing.country %}
+                            <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ featured_listing.region }}, {{ featured_listing.country }}</p>
+                            {% elif featured_listing.country %}
+                            <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ featured_listing.country }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div> -->
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <a class="btn btn-dark dark-bg" href="{% url 'listings' %}" role="button">Explore All Listings</a>
+        </div>
+    </div>
+</div>
+
+<!--Featured Categories -->
+<div class="container-fluid" id="featured-categories">
+    <div class="container pt-4 pb-5 mt-4 mb-2">
         <div class="row">
             <div class="col-12">
-                <h3 class="mb-4 mt-2 text-center">Featured Listings</h3>
+                <h3 class="mb-3 mt-2 text-center text-white">Featured Categories</h3>
             </div>
         </div>
         <div class="row">
-            {% for featured_listing in featured_listings %}
+            {% for featured_category in featured_categories %}
             <div class="col-12 col-md-4">
                 <!--add in holding image logic-->
                 <div class="card mb-4">
-                    <a href="{% url 'listing_detail' featured_listing.id %}" aria-label="View listing {{ featured_listing.name }}">
-                        <img src="{{ MEDIA_URL }}{{ featured_listing.lead_image }}" class="card-img" alt="{{ featured_listing.name }}">
+                    <a href="{% url 'listings'%}?category={{ featured_category.name }}">
+                        {% if featured_category.image %}
+                            <img src="{{ MEDIA_URL }}{{ featured_category.image }}" class="card-img" alt="{{ featured_category.friendly_name }}" />
+                        {% else %}
+                            <img src="{{ MEDIA_URL }}holding-image-cd.jpg" class="card-img" alt="{{ featured_category.friendly_name }}" />
+                        {% endif %}
+                        <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                            <h4 class="card-title category-card-title light-text">{{ featured_category.friendly_name }}</h4>
+                        </div>
                     </a>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <h4 class="h5 card-title">{{ featured_listing.name }}</h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-lg-5">
-                                <p class="card-text"><i class="fa-solid fa-bed"></i> Sleeps {{ featured_listing.no_sleeps }}</p>
-                            </div>
-                            <div class="col-12 col-lg-7">
-                                {% if featured_listing.region and featured_listing.country %}
-                                    <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ featured_listing.region }}, {{ featured_listing.country }}</p>
-                                {% elif featured_listing.country %}
-                                    <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ featured_listing.country }}</p>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                <a class="btn btn-dark dark-bg" href="{% url 'listings' %}" role="button">Explore All Listings</a>
-            </div>
+    </div>
+</div>
+
+<!--Featured Reviews -->
+<div class="container pt-4 pb-5">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="mb-4 mt-4 text-center">Featured Reviews</h3>
         </div>
     </div>
-
-    <!--Featured Categories -->
-    <div class="container-fluid" id="featured-categories">
-        <div class="container pt-4 pb-5 mt-4 mb-2">
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="mb-3 mt-2 text-center text-white">Featured Categories</h3>
-                </div>
-            </div>
-            <div class="row">
-                {% for featured_category in featured_categories %}
-                <div class="col-12 col-md-4">
-                    <!--add in holding image logic-->
-                    <div class="card mb-4">
-                        <a href="{% url 'listings'%}?category={{ featured_category.name }}">
-                        <img src="{{ MEDIA_URL }}{{ featured_category.image }}" class="card-img" alt="{{ featured_category.friendly_name }}">
-                        <div class="card-img-overlay  d-flex justify-content-center align-items-center">
-                        <h4 class="card-title category-card-title light-text">{{ featured_category.friendly_name }}</h4>
+    <div class="row">
+        {% for featured_review in featured_reviews %}
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-12">
+                            {% if featured_review.rating == 5 %}
+                            <p><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i></p>
+                            {% elif featured_review.rating == 4 %}
+                            <p><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i></p>
+                            {% elif featured_review.rating == 3 %}
+                            <p><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i></p>
+                            {% elif featured_review.rating == 2 %}
+                            <p><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i></p>
+                            {% else %}
+                            <p><i class="fas fa-star mr-1"></i></p>
+                            {% endif %}
                         </div>
-                        </a>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-
-    <!--Featured Reviews -->
-    <div class="container pt-4 pb-5">
-        <div class="row">
-            <div class="col-12">
-                <h3 class="mb-4 mt-4 text-center">Featured Reviews</h3>
-            </div>
-        </div>
-        <div class="row">
-            {% for featured_review in featured_reviews %}
-            <div class="col-12 col-md-6 col-lg-3">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="row text-center">
-                            <div class="col-12">
-                                {% if featured_review.rating == 5 %}
-                                    <p><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i></p>
-                                {% elif featured_review.rating == 4 %}
-                                 <p><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i></p>
-                                {% elif featured_review.rating == 3 %}
-                                 <p><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i></p>
-                                {% elif featured_review.rating == 2 %}
-                                 <p><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i></p>
-                                {% else %}
-                                 <p><i class="fas fa-star mr-1"></i></p>
-                                {% endif %}
-                            </div>
-                            <div class="col-12">
-                                {% if featured_review.review_title %}
-                                    <h4 class="card-title">"{{ featured_review.review_title }}"</h4>
-                                {% endif %}
-                            </div>
-                            <div class="col-12">
-                                <p class="small">By {{ featured_review.user_profile }}</p>
-                            </div>
-                            <div class="col-12">
-                                <a href="{% url 'listing_detail' featured_review.listing_id %}">
-                                    <p class="dark-text small">Listing: {{ featured_review.listing }}</p> 
-                                </a>
-                            </div>
+                        <div class="col-12">
+                            {% if featured_review.review_title %}
+                            <h4 class="card-title">"{{ featured_review.review_title }}"</h4>
+                            {% endif %}
+                        </div>
+                        <div class="col-12">
+                            <p class="small">By {{ featured_review.user_profile }}</p>
+                        </div>
+                        <div class="col-12">
+                            <a href="{% url 'listing_detail' featured_review.listing_id %}">
+                                <p class="dark-text small">Listing: {{ featured_review.listing }}</p>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            {% endfor %}
         </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                <a class="btn btn-dark dark-bg" href="{% url 'listings' %}" role="button">Find Your Next Great Escape</a>
-            </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <a class="btn btn-dark dark-bg" href="{% url 'listings' %}" role="button">Find Your Next Great Escape</a>
         </div>
     </div>
-    
+</div>
+
 {% endblock %}
