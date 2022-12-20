@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
-{% endblock %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %} 
 
 {% block page_header %}
-    <div class="header-container-lg"></div>
+<div class="header-container-lg"></div>
 {% endblock %}
 
 {% block content %}
@@ -14,10 +14,9 @@
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-6 text-center">
             <h2>Booking Confirmation</h2>
-            <p>Your order information is below. A confirmation email will be sent to {{  order.email }}</p>
+            <p>Your order information is below. A confirmation email will be sent to {{ order.email }}</p>
         </div>
     </div>
-
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-lg-8">
             <div class="card pl-lg-5 pr-lg-5 mb-4">
@@ -29,7 +28,6 @@
                         </div>
                     </div>
                     <hr>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0">Order Number:</p>
@@ -38,7 +36,6 @@
                             <p class="mb-0">{{ order.order_number }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0">Order Date:</p>
@@ -47,15 +44,12 @@
                             <p class="mb-0">{{ order.date }}</p>
                         </div>
                     </div>
-
                     <hr>
-
                     <div class="row">
                         <div class="col">
                             <h5 class="mb-0 text-center">Booking Details</h5>
                         </div>
                     </div>
-
                     <hr>
                     {% for item in order.lineitems.all %}
                     <div class="row">
@@ -69,14 +63,13 @@
                         </div>
                     </div>
                     {% endfor %}
-
-                    <hr>
+                    <hr >
                     <div class="row">
                         <div class="col">
                             <h5 class="mb-0 text-center">Contact Details</h5>
                         </div>
                     </div>
-                    <hr>
+                    <hr >
                     <div class="row">
                         <div class="col-4 col-md-4">
                             <p class="mb-0">Name:</p>
@@ -85,7 +78,6 @@
                             <p class="mb-0">{{ order.first_name }} {{ order.last_name }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-4 col-md-4">
                             <p class="mb-0">Email:</p>
@@ -103,7 +95,6 @@
                             <p class="mb-0">{{ order.phone_number }}</p>
                         </div>
                     </div>
-
                     <hr>
                     <div class="row">
                         <div class="col">
@@ -111,20 +102,14 @@
                         </div>
                     </div>
                     <hr>
-
                     <div class="row">
                         <div class="col-4 col-md-4">
                             <p class="mb-0">Address:</p>
                         </div>
                         <div class="col-8 col-md-8 text-md-right">
-                            <p class="mb-0">{{ order.street_address1 }}
-                                {% if order.street_address2 %}
-                                , {{ order.street_address1 }}
-                                {% endif %}
-                            </p>
+                            <p class="mb-0">{{ order.street_address1 }}{% if order.street_address2 %}, {{ order.street_address1 }}{% endif %}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-4 col-md-4">
                             <p class="mb-0">Town/ City:</p>
@@ -133,7 +118,6 @@
                             <p class="mb-0">{{ order.town_or_city }}</p>
                         </div>
                     </div>
-
                     {% if order.county %}
                     <div class="row">
                         <div class="col-4 col-md-4">
@@ -143,9 +127,8 @@
                             <p class="mb-0">{{ order.county }}</p>
                         </div>
                     </div>
-                    {% endif %}
-
-                    {% if order.postcode %}
+                    {% endif %} 
+                  	{% if order.postcode %}
                     <div class="row">
                         <div class="col-4 col-md-4">
                             <p class="mb-0">Post Code:</p>
@@ -155,7 +138,6 @@
                         </div>
                     </div>
                     {% endif %}
-
                     <div class="row">
                         <div class="col-4 col-md-4">
                             <p class="mb-0">Country:</p>
@@ -164,7 +146,6 @@
                             <p class="mb-0">{{ order.country }}</p>
                         </div>
                     </div>
-
                     <hr>
                     <div class="row">
                         <div class="col">
@@ -172,7 +153,6 @@
                         </div>
                     </div>
                     <hr>
-
                     <div class="row">
                         <div class="col-6 col-md-4">
                             <p class="mb-0 font-weight-bold">Order Total</p>
