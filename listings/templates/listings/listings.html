@@ -242,5 +242,5 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    {% include 'listings/includes/listings_script.html' %}
+    <script src="{% static '/js/listings_script.js' %}" type="text/javascript"></script>  
 {% endblock %}
