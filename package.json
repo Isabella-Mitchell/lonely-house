@@ -1,0 +1,22 @@
+{
+  "name": "lonely-house",
+  "version": "1.0.0",
+  "description": "## Milestone Project 4 - Full Stack Development",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Isabella-Mitchell/lonely-house.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Isabella-Mitchell/lonely-house/issues"
+  },
+  "homepage": "https://github.com/Isabella-Mitchell/lonely-house#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
