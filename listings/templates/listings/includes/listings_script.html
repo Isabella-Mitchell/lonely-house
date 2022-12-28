@@ -11,12 +11,12 @@
             for (let i=0; i<enabledFilters.length; i++) {
                 let filterName = enabledFilters[i];
                 let filterNameAddPrefix = "";
-                // refactor so it checks for a num type, not a length
-                if (filterName.length <= 2) {
-                    filterNameAddPrefix = `Sleeps: ${filterName}`;
-                } else {
+                // Applies Sleeps: preffix if filterName can be made a number
+                if (isNaN(+filterName)) {
                     filterNameAddPrefix = filterName;
-                }
+                } else {
+                    filterNameAddPrefix = `Sleeps: ${filterName}`;
+                };
                 let filterNameFormatted = filterNameAddPrefix.toUpperCase().replace("_", " ");
                 let newEl = $("<p></p>").text(filterNameFormatted).addClass("filter-tag");
                 $('#selected-filters-text').append(newEl);
