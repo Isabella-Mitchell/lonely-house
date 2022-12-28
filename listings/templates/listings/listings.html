@@ -21,99 +21,83 @@
                         Show/ Hide Filters <i class="fa-solid fa-sliders"></i>
                     </button>
                 </div>
-                
                 <!--Collapse Content (media query so only collapses on smaller screens)-->
                 <div class="collapse collapse-smaller-screens" id="collapseFilters">
-
                     <form method="GET" action="{% url 'listings' %}">
-                            <div class="form-group mb-0">
-                                <div class="input-group row d-flex align-items-center m-0">
-
-                                        <!--Filters title - hidden on smaller screen sizes -->
-                                        <div class="col-12 col-lg-1 d-none d-lg-block">
-                                            <p class="mb-0 font-weight-bold">Filters:</p>
+                        <div class="form-group mb-0">
+                            <div class="input-group row d-flex align-items-center m-0">
+                                <!--Filters title - hidden on smaller screen sizes -->
+                                <div class="col-12 col-lg-1 d-none d-lg-block">
+                                    <p class="mb-0 font-weight-bold">Filters:</p>
+                                </div>
+                                <!--Category Filter-->
+                                <div class="col-12 col-lg-3 p-1">
+                                    <div class="dropdown">
+                                        <button class="btn form-control dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" data-display="static">
+                                        Category <i class="fa-solid fa-chevron-down"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-full-width p-3">
+                                            <fieldset>
+                                                {% for filter in category_filters %}
+                                                    <div>
+                                                        <input type="checkbox" class="larger" id="{{ filter.name }}" name="category" value="{{ filter.name }}">
+                                                        <label for="{{ filter.name }}">{{ filter.friendly_name }}</label>
+                                                    </div>
+                                                {% endfor %}
+                                            </fieldset>
                                         </div>
-
-                                    
-                                        <!--Category-->
-                                        <div class="col-12 col-lg-3 p-1">
-                                            <div class="dropdown">
-                                                <button class="btn form-control dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" data-display="static">
-                                                Category <i class="fa-solid fa-chevron-down"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-full-width p-3">
-                                                    <fieldset>
-                                                        {% for filter in category_filters %}
-                                                            <div>
-                                                                <input type="checkbox" class="larger" id="{{ filter.name }}" name="category" value="{{ filter.name }}">
-                                                                <label for="{{ filter.name }}">{{ filter.friendly_name }}</label>
-                                                            </div>
-                                                        {% endfor %}
-                                                    </fieldset>
+                                    </div>
+                                </div>
+                                <!--Sleeps Filter-->
+                                <div class="col-12 col-lg-3 p-1">
+                                    <div class="dropdown">
+                                        <button class="btn form-control dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" data-display="static">
+                                        Guests <i class="fa-solid fa-chevron-down"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-full-width p-3">
+                                            <fieldset>
+                                                {% for filter in sleep_filters %}
+                                                    <div>
+                                                        <input type="checkbox" class="larger" id="sleep_filter_{{ filter }}" name="sleeps" value="{{ filter }}">
+                                                        <label for="sleep_filter_{{ filter }}">{{ filter }}</label>
+                                                    </div>
+                                                {% endfor %}
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Facilties filter-->
+                                <div class="col-12 col-lg-3 p-1">
+                                    <div class="dropdown">
+                                        <button class="btn form-control dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" data-display="static">
+                                        Facilties <i class="fa-solid fa-chevron-down"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-full-width p-3">
+                                            <fieldset>
+                                                {% for filter in facility_filters %}
+                                                <div>
+                                                    <input type="checkbox" class="larger" id="{{ filter.name }}" name="facility" value="{{ filter.name }}">
+                                                    <label for="{{ filter.name }}">{{ filter.friendly_name }}</label>
                                                 </div>
-                                            </div>
+                                                {% endfor %}
+                                            </fieldset>
                                         </div>
-                                        
-                                        <!--Sleeps-->
-                                        <div class="col-12 col-lg-3 p-1">
-                                            <div class="dropdown">
-                                                <button class="btn form-control dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" data-display="static">
-                                                Guests <i class="fa-solid fa-chevron-down"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-full-width p-3">
-                                                    <fieldset>
-                                                        {% for filter in sleep_filters %}
-                                                            <div>
-                                                                <input type="checkbox" class="larger" id="sleep_filter_{{ filter }}" name="sleeps" value="{{ filter }}">
-                                                                <label for="sleep_filter_{{ filter }}">{{ filter }}</label>
-                                                            </div>
-                                                        {% endfor %}
-                                                    </fieldset>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!--Facilties-->
-                                        <div class="col-12 col-lg-3 p-1">
-                                            <div class="dropdown">
-                                                <button class="btn form-control dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" data-display="static">
-                                                Facilties <i class="fa-solid fa-chevron-down"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-full-width p-3">
-                                                    <fieldset>
-                                                        {% for filter in facility_filters %}
-                                                        <div>
-                                                            <input type="checkbox" class="larger" id="{{ filter.name }}" name="facility" value="{{ filter.name }}">
-                                                            <label for="{{ filter.name }}">{{ filter.friendly_name }}</label>
-                                                        </div>
-                                                        {% endfor %}
-                                                    </fieldset>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!--Submit Button-->
-                                        <div class="col-12 col-lg-2 p-1">
-                                            <button class="btn btn-dark btn-full-width" type="submit" id="submit-form">
-                                                Apply Filters
-                                            </button>
-                                        </div>
-
+                                    </div>
+                                </div>
+                                <!--Filters Submit Button-->
+                                <div class="col-12 col-lg-2 p-1">
+                                    <button class="btn btn-dark btn-full-width" type="submit" id="submit-form">
+                                        Apply Filters
+                                    </button>
                                 </div>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <!--Testing showing selected checkoboxes-->
-                
-            </div>
-        </div>
-
         <hr>
-
+        <!--Show filters and reset button-->
         <div class="row">
             <div class="col-12">
                 <div class="pb-3">
@@ -125,13 +109,13 @@
                 </div>
             </div>
         </div>
+        <!--Listings-->
         <div class="row">
             {% for listing in listings %}
-            <!--Landscape card-->
+                <!--Individual listing card-->
                 <div class="card card-full-width mb-3">
                     <div class="row no-gutters align-items-center">
                         <div class="col-md-6 col-lg-7">
-
                             <!--Bootstrap carousel - conditional if set image. data-interval set to false to stop autoslide-->
                             {% if listing.lead_image %}
                                 {% if listing.images.all %}
@@ -151,12 +135,12 @@
                                             {% endfor %}
                                         </div>
                                         <button class="carousel-control-prev" type="button" data-target="#carousel-{{ listing.id }}" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
                                         </button>
                                         <button class="carousel-control-next" type="button" data-target="#carousel-{{ listing.id }}" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
                                         </button>
                                     </div>
                                 {% else %}
@@ -169,7 +153,6 @@
                                     <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}holding-image-cd.jpg" alt="{{ listing.name }}">
                                 </a>
                             {% endif %}
-
                         </div>
                         <div class="col-md-6 col-lg-5">
                             <div class="card-body p-lg-5">
@@ -185,9 +168,7 @@
                                         {% endfor %}
                                     </div>
                                 </div>
-
                                 <hr class="mt-0">
-
                                 <div class="row">
                                     <div class="col-7">
                                         {% if listing.region and listing.country %}
@@ -197,18 +178,9 @@
                                         {% endif %}
                                     </div>
                                     <div class="col-5 text-right">
-                                    <p class="card-text"><i class="fa-solid fa-bed"></i> Sleeps {{ listing.no_sleeps }}</p>
+                                        <p class="card-text"><i class="fa-solid fa-bed"></i> Sleeps {{ listing.no_sleeps }}</p>
                                     </div>
                                 </div>
-
-                                <!-- {% if listing.category %}
-                                <p class="card-text">
-                                    <a class="text-muted" href="">
-                                        <i class="fas fa-tag mr-1"></i>{{ listing.category.friendly_name }}
-                                    </a>
-                                </p>
-                                {% endif %} -->
-
                                 {% if listing.facilities %}
                                     <div class="row pt-3 pb-2">
                                         <div class="col-12">
@@ -218,9 +190,7 @@
                                         </div>
                                     </div>
                                 {% endif %}
-
                                 <hr class="mt-0">
-
                                 <div class="row">
                                     <div class="col-12 col-md-6">
                                         <h5 class="card-text">£{{ listing.price }} <span class="small">per night</span></h5>
@@ -233,7 +203,6 @@
                         </div>
                     </div>
                 </div>
-            <!-- end landscape card-->
             {% endfor %}
         </div>
     </div>
