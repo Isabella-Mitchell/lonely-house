@@ -131,7 +131,8 @@
         for (i = 0; i < dateArray.length; i ++ ) {
             newDateArray.push(dateArray[i].toISOString().split('T')[0]);
         }
-        if (newDateArray.length == 0) {
+        console.log(newDateArray.length)
+        if (newDateArray.length <= 1) {
             $('#dates-not-selected-alert').removeClass('d-none')
         }
         else {

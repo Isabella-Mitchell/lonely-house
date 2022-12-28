@@ -1,129 +1,133 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} 
+{% load static %} 
 
 {% block extra_css %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-{% endblock %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+{% endblock %} 
 
 {% block extra_js %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-{% endblock %}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+{% endblock %} 
 
 {% block page_header %}
-    <div class="header-container-lg"></div>
-{% endblock %}
+<div class="header-container-lg"></div>
+{% endblock %} 
 
 {% block content %}
 <div class="container">
+    <!--Back Button-->
     <span class="btn btn-noborder">
         <a onclick="history.back()" aria-label="Go back to previous page"><i class="fa-solid fa-angle-left"></i> Back to listings</a>
     </span>
-        <div class="card">
+    <div class="card">
         <div class="row mb-lg-4">
             <div class="col-12 col-lg-8">
-                    
-            <!--Bootstrap carousel - conditional if set image-->
-                {% if listing.lead_image %}
+                <!--Bootstrap carousel - appears if there are multiple images and lead image-->
+                {% if listing.lead_image %} 
                     {% if listing.images.all %}
-                        <div id="carouselExampleControls" class="carousel slide  carousel-fade" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="{{ MEDIA_URL }}{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
-                                </div>
-                                {% for image in listing.images.all %}
-                                    <div class="carousel-item">
-                                        <img src="{{ MEDIA_URL }}{{ image.name }}" class="d-block w-100" alt="{{ listing.name }}">
-                                    </div>
-                                {% endfor %}
+                    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{{ MEDIA_URL }}{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
                             </div>
-                            <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+                            {% for image in listing.images.all %}
+                            <div class="carousel-item">
+                                <img src="{{ MEDIA_URL }}{{ image.name }}" class="d-block w-100" alt="{{ listing.name }}">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+                        </button>
+                        <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
-                            </button>
-                        </div>
+                        </button>
+                    </div>
+                    <!--Single lead image -->
                     {% else %}
-                        <img src="{{ MEDIA_URL }}{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
+                    <img src="{{ MEDIA_URL }}{{ listing.lead_image }}" class="d-block w-100" alt="{{ listing.name }}">
                     {% endif %}
-                {% else %}
-                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}holding-image-cd.jpg" alt="{{ listing.name }}">
+                <!--No lead image, uses a holding image -->
+              	{% else %}
+                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}holding-image-cd.jpg" alt="{{ listing.name }}">
                 {% endif %}
             </div>
 
-            <div class="col-12 pt-lg-4 col-lg-4">
+            <div class="col-12 col-lg-4 pt-lg-4 ">
                 <div class="card-body p-4">
                     <h3>{{ listing.name }}</h3>
                     <h4 id="price-per-night-container">£<span id="price-per-night">{{ listing.price }}</span><span class="small"> (per night)</span></h4>
 
                     <hr>
 
-                    <!--With range select with form formatting-->
-                        <form class="form" action="{% url 'add_to_cart' listing.id %}" method="POST">
-                            {% csrf_token %}
-                            <h5>Select Dates</h5>
-                            <div class="container">
-
-
-                                    
-                                        <div class="input-daterange row">
-                                                <input type="text" id="startDate" class="form-control col-6" name="startDate" placeholder="Check in">
-                                                <input type="text" id="endDate" class="form-control col-6" name="endDate" placeholder="Check out">
-                                        </div>
-
+                    <!--Form to select dates using Bootstrap date picker-->
+                    <form class="form" action="{% url 'add_to_cart' listing.id %}" method="POST">
+                        {% csrf_token %}
+                        <h5>Select Dates</h5>
+                        <div class="container">
+                            <div class="input-daterange row">
+                                <input type="text" id="startDate" class="form-control col-6" name="startDate" placeholder="Check in">
+                                <input type="text" id="endDate" class="form-control col-6" name="endDate" placeholder="Check out">
                             </div>
-                        
-                            <div class="form-row mb-2">
-                                <div class="col-12">
-                                    <a id="click-me" class="btn btn-dark w-100">Check Availability</a>
-                                </div>
+                        </div>
+
+                        <div class="form-row mb-2">
+                            <div class="col-12">
+                                <a id="click-me" class="btn btn-dark w-100">Check Availability</a>
                             </div>
+                        </div>
 
-                            <hr>
+                        <hr>
 
-                            <!--End bootstrap-datepicker-->
-                            <p id="dates-invalid-alert" class="d-none">Some of those dates are not available. Please select new dates.</p>
-                            <p id="dates-not-selected-alert" class="d-none">No dates selected. Please select dates.</p>
+                        <p id="dates-invalid-alert" class="d-none">Some of those dates are not available. Please select new dates.</p>
+                        <p id="dates-not-selected-alert" class="d-none">No or too few dates selected. Please select valid check in and check out dates.</p>
 
-                            <div class="form-row mb-2">
-                                <div class="col-12">
-                                    <h5 class="hidden-booking-form d-none">Booking Details</h5>
-                                    <p class="hidden-booking-form d-none mb-2"><span id="selectedNoNights"></span> x £{{listing.price}} per night</p>
-                                    <p class="d-none font-weight-bold" id="total-price-container">Total Price: £<span id="total-price"></span></p>
-                                </div>
+                        <div class="form-row mb-2">
+                            <div class="col-12">
+                                <h5 class="hidden-booking-form d-none">Booking Details</h5>
+                                <p class="hidden-booking-form d-none mb-2"><span id="selectedNoNights"></span> x £{{listing.price}} per night</p>
+                                <p class="d-none font-weight-bold" id="total-price-container">Total Price: £<span id="total-price"></span></p>
                             </div>
+                        </div>
 
-                            
-                            <input type="hidden" id="selected-no-nights-input" name="selected-no-nights-input" value="">
-                            <input type="hidden" id="selected-dates-array-input" name="selected-dates-array-input" value="">
+                        <input type="hidden" id="selected-no-nights-input" name="selected-no-nights-input" value="">
+                        <input type="hidden" id="selected-dates-array-input" name="selected-dates-array-input" value="">
 
-                            <div class="form-row">
-                                <div class="col-12">
-                                    
-                                    <input type="submit" id="book-now-button" class="btn btn-dark w-100 d-none" value="Book Now">
-
-                                </div>
-                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        <div class="form-row">
+                            <div class="col-12">
+                                <input type="submit" id="book-now-button" class="btn btn-dark w-100 d-none" value="Book Now">
                             </div>
-                        </form>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
 
-        <div class="card-body">
+        <!--Listing description and content-->
+        <div class="card-body pt-0">
             <div class="row p-2 mb-4">
-                <div class="col-12">
+                <div class="col-12 col-md-4 text-center">
+                    <h4>Category</h4>
+                    <p>{{ listing.category.friendly_name}}</p>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <h4>Sleeps</h4>
+                    <p>{{ listing.no_sleeps}}</p>
+                </div>
+                <div class="col-12 col-md-4 text-center">
                     <h4>Facilities</h4>
-                    {% if listing.facilities %}
-                            {% for facility in listing.facilities.all %}
-                            <span data-toggle="tooltip" data-placement="top" title="{{ facility.friendly_name }}"><i class="{{ facility.font_awesome_class }} facility-icons-large"></i></span>
-                            {% endfor %}
-                    {% endif %}
+                    {% if listing.facilities %} 
+                        {% for facility in listing.facilities.all %}
+                        <span data-toggle="tooltip" data-placement="top" title="{{ facility.friendly_name }}"><i class="{{ facility.font_awesome_class }} facility-icons-large"></i></span>
+                        {% endfor %} 
+                  	{% endif %}
                 </div>
             </div>
+            <hr>
+            <!--Description-->
             <div class="row p-2 mb-4">
                 <div class="col-12">
                     <h4>Description</h4>
@@ -134,35 +138,39 @@
             <div class="row p-2 mb-4">
                 <div class="col-12">
                     <h4>Location</h4>
+                    {% if listing.region and listing.country %}
+                    <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ listing.region }}, {{ listing.country }}</p>
+                    {% elif listing.country %}
+                    <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ listing.country }}</p>
+                    {% endif %}
                     <div id="map"></div>
                     <p id="latitude" class="d-none">{{ listing.latitude }}</p>
                     <p id="longitude" class="d-none">{{ listing.longitude }}</p>
                 </div>
             </div>
+            <!--Rating/ Reviews-->
             <div class="row p-2">
                 <div class="col-12">
                     <h4>Reviews {% if reviews %}<i class="fas fa-star mr-1"></i>{{ average_rating }} / 5.0{% endif %}</h4>
                 </div>
             </div>
             {% if reviews %}
-                <div class="row p-2 mb-4">
-                    {% for review in reviews %}
-                    <div class="col-12 col-md-6">
-                        <div class="card p-4 mb-2">
-
-                            {% if review.review_title %}
-                                <h4>"{{ review.review_title }}"</h4>
-                            {% endif %}
-                            <p><i class="fas fa-star mr-1"></i>{{ review.rating }} / 5.0</p>
-                            <p class="small">By {{ review.user_profile }}</p>
-                            {% if review.review %}
-                                <p>"{{ review.review|linebreaksbr }}"</p>
-                            {% endif %}
-
-                        </div>
+            <div class="row p-2 mb-4">
+                {% for review in reviews %}
+                <div class="col-12 col-md-6">
+                    <div class="card p-4 mb-2">
+                        {% if review.review_title %}
+                        <h4>"{{ review.review_title }}"</h4>
+                        {% endif %}
+                        <p><i class="fas fa-star mr-1"></i>{{ review.rating }} / 5.0</p>
+                        <p class="small">By {{ review.user_profile }}</p>
+                        {% if review.review %}
+                        <p>"{{ review.review|linebreaksbr }}"</p>
+                        {% endif %}
                     </div>
-                    {% endfor %}
                 </div>
+                {% endfor %}
+            </div>
             {% else %}
             <div class="row p-2 mb-4">
                 <div class="col-12">
@@ -171,16 +179,13 @@
             </div>
             {% endif %}
         </div>
-
     </div>
 </div>
+{% endblock %} 
 
-
-{% endblock %}
-
-{% block postloadjs %}
-    {{ block.super }}
-    {{ listing_bookings|json_script:"id_listing_bookings" }}
-    {% include 'listings/includes/listing_detail_script.html' %}
-    {% include 'listings/includes/listing_detail_map_script.html' %}
+{% block postloadjs %} 
+{{ block.super }} 
+{{ listing_bookings|json_script:"id_listing_bookings" }} 
+{% include 'listings/includes/listing_detail_script.html' %} 
+{% include 'listings/includes/listing_detail_map_script.html' %}
 {% endblock %}
