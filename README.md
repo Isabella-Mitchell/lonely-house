@@ -17,6 +17,7 @@
 # Table of Contents
 
 ## Contents
+- [Overview](#overview)
 - [User experience](#user-experience)
   * [User Stories](#user-stories)
     + [First-time Users](#first-time-users)
@@ -51,15 +52,61 @@
   + [Content](#content)
   + [Acknowledgements](#acknowledgements)
 
+# Overview
+
+The purpose of 
+
+The key features include
+
+Database 
+
+
+
 # User Experience
 
 ## User stoires
 
-### First-time Users
-
-### Returning Users
-
-### Buisness Owner
+| User Story ID | As a/an | I want to be able to... | So that I can... |
+| --- | ----------- | ----------- | ----------- |
+ | Viewing and Navigation | 
+| 1 | Customer | View a list of accomodation | Quickly compare and select different accomodation options | 
+ | 2 | Customer | View individually accomodation details | Find out further information about and see further images of the listing | 
+ | 3 | Customer | See an embedded google maps map | Plan my journey to the site from my location | 
+ | 4 | Customer | Quickly identify key features of accomodation through icons and keywords | Decide if it's appropriate for type of stay I want | 
+ | 5 | Customer | See the  price update automatically when I enter my stay length | To help me not overspend | 
+ | 6 | Customer | See available dates | Know I'll have the cabin when I book it due to a responsive date picker | 
+ | 7 | Customer | See ratings and reviews | To help me make my desision | 
+ | Registration and User Accounts | 
+ | 8 | Site User | Easily register for an account | Have a personal account and be able to see my profile | 
+ | 9 | Site User | Easily login or logout | Access my personal info | 
+ | 10 | Site User | Easily recover my password | Access my account even if I've forgotten my password | 
+ | 11 | Site User | Recieve an email confirmation after registering | Verify that my email was correctly entered | 
+ | 12 | Site User | Have a personalised user profile | With my personal order history and be able to update my default billing address | 
+ | 13 | Site User | Be able to make an account after checkout | To be able to see my booking if I haven't made one before | 
+ | 14 | Site User | Make an account to leave ratings and reviews | Comment on my stay and help others make a choice | 
+ | 15 | Site User | See my ratings and reviews in my user profile | So I can see what reviews/ ratings I have left easily | 
+ | Sorting and Searching | 
+ | 16 | Customer | Sort/ Filter listings by dedicated filters. e.g. number of people | Easily identify suitable options with features I want for my stay | 
+ | 17 | Customer | Be able to edit my filters even after page refresh | To make it quicker and easier to apply filters | 
+ | 18 | Customer | Search for a product by name, description or key feature | Find a specific accomodation I'd like to book | 
+ | 19 | Customer | Easily see what I've searched for and the number of results | Be able to see which options match my search | 
+ | 20 | Customer | See if there are no search results | Quickly see there is nothing that matches my search | 
+ | Purchasing and Checkout | 
+ | 21 | Customer | Be able to select the stay I want and book through the product page | Start the booking process | 
+ | 22 | Customer | Be able to review my cart and add multiple bookings | So I don't have to go through the checkout process multiple times, or go to checkout before I am ready | 
+ | 23 | Customer | Be able to review my order details | So I can double check I have booked the right accomodation for the right dates with the right number of people | 
+ | 24 | Customer | Easily enter my payment information | Check out quickly with no hassles | 
+ | 25 | Customer | Feel my personal and payment information is safe and secure | Confidently provide the needed information to make a purchase | 
+ | 26 | Customer | View an order confirmation after checkout | Know my order has gone throigh and I haven't made any mistakes | 
+ | 27 | Customer | Recieve an email confirmation after checkout | Keep a confirmation for my records | 
+ | Landing Page | 
+ | 28 | Store Owner | Showcase featured listingd | Give website visitors a quick sense of the types of listings available on my website | 
+ | 29 | Store Owner | Showcase featured categories | Give website visitors a quick sense of the types of categories available on my website | 
+ | 30 | Store Owner | Showcase featured reviews | Show social proof and build trust with websitevisitors | 
+ | Ratings & Reviews | 
+ | 31 | Customer | To be able to add a Rating/ Review | In case I wish to add a rating and or a written review | 
+ | 32 | Customer | To be abl to delete a Rating/ Review | In case I wish to delete a rating and or a written review | 
+ | 33 | Customer | to be able to edit a Rating/ Review | In case I wish to edit a rating and or a written review | 
 
 ## Design
 
@@ -93,6 +140,79 @@
 
 # Features
 
+## All Pages
+
+### Header & Navigation
+
+- The website title 'Lonely House' is a H1 heading in the top left hand side of the website. It's easy to read and visible on every page of the website.
+
+- The navigation is clean and minimal. I took inspiration from holiday and estae agent listing website which direct users to one 'all listings' page where they can apply filters.
+
+- There is a 'Search & Book' button which takes the user to the all listings page. This appears as a banner on smaller screens to keep it visible and easily-accessible, without making the website header too large.
+
+- There is a search bar icon. Users can click this to get the search bar to drop down. This makes it easily accessible without cluttering up the screen.
+
+- Users can use a dropdown to access their account, log in or sign up.
+
+- There is a cart link, making it easy for users to view and edit their cart, or proceed to checkout.
+
+### Footer
+
+- 
+
+### Messages
+
+## Homepage
+
+### Splash Image
+
+### Featured Listings
+
+### Featured Categories
+
+### Featured Reviews
+
+### Call To Action Buttons
+
+## All Listing Page
+
+### Splash Image
+
+### Listing Cards
+- Featured Image/ Fallback Image
+- Feature 'toasts'
+- Average Rating
+
+### Filters
+
+## Listing Detail Page
+
+### Image Carousel
+
+### Date Picker/ Availability Checker
+
+### Description
+
+### Google Map
+
+### Reviews
+
+## Cart
+
+### Table
+
+## Checkout
+
+## Checkout Confirmation
+
+## Register/ Log In Pages
+
+## Profile Page
+
+## Reviews Page
+
+## Add/ Edit/ Delete a Review
+
 # Future Features
 
 ## User Experience Features 
@@ -100,6 +220,8 @@
 ## Development Features
 
 # Data Model
+
+EXPAND - go into in depth detail
 
 - [View my Database structure in PDF form here](#).
 
