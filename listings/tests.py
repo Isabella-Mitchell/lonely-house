@@ -11,7 +11,7 @@ class TestViews(TestCase):
 
     def test_get_listing_detail(self):
         listing = Listing.objects.create(
-            name='Test Get Listing Details', price='20.00', no_sleeps="2")
+            name='Test Get Listing Details', price='20.00', no_sleeps="2", latitude=0.00, longitude=0.00)
         response = self.client.get(f'/listings/{listing.id}')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'listings/listing_detail.html')
@@ -43,12 +43,12 @@ class TestModels(TestCase):
 
     def test_featured_defaults_to_false_listing(self):
         listing = Listing.objects.create(
-            name='Test Get Listing Details', price='20.00', no_sleeps="2")
+            name='Test Get Listing Details', price='20.00', no_sleeps="2", latitude=0.00, longitude=0.00)
         self.assertFalse(listing.featured)
 
     def test_listing_string_method_returns_name(self):
         listing = Listing.objects.create(
-            name='Test Get Listing Details', price='20.00', no_sleeps="2")
+            name='Test Get Listing Details', price='20.00', no_sleeps="2", latitude=0.00, longitude=0.00)
         self.assertEqual(str(listing), 'Test Get Listing Details')
 
     # Add further tests for other models

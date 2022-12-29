@@ -46,7 +46,6 @@ def remove_from_cart(request, item_id):
 
     listing = get_object_or_404(Listing, pk=item_id)
     cart = request.session.get('cart', {})
-    print(cart)
 
     try:
         cart.pop(item_id)
