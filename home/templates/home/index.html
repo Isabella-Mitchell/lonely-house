@@ -32,9 +32,16 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <h4 class="h5 card-title">{{ featured_listing.name }}</h4>
+                            <a href="{% url 'listing_detail' featured_listing.id %}">
+                                <h4 class="h5 card-title">{{ featured_listing.name }}</h4>
+                            </a>
                         </div>
                     </div>
+                    {% for average_rating in average_ratings %}
+                        {% if average_rating.listing == featured_listing.name %}
+                            <p class="card-text small"><i class="fas fa-star mr-1"></i>{{ average_rating.rating }} / 5.0</p>
+                        {%  endif %}
+                    {% endfor %}
                     <div class="row">
                         <div class="col-12 col-lg-5">
                             <p class="card-text"><i class="fa-solid fa-bed"></i> Sleeps {{ featured_listing.no_sleeps }}</p>

@@ -9,6 +9,6 @@ def get_featured(model, number_of_instances):
     instances = model.objects.all()
     featured_instances = instances.filter(featured=True)
     # limits returned instances to three. Will show oldest first.
-    no_featured_instances = featured_instances[:number_of_instances]
+    featured_instances = featured_instances[:number_of_instances]
 
-    return no_featured_instances
+    return featured_instances
