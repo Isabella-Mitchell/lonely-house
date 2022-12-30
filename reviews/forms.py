@@ -7,7 +7,7 @@ from profiles.models import UserProfile
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        exclude = ('user_profile','featured',)
+        exclude = ['user_profile', 'featured']
 
     def __init__(self, *args, **kwargs):
         """
