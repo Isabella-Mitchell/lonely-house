@@ -108,17 +108,22 @@
 
         <!--Listing description and content-->
         <div class="card-body pt-0">
-            <div class="row p-2 mb-4">
-                <div class="col-12 col-md-4 text-center">
-                    <h4>Category</h4>
-                    <p>{{ listing.category.friendly_name}}</p>
+            <div class="row p-2">
+                <div class="col-12">
+                    <h4>Key Features</h4>
                 </div>
-                <div class="col-12 col-md-4 text-center">
-                    <h4>Sleeps</h4>
-                    <p>{{ listing.no_sleeps}}</p>
+            </div>
+            <div class="row p-2 mb-5 mb-md-4">
+                <div class="col-12 col-md-4">
+                    <h5>Category</h5>
+                    <p><i class="fa-solid fa-tree"></i> {{ listing.category.friendly_name}}</p>
                 </div>
-                <div class="col-12 col-md-4 text-center">
-                    <h4>Facilities</h4>
+                <div class="col-12 col-md-4 large-screen-borders">
+                    <h5>Sleeps</h5>
+                    <p><i class="fa-solid fa-bed"></i> {{ listing.no_sleeps}}</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <h5>Facilities</h5>
                     {% if listing.facilities %} 
                         {% for facility in listing.facilities.all %}
                         <span data-toggle="tooltip" data-placement="top" title="{{ facility.friendly_name }}"><i class="{{ facility.font_awesome_class }} facility-icons-large"></i></span>

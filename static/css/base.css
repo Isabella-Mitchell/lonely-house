@@ -369,3 +369,13 @@ input.larger {
         padding-top: 96px;
     }
 }
+
+/* Listing Detail page key features seperated by borders */
+
+@media (min-width: 768px) {
+    .large-screen-borders {
+        border-left: 1px solid rgba(0,0,0,.125);
+        border-right: 1px solid rgba(0,0,0,.125);
+    }
+
+}
