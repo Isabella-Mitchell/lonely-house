@@ -43,6 +43,7 @@
     window.onload = function() {
         // Gets the user's selected filters from Local storage
         // Checks the appropraite checkboxes after page refreshes
+        // Greys out applied filter button
        // Note this could be refactored
         let checkboxes = $("input[type=checkbox]")
         var userFilters = JSON.parse(localStorage.getItem("selectedFilters"))
@@ -51,6 +52,7 @@
             for (let i=0; i<checkboxes.length; i++) {
                 if (checkboxes[i].value == userFilters[property]) {
                     $(`#${checkboxes[i].id}`).prop('checked', true);
+                    $(`#${checkboxes[i].id}`).parent().parent().parent().prev().css({"background-color": "rgba(0,0,0,.1)"});
                 };
             };
         };
