@@ -362,7 +362,7 @@ input.larger {
 /* Search and book banner adjustments */
 @media (max-width: 425px) {
     .header-container-lg {
-        padding-top: 124px;
+        padding-top: 144px;
     }
     
     .header-container-sm {
