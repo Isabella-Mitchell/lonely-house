@@ -78,7 +78,7 @@ def edit_review(request, review_id):
             messages.success(request, 'Successfully updated review!')
             return redirect(reviews)
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(request, 'Failed to edit review. Please ensure the form is valid.')
     else:
         form = ReviewForm(instance=review)
         messages.info(request, f'You are editing a review')
