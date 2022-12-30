@@ -200,6 +200,7 @@ a:hover {
     line-height: 1.5;
     text-align: center;
     margin: 6px;
+    text-transform: uppercase;
 }
 
 /* --------------------- Cards --------------------- */

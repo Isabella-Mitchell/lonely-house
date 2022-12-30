@@ -14,6 +14,7 @@ def all_listings(request):
     """A view to return all listings including sorting and search queries"""
 
     listings = Listing.objects.all()
+    total_number_of_listings = listings.count
     query = None
     sleeps_query = None
     categories_query = None
@@ -52,11 +53,14 @@ def all_listings(request):
                 return redirect(reverse('listings'))
 
             queries = Q(name__icontains=query) | Q(
-                description__icontains=query)
+                description__icontains=query) | Q(
+                region__icontains=query) | Q(
+                country__icontains=query)
             listings = listings.filter(queries)
 
     context = {
         'listings': listings,
+        'total_number_of_listings': total_number_of_listings,
         'search_term': query,
         'categories_query': categories_query,
         'sleeps_query': sleeps_query,

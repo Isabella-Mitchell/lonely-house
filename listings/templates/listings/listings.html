@@ -101,10 +101,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="pb-3">
-                    {% if search_term or sleep_query != 'None_None' %}
-                        <a href="{% url 'listings' %}" id="reset-filters" class="btn btn-dark">Reset Filters</a>
+                    <!--Reset filters shows at all times-->
+                    <a href="{% url 'listings' %}" id="reset-filters" class="btn btn-dark">Reset Filters</a>
+                    <span>| Showing {{ listings|length }} of {{ total_number_of_listings }} Listings</span>
+                    {% if search_term != None %}
+                    <span class="filter-tag"><i class="fa-solid fa-magnifying-glass"></i> {{ search_term }}</span>
                     {% endif %}
-                    <span>| {{ listings|length }} Listings</span>
                     <span id="selected-filters-text"></span>
                 </div>
             </div>
