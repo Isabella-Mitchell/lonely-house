@@ -7,6 +7,8 @@
 {% block inner_content %}
 <h2 class="text-center">{% trans "Register" %}</h2>
 
+<p class="text-center">Sign up to submit reviews, view your order history and save your contact information for a quick and easy checkout.</p>
+
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}" class="inline-link">login</a>.{% endblocktrans %}</p>
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">

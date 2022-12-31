@@ -2,9 +2,16 @@
 
 ## Milestone Project 4 - Full Stack Development
 
-* Lonely House is...
+* Lonely House is a holiday letting website that allows users to browse and book holiday lettings.
 
-* This is my Milestone Project 4 submission for Code Institute's Diploma in Web Application Development course. My website uses....
+* This is my Milestone Project 4 submission for Code Institute's Diploma in Web Application Development course. Lonely House is built using Django and uses a Relational Database. Technologies used include HTML, CSS, Javascript, Python, Google Maps API and Stripe payments.
+
+* Key features include:
+  - Filters: Users can apply filters to quickly and easily find options
+  - Real-time Availability: Users can browse and select available dates (unavailable dates from exisiting bookings will be disabled).
+  - Cart & Stripe Checkout: Users can add multiple bookings to their cart and proceed to checkout with Stripe.
+  - User Profile : Users can create an account to save their contact information and view their order history
+  - Reviews: Users can create, read, update and delete reviews within their User Profile
 
 ## Live Project
 

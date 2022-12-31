@@ -53,6 +53,12 @@ class TestViews(TestCase):
         response = self.client.get('/cart/')
         self.assertEqual(len(response.context['cart_items']), 0)
 
+    def test_error_message_if_unable_to_remove_item_from_cart(self):
+        response = self.client.post(
+            '/cart/remove/'+str(self.listing.id)+'/')
+        response = self.client.get('/cart/')
+        self.assertContains(response, 'Error removing item from cart. Please ensure you have this listing in your cart.')
+
 
 class TestUtils(TestCase):
 

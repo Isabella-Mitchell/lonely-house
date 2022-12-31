@@ -17,10 +17,6 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'listings/listing_detail.html')
 
-    # add test for get_filters
-
-    # add test for filters appearing on page
-
 
 class TestFiltersAndSearch(TestCase):
 
@@ -62,8 +58,6 @@ class TestFiltersAndSearch(TestCase):
 
         self.listing_false.facilities.add(self.facility_false)
 
-    # need to make listing which matches these filters and check presence on page.
-
     def test_category_filter(self):
         # need to add a line where I'm actually applying this category?
         response = self.client.get('/listings/?category=test_category_true')
@@ -83,7 +77,7 @@ class TestFiltersAndSearch(TestCase):
         self.assertContains(response, 'Test Listing True')
         self.assertNotContains(response, 'False Cottage')
 
-    def test_search(self):
+    def test_search_returns_correct_results(self):
         response = self.client.get('/listings/?q=test+listing')
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Test Listing True')
