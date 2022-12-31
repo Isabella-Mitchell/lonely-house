@@ -2,9 +2,9 @@
 
 ## Milestone Project 4 - Full Stack Development
 
-* Lonely House is a holiday letting website that allows users to browse and book holiday lettings.
+* Lonely House is a fictional holiday letting website that allows users to browse and book holiday lettings.
 
-* This is my Milestone Project 4 submission for Code Institute's Diploma in Web Application Development course. Lonely House is built using Django and uses a Relational Database. Technologies used include HTML, CSS, Javascript, Python, Google Maps API and Stripe payments.
+* This is my Milestone Project 4 submission for Code Institute's Diploma in Web Application Development course. Lonely House is built using Django full stack framework and uses a Relational Database. Technologies used include HTML, CSS, Javascript, Python, Google Maps API and Stripe payments.
 
 * Key features include:
   - Filters: Users can apply filters to quickly and easily find options
@@ -15,7 +15,7 @@
 
 ## Live Project
 
-[View the live project here.](#)
+[View the live project here.](https://lonely-house.herokuapp.com/)
 
 ## Repository
 
@@ -119,11 +119,13 @@ Database
 
 ### Overview
 
-- The website design is ...
+- The website design is simple yet characterful. As the name 'Lonely House' suggests, the website's USP is that it offers holiday lettings that are remote and situated in nature. They offer a chance for people to escape busy lives, relax in nature and slow down. The aesthic of the website, with its soft edges and rounded corners, warm colours and rich visual references to nature, was inspired by this idea.
 
 ### Colour
 
-- Lonely House uses a simple colour scheme of ....
+- Lonely House uses a limited colour scheme of warm creams, greys and greens. Inspiration for the colour scene came from nature and imagery I sourced in preparation for the project.
+
+- I used the Material Design Colour Tool to help me decide on colour choices. I used the [WebAim Contrast Checker](https://webaim.org/resources/contrastchecker/) to ensure my colour choices had a high enough colour ratio.
 
 ### Typography
 
@@ -131,7 +133,7 @@ Database
 
 ### Imagery 
 
-- ...
+- There is a large emphasis placed on imagery and icons. 
 
 ### Icons
 
