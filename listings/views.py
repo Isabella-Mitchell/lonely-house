@@ -39,7 +39,7 @@ def all_listings(request):
             listings = listings.filter(no_sleeps__in=sleeps_query)
 
         if 'facility' in request.GET:
-            print(request)
+            # print(request)
             facility_query = request.GET.getlist('facility')
             listings = listings.filter(
                 facilities__name__in=facility_query).distinct()
@@ -70,6 +70,8 @@ def all_listings(request):
         'facility_filters': facility_filters,
         'average_ratings': average_ratings,
     }
+
+    # print(listings[0].category)
 
     return render(request, 'listings/listings.html', context)
 

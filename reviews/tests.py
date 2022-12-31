@@ -149,7 +149,7 @@ class TestReviewViews(TestCase):
     def test_gets_reviews_for_logged_in_user(self):
         self.client.login(username='TestUser', password='aComplexPassword11')
         response = self.client.get('/reviews/', follow=True)
-        self.assertEqual((response.context['user']), 'TestUser')
+        self.assertEqual(str(response.context['user']), 'TestUser')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'reviews/reviews.html')
 
