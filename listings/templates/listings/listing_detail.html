@@ -126,7 +126,10 @@
                     <h5>Facilities</h5>
                     {% if listing.facilities %} 
                         {% for facility in listing.facilities.all %}
-                        <span data-toggle="tooltip" data-placement="top" title="{{ facility.friendly_name }}"><i class="{{ facility.font_awesome_class }} facility-icons-large"></i></span>
+                        <span data-toggle="tooltip" data-placement="top" title="{{ facility.friendly_name }}">
+                            <i class="{{ facility.font_awesome_class }} facility-icons-large" aria-hidden="true"></i>
+                            <span class="sr-only">{{ facility.friendly_name }}</span>
+                        </span>
                         {% endfor %} 
                   	{% endif %}
                 </div>
@@ -156,7 +159,14 @@
             <!--Rating/ Reviews-->
             <div class="row p-2">
                 <div class="col-12">
-                    <h4>Reviews {% if reviews %}<i class="fas fa-star mr-1"></i>{{ average_rating }} / 5.0{% endif %}</h4>
+                    <h4>
+                        Reviews 
+                        {% if reviews %}
+                        <i class="fas fa-star mr-1" aria-hidden="true"></i>
+                        <span aria-hidden="true">{{ average_rating }} / 5.0</span>
+                        <span class="sr-only">Rated {{ average_rating }} out of 5</span>
+                        {% endif %}
+                    </h4>
                 </div>
             </div>
             {% if reviews %}
@@ -167,7 +177,11 @@
                         {% if review.review_title %}
                         <h4>"{{ review.review_title }}"</h4>
                         {% endif %}
-                        <p><i class="fas fa-star mr-1"></i>{{ review.rating }} / 5.0</p>
+                        <p>
+                            <i class="fas fa-star mr-1" aria-hidden="true"></i>
+                            <span aria-hidden="true">{{ review.rating }} / 5.0</span>
+                            <span class="sr-only">Rated {{ review.rating }} out of 5</span>
+                        </p>
                         <p class="small">By {{ review.user_profile }}</p>
                         {% if review.review %}
                         <p>"{{ review.review|linebreaksbr }}"</p>

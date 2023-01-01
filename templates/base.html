@@ -39,17 +39,18 @@
                         </a>
                     </div>
                     <div>
-                        <a class="d-none d-md-block btn btn-dark" href="{% url 'listings' %}" role="button">Search & Book</a>
+                        <a class="d-none d-md-block btn btn-dark" href="{% url 'listings' %}">Search & Book</a>
                     </div>
                     <div>
-                        <button class="navbar-toggler nav-link" type="button" data-toggle="collapse" data-target="#search-bar" aria-controls="search-bar" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler nav-link" type="button" data-toggle="collapse" data-target="#search-bar" aria-controls="search-bar" aria-expanded="false" aria-label="Search">
                             <span class="icon">
-                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                <span class="sr-only">Search</span>
                             </span>
                         </button>
                     </div>
                     <div>
-                        <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="User Options">
                             <span class="icon">
                                 <i class="fa-solid fa-user"></i>
                             </span>
@@ -68,7 +69,7 @@
                         </div>
                     </div>
                     <div class="nav-link">
-                            <a class="{% if total %}ochre-text{% else %}green-text{% endif %}" href="{% url 'view_cart' %}">
+                            <a class="{% if total %}ochre-text{% else %}green-text{% endif %}" href="{% url 'view_cart' %}" aria-label="Cart">
                                 <span>
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </span>
@@ -83,7 +84,7 @@
                             <div class="input-group">
                                 <input class="form-control" type="text" name="q" placeholder="Search our site">
                                 <div class="input-group-append">
-                                    <button class="form-control btn" type="submit">
+                                    <button class="form-control btn" type="submit" aria-label="Submit search">
                                         <span class="icon">
                                             <i class="fas fa-search"></i>
                                         </span>

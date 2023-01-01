@@ -70,7 +70,7 @@
                                 <div class="col-12 col-lg-3 p-1">
                                     <div class="dropdown">
                                         <button class="btn form-control dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" data-display="static">
-                                        Facilties <i class="fa-solid fa-chevron-down"></i>
+                                        Facilities <i class="fa-solid fa-chevron-down"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-full-width p-3">
                                             <fieldset>
@@ -165,7 +165,11 @@
                                     <div class="col-4 text-right">
                                         {% for average_rating in average_ratings %}
                                             {% if average_rating.listing == listing.name %}
-                                                <p class="card-text small"><i class="fas fa-star mr-1"></i>{{ average_rating.rating }} / 5.0</p>
+                                                <p class="card-text small">
+                                                    <i class="fas fa-star mr-1" aria-hidden="true"></i>
+                                                    <span aria-hidden="true">{{ average_rating.rating }} / 5.0</span>
+                                                    <span class="sr-only">Rated {{ average_rating.rating }} out of 5</span>
+                                                </p>
                                             {%  endif %}
                                         {% endfor %}
                                     </div>
@@ -174,7 +178,11 @@
                                 <div class="row">
                                     <div class="col-7">
                                         {% if listing.region and listing.country %}
-                                            <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ listing.region }}, {{ listing.country }}</p>
+                                            <p class="card-text">
+                                                <i class="fa-solid fa-location-dot" aria-hidden="true"></i> 
+                                                <span class="sr-only">Located in</span>
+                                                <span>{{ listing.region }}, {{ listing.country }}</span>
+                                            </p>
                                         {% elif listing.country %}
                                             <p class="card-text"><i class="fa-solid fa-location-dot"></i> {{ listing.country }}</p>
                                         {% endif %}
@@ -187,7 +195,10 @@
                                     <div class="row pt-3 pb-2">
                                         <div class="col-12">
                                             {% for facility in listing.facilities.all %}
-                                            <span data-toggle="tooltip" data-placement="top" title="{{ facility.friendly_name }}"><i class="{{ facility.font_awesome_class }} facility-icons-medium"></i></span>
+                                            <span data-toggle="tooltip" data-placement="top" title="{{ facility.friendly_name }}">
+                                                <i class="{{ facility.font_awesome_class }} facility-icons-medium" aria-hidden="true"></i>
+                                                <span class="sr-only">{{ facility.friendly_name }}</span>
+                                            </span>
                                             {% endfor %}
                                         </div>
                                     </div>
@@ -198,7 +209,7 @@
                                         <h5 class="card-text">£{{ listing.price }} <span class="small">per night</span></h5>
                                     </div>
                                     <div class="col-12 col-md-6 text-right">
-                                        <a href="{% url 'listing_detail' listing.id %}" class="btn btn-dark">Book</a>
+                                        <a href="{% url 'listing_detail' listing.id %}" class="btn btn-dark" role="button">Book</a>
                                     </div>
                                 </div>
                             </div>

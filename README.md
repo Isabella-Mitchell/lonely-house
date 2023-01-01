@@ -2,6 +2,8 @@
 
 ## Milestone Project 4 - Full Stack Development
 
+<h2 align="center"><img src="docs/README/mockup.jpg"></h2>
+
 * Lonely House is a fictional holiday letting website that allows users to browse and book holiday lettings.
 
 * This is my Milestone Project 4 submission for Code Institute's Diploma in Web Application Development course. Lonely House is built using Django full stack framework and uses a Relational Database. Technologies used include HTML, CSS, Javascript, Python, Google Maps API and Stripe payments.
@@ -11,7 +13,7 @@
   - Real-time Availability: Users can browse and select available dates (unavailable dates from exisiting bookings will be disabled).
   - Cart & Stripe Checkout: Users can add multiple bookings to their cart and proceed to checkout with Stripe.
   - User Profile : Users can create an account to save their contact information and view their order history
-  - Reviews: Users can create, read, update and delete reviews within their User Profile
+  - Reviews: Registered users can create, read, update and delete reviews
 
 ## Live Project
 
@@ -24,7 +26,6 @@
 # Table of Contents
 
 ## Contents
-- [Overview](#overview)
 - [User experience](#user-experience)
   * [User Stories](#user-stories)
     + [First-time Users](#first-time-users)
@@ -58,16 +59,6 @@
   + [Media](#media)
   + [Content](#content)
   + [Acknowledgements](#acknowledgements)
-
-# Overview
-
-The purpose of 
-
-The key features include
-
-Database 
-
-
 
 # User Experience
 
@@ -132,6 +123,8 @@ liac #909ace
 green #474d23
 dark #111f24
 mist #e1e2e7 */
+
+<h2 align="center"><img src="docs/README/colours-swatches.jpg"></h2>
 
 ### Typography
 
@@ -415,7 +408,7 @@ You will need to deploy the application using Heroku.
 
 ## Media
 
-- Credit 
+- Credit - make a seperate folder for image credits
 
 ## Acknowledgements
 

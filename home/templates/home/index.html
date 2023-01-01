@@ -39,7 +39,11 @@
                     </div>
                     {% for average_rating in average_ratings %}
                         {% if average_rating.listing == featured_listing.name %}
-                            <p class="card-text small"><i class="fas fa-star mr-1"></i>{{ average_rating.rating }} / 5.0</p>
+                            <p class="card-text small">
+                                <i class="fas fa-star mr-1"></i>
+                                <span aria-hidden="true">{{ average_rating.rating }} / 5.0</span>
+                                <span class="sr-only">Rated {{ average_rating.rating }} out of 5</span>
+                            </p>
                         {%  endif %}
                     {% endfor %}
                     <div class="row">
@@ -80,9 +84,9 @@
                 <div class="card mb-4">
                     <a href="{% url 'listings'%}?category={{ featured_category.name }}">
                         {% if featured_category.image %}
-                            <img src="{{ MEDIA_URL }}{{ featured_category.image }}" class="card-img" alt="{{ featured_category.friendly_name }}">
+                            <img src="{{ MEDIA_URL }}{{ featured_category.image }}" class="card-img" alt="{{ featured_category.friendly_name }}" aria-label="View listings in {{ featured_category.friendly_name }} category">
                         {% else %}
-                            <img src="{{ MEDIA_URL }}holding-image-cd.jpg" class="card-img" alt="{{ featured_category.friendly_name }}">
+                            <img src="{{ MEDIA_URL }}holding-image-cd.jpg" class="card-img" alt="{{ featured_category.friendly_name }}" aria-label="View listings in {{ featured_category.friendly_name }} category">
                         {% endif %}
                         <div class="card-img-overlay d-flex justify-content-center align-items-center">
                             <h4 class="card-title category-card-title light-text">{{ featured_category.friendly_name }}</h4>
