@@ -25,5 +25,4 @@ def get_single_listing_average_rating(listing_id):
     get_avg_rating = filtered_reviews.aggregate(Avg('rating'))
     if get_avg_rating['rating__avg'] is not None:
         rating = round(get_avg_rating['rating__avg'], 1)
-        print(rating)
         return rating

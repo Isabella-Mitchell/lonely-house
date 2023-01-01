@@ -23,7 +23,8 @@ class TestCheckout(TestCase):
         response = self.client.post(
             '/cart/add/'+str(self.listing.id)+'/', data={
                 'selected-no-nights-input': '2',
-                'selected-dates-array-input': '2023-11-22,2023-11-23,2023-11-24',
+                'selected-dates-array-input': (
+                    '2023-11-22,2023-11-23,2023-11-24'),
                 'startDate': '2023-11-22',
                 'endDate': '2023-11-24',
             })

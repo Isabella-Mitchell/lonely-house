@@ -46,13 +46,17 @@ class TestReviewForm(TestCase):
         form = ReviewForm({'rating': '-1', 'listing': self.listing})
         self.assertFalse(form.is_valid())
         self.assertIn('rating', form.errors.keys())
-        self.assertEqual(form.errors['rating'][0], 'Ensure this value is greater than or equal to 0.')
-        
+        self.assertEqual(
+            form.errors['rating'][0],
+            'Ensure this value is greater than or equal to 0.')
+
     def test_rating_max_value_is_valid(self):
         form = ReviewForm({'rating': '6', 'listing': self.listing})
         self.assertFalse(form.is_valid())
         self.assertIn('rating', form.errors.keys())
-        self.assertEqual(form.errors['rating'][0], 'Ensure this value is less than or equal to 5.')
+        self.assertEqual(
+            form.errors['rating'][0],
+            'Ensure this value is less than or equal to 5.')
 
 
 class TestReviewModel(TestCase):
@@ -80,7 +84,8 @@ class TestReviewModel(TestCase):
 
     def test_featured_defaults_to_false(self):
         review = Review.objects.create(
-            user_profile=self.user_profile[0], listing=self.listing, rating='5')
+            user_profile=self.user_profile[0],
+            listing=self.listing, rating='5')
         self.assertFalse(review.featured)
 
     # def test_foreignkey_cascade(self):
@@ -98,11 +103,16 @@ class TestReviewModel(TestCase):
 
     def test_foreignkey_cascade_delete(self):
         self.review = Review.objects.create(
-            user_profile=self.user_profile[0], listing=self.listing, rating='5')
+            user_profile=self.user_profile[0],
+            listing=self.listing, rating='5')
         f = self.review._meta.get_field('user_profile')
-        self.assertEquals(f.remote_field.on_delete, models.CASCADE, '{} failed, value was {}'.format(f.name, f.remote_field.on_delete))
+        self.assertEquals(
+            f.remote_field.on_delete, models.CASCADE,
+            '{} failed, value was {}'.format(f.name, f.remote_field.on_delete))
         f = self.review._meta.get_field('listing')
-        self.assertEquals(f.remote_field.on_delete, models.CASCADE, '{} failed, value was {}'.format(f.name, f.remote_field.on_delete))
+        self.assertEquals(
+            f.remote_field.on_delete, models.CASCADE,
+            '{} failed, value was {}'.format(f.name, f.remote_field.on_delete))
 
 
 class TestReviewViews(TestCase):
@@ -138,10 +148,10 @@ class TestReviewViews(TestCase):
         # Find user_profile
         self.user_profile = UserProfile.objects.filter(user='9999')
 
-        # logged_in = self.c.login(username='TestUser', password='aComplexPassword11')
+        # logged_in = self.c.login(
+        # username='TestUser', password='aComplexPassword11')
         # print(logged_in)
 
-    
     def test_redirects_if_not_logged_in_user(self):
         response = self.client.get('/reviews/')
         self.assertRedirects(response, '/accounts/login/?next=/reviews/')
@@ -155,7 +165,11 @@ class TestReviewViews(TestCase):
 
     def test_get_user_reviews(self):
         self.review = Review.objects.create(
-            user_profile=self.user_profile[0], listing=self.listing, rating='5', review_title="I am a great review", review="Review contents.")
+            user_profile=self.user_profile[0],
+            listing=self.listing,
+            rating='5',
+            review_title="I am a great review",
+            review="Review contents.")
         self.client.login(username='TestUser', password='aComplexPassword11')
         response = self.client.get('/reviews/', follow=True)
         self.assertContains(response, "I am a great review")

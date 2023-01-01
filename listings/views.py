@@ -7,7 +7,8 @@ from .constants import sleep_filters_constant
 from checkout.models import OrderLineItem
 from reviews.models import Review
 from .utils import get_filters, get_listing_reviews
-from reviews.utils import get_average_ratings, get_single_listing_average_rating
+from reviews.utils import (
+    get_average_ratings, get_single_listing_average_rating)
 
 
 def all_listings(request):
@@ -35,11 +36,10 @@ def all_listings(request):
 
         if 'sleeps' in request.GET:
             sleeps_query = request.GET.getlist('sleeps')
-            # Could also be gte instead of in (greater than or equal too)
+            # TO DO - Could also be gte instead of in
             listings = listings.filter(no_sleeps__in=sleeps_query)
 
         if 'facility' in request.GET:
-            # print(request)
             facility_query = request.GET.getlist('facility')
             listings = listings.filter(
                 facilities__name__in=facility_query).distinct()
@@ -70,8 +70,6 @@ def all_listings(request):
         'facility_filters': facility_filters,
         'average_ratings': average_ratings,
     }
-
-    # print(listings[0].category)
 
     return render(request, 'listings/listings.html', context)
 

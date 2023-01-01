@@ -61,12 +61,12 @@ class TestUserProfileModel(TestCase):
         self.user_profiles = UserProfile.objects.all()
         self.entry = self.user_profiles[0]
 
-    ## duplicate of string method test
+    # duplicate of string method test
     # def test_create_user_profile_on_save(self):
     #     user_profile = UserProfile.objects.filter(user='9999')
     #     self.assertEqual(str(user_profile[0]), 'TestUser')
 
-    ## duplicate of view?
+    # duplicate of view?
     # def test_update_user_profile_on_save(self):
     #     user_profiles = UserProfile.objects.all()
     #     entry = user_profiles[0]
@@ -82,7 +82,9 @@ class TestUserProfileModel(TestCase):
 
     def test_foreignkey_cascade_delete(self):
         f = self.entry._meta.get_field('user')
-        self.assertEquals(f.remote_field.on_delete, models.CASCADE, '{} failed, value was {}'.format(f.name, f.remote_field.on_delete))
+        self.assertEquals(
+            f.remote_field.on_delete, models.CASCADE,
+            '{} failed, value was {}'.format(f.name, f.remote_field.on_delete))
 
 
 class TestUserProfileViews(TestCase):
@@ -152,7 +154,8 @@ class TestUserProfileViews(TestCase):
         response = self.client.post('/profile/', {
             'default_phone_number': 44444444444444444444444444,
         })
-        self.assertContains(response, 'Update failed. Please ensure the form is valid.')
+        self.assertContains(
+            response, 'Update failed. Please ensure the form is valid.')
         self.assertIn('form', response.context)
         form = response.context['form']
         self.assertTrue(form.errors)

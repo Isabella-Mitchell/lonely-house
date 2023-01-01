@@ -30,7 +30,8 @@ class TestViews(TestCase):
         response = self.client.post(
             '/cart/add/'+str(self.listing.id)+'/', data={
                 'selected-no-nights-input': '2',
-                'selected-dates-array-input': '2023-11-22,2023-11-23,2023-11-24',
+                'selected-dates-array-input': (
+                    '2023-11-22,2023-11-23,2023-11-24'),
                 'startDate': '2023-11-22',
                 'endDate': '2023-11-24',
             })
@@ -42,7 +43,8 @@ class TestViews(TestCase):
         response = self.client.post(
             '/cart/add/'+str(self.listing.id)+'/', data={
                 'selected-no-nights-input': '2',
-                'selected-dates-array-input': '2023-11-22,2023-11-23,2023-11-24',
+                'selected-dates-array-input': (
+                    '2023-11-22,2023-11-23,2023-11-24'),
                 'startDate': '2023-11-22',
                 'endDate': '2023-11-24',
             })
@@ -57,7 +59,9 @@ class TestViews(TestCase):
         response = self.client.post(
             '/cart/remove/'+str(self.listing.id)+'/')
         response = self.client.get('/cart/')
-        self.assertContains(response, 'Error removing item from cart. Please ensure you have this listing in your cart.')
+        self.assertContains(
+            response, 'Error removing item from cart. '
+            'Please ensure you have this listing in your cart.')
 
 
 class TestUtils(TestCase):

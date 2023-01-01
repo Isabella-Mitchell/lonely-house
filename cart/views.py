@@ -14,17 +14,16 @@ def add_to_cart(request, item_id):
     """Add the listing booking details to the cart"""
 
     try:
-
         listing = get_object_or_404(Listing, pk=item_id)
         start_date = request.POST.get('startDate')
         end_date = request.POST.get('endDate')
         # string passed in with comma seperators and no spaces
-        selected_dates = dates_string_to_list(request.POST.get('selected-dates-array-input'))
+        selected_dates = dates_string_to_list(request.POST.get(
+            'selected-dates-array-input'))
         no_nights = int(request.POST.get('selected-no-nights-input'))
         redirect_url = request.POST.get('redirect_url')
         cart = request.session.get('cart', {})
 
-        # walkthrough has a if else statement here for quantity selector
         cart[item_id] = {
             'no_nights': no_nights,
             'selected_dates': selected_dates,
@@ -37,7 +36,9 @@ def add_to_cart(request, item_id):
         return redirect(redirect_url)
 
     except Exception as e:
-        messages.error(request, f'Error adding item to cart. Please ensure you have selected dates and try again.')
+        messages.error(request, f'Error adding item to cart. '
+                                'Please ensure you have selected dates '
+                                'and try again.')
         return redirect('view_cart')
 
 
@@ -55,5 +56,7 @@ def remove_from_cart(request, item_id):
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, f'Error removing item {e}')
-        messages.error(request, f'Error removing item from cart. Please ensure you have this listing in your cart.')
+        messages.error(request, f'Error removing item from cart. '
+                                'Please ensure you have this listing '
+                                'in your cart.')
         return redirect('view_cart')

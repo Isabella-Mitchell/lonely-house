@@ -36,7 +36,7 @@ def add_review(request):
 
     if request.method == 'POST':
         form = ReviewForm(request.POST)
-     
+
         if form.is_valid():
             form.instance.user_profile = profile
             form.save()
@@ -50,8 +50,6 @@ def add_review(request):
     template = 'reviews/add_review.html'
     context = {
         'form': form,
-        # 'profile': profile,
-        # 'user_reviews': user_reviews,
     }
 
     return render(request, template, context)
@@ -64,10 +62,9 @@ def edit_review(request, review_id):
     profile = get_object_or_404(UserProfile, user=request.user)
 
     review = get_object_or_404(Review, pk=review_id)
-    # print(request.user)
-    # print(review.user_profile.user)
     if request.user != review.user_profile.user:
-        messages.error(request, "You do not have permission to edit this review")
+        messages.error(
+            request, "You do not have permission to edit this review")
         return redirect('home')
 
     if request.method == 'POST':
@@ -78,7 +75,9 @@ def edit_review(request, review_id):
             messages.success(request, 'Successfully updated review!')
             return redirect(reviews)
         else:
-            messages.error(request, 'Failed to edit review. Please ensure the form is valid.')
+            messages.error(
+                request, 'Failed to edit review. '
+                'Please ensure the form is valid.')
     else:
         form = ReviewForm(instance=review)
         messages.info(request, f'You are editing a review')
@@ -97,7 +96,8 @@ def delete_review(request, review_id):
     """User can delete their reviews"""
     review = get_object_or_404(Review, pk=review_id)
     if request.user != review.user_profile.user:
-        messages.error(request, "You do not have permission to delete this review")
+        messages.error(
+            request, "You do not have permission to delete this review")
         return redirect('home')
 
     review.delete()
