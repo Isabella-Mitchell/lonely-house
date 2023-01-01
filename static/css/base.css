@@ -181,8 +181,7 @@ a:hover {
 /* --------------------- Listings Page --------------------- */
 
 .listings-image {
-    background: url('/media/lonely-house_0000s_0005_forest.jpg') no-repeat fixed;
-    background-size: cover;
+    background: url('/media/lonely-house-splash-image.jpg') no-repeat bottom;
     height: 30vh;
     color: #e1e2e7;
 }
@@ -349,7 +348,7 @@ input.larger {
       height: auto !important;
       visibility: visible;
     }
-  }
+}
 
   @media (min-width: 1024px) {
     .nav-link {
@@ -357,7 +356,15 @@ input.larger {
     }
   }
 
-
+/*listings spalash image on larger screens. Media query to fix mobile and ipad appearance*/
+@media (min-width: 1024px) {
+    .listings-image {
+        background: url('/media/lonely-house-splash-image.jpg') no-repeat fixed;
+        background-size: cover;
+        height: 30vh;
+        color: #e1e2e7;
+    }
+}
 
 /* Search and book banner adjustments */
 @media (max-width: 425px) {
