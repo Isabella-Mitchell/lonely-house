@@ -1,16 +1,7 @@
 /*---------------------Fonts-----------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@100;200;300;400;500;600;700&family=Jost:wght@100;200;300;400;500;600;700&family=Poiret+One&display=swap');
 
-/* font-family: 'Josefin Slab', serif;
-font-family: 'Jost', sans-serif;
-font-family: 'Poiret One', cursive; */
-
 /* --------------------- Colours --------------------- */
-/* Ochre #af9b32
-liac #909ace
-green #474d23
-dark #111f24
-mist #e1e2e7 */
 
 .green-bg {
     background-color: #474d23;
@@ -32,7 +23,7 @@ mist #e1e2e7 */
     background-color: #111f24;
 }
 
-/* --------------------- Base Template --------------------- */
+/* --------------------- Body, Logo and Heading Styles --------------------- */
 
 body {
     background-color: #e1e2e7;
@@ -50,7 +41,6 @@ body {
 .logo {
     font-size: xx-large;
     padding-top: 8px;
-    /* padding-left: 16px; */
     font-family: 'Josefin Slab', serif;
     font-weight: 600;
     color: #474d23;
@@ -65,6 +55,9 @@ h6 {
     font-family: 'Josefin Slab', serif;
 }
 
+/* --------------------- Heading Containers --------------------- */
+/*containers that push down template content beneath base template content*/
+
 .header-container-lg {
     padding-top: 108px;
 }
@@ -73,19 +66,7 @@ h6 {
     padding-top: 64px;
 }
 
-/* #search-bar {
-    background-color: white;
-} */
-
-.form-control {
-    background-color: #f2f2f2;
-    border-radius: 25px;
-    color: #000;
-}
-
-.form-control input::placeholder {
-    color: #495057;
-}
+/* --------------------- Nav Bar --------------------- */
 
 .navbar {
     padding-bottom: 0;
@@ -107,12 +88,7 @@ h6 {
     color: #474d23;
 }
 
-/* .nav-background {
-    background-color: #474d23;
-    width: 100%;
-    height: 74px;
-    z-index: -10;
-} */
+/* --------------------- Banner --------------------- */
 
 #banner {
     background-color: #474d23;
@@ -122,6 +98,8 @@ h6 {
 #banner a {
     color:#f2f2f2;
 }
+
+/* --------------------- Footer --------------------- */
 
 footer {
     min-height: 10vh;
@@ -186,10 +164,6 @@ a:hover {
     color: #e1e2e7;
 }
 
-.dropdown-toggle::after {
-    display: none;
-}
-
 .filter-tag {
     display: inline-block;
     border-radius: 25px;
@@ -212,18 +186,9 @@ a:hover {
     min-height: 148px;
 }
 
-/* --------------------- Map Embed --------------------- */
-
-.map iframe {
-    min-width : 100%; 
-    min-height: 600px; 
-}
-
 /* --------------------- Icons & Buttons & Links --------------------- */
 
 .icon {
-    /* color: #111f24; */
-    /* color: #e1e2e7; */
     color: #474d23;
 }
 
@@ -237,14 +202,6 @@ a:hover {
     margin: 4px;
 }
 
-/* .btn-dark {
-    border: none;
-}
-
-.btn-dark:hover {
-    background-color: #474d23;
-  } */
-
 .btt-link,
 .remove-item {
     cursor: pointer;
@@ -253,11 +210,6 @@ a:hover {
 .btn-full-width {
     width: 100%;
 }
-
-/* a:hover {
-    color: #111f24;
-    text-decoration: none;
-} */
 
 .btn-noborder {
     color: #343a40;
@@ -272,7 +224,21 @@ a:hover {
     text-decoration: underline;
 }
 
-/* --------------------- Forms --------------------- */
+/* --------------------- Forms & Dropdowns --------------------- */
+
+.form-control {
+    background-color: #f2f2f2;
+    border-radius: 25px;
+    color: #000;
+}
+
+.form-control input::placeholder {
+    color: #495057;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
 
 .dropdown-toggle {
     width: 100%;
@@ -306,29 +272,14 @@ input.larger {
 }
 
 /*--------------------------------------------Map*/
+
 #map {
     min-height: 360px;
 }
 
-
-/* Allauth form formatting - to add - see Profile App - Part 4 */
-
 /* --------------------- Media Queries --------------------- */
 
-/* fixed top navbar only on medium and up */
-/* from walkthrough */
-/* fixed top navbar only on medium and up */
-@media (min-width: 992px) {
-    /* .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    } */
-
-}
-
+/* changes logo size based on screensize */
 @media (max-width: 320px) {
     .logo {
         font-size: large;
@@ -341,7 +292,14 @@ input.larger {
     }
 }
 
+/* changes nav link based on screensize */
+@media (min-width: 1024px) {
+    .nav-link {
+        font-size: 1.25rem;
+    }
+}
 
+/* Filters collapse on smaller screens */
 @media (min-width: 1024px) {
     .collapse.collapse-smaller-screens {
       display: block;
@@ -349,12 +307,6 @@ input.larger {
       visibility: visible;
     }
 }
-
-  @media (min-width: 1024px) {
-    .nav-link {
-        font-size: 1.25rem;
-    }
-  }
 
 /*listings spalash image on larger screens. Media query to fix mobile and ipad appearance*/
 @media (min-width: 1024px) {
@@ -378,7 +330,6 @@ input.larger {
 }
 
 /* Listing Detail page key features seperated by borders */
-
 @media (min-width: 768px) {
     .large-screen-borders {
         border-left: 1px solid rgba(0,0,0,.125);

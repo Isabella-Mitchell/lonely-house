@@ -5,7 +5,6 @@
     border: 1px solid #ced4da;
     background-color: #f2f2f2;
     border-radius: 25px;
-    box-shadow: 0;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }

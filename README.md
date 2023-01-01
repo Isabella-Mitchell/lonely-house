@@ -127,9 +127,19 @@ Database
 
 - I used the Material Design Colour Tool to help me decide on colour choices. I used the [WebAim Contrast Checker](https://webaim.org/resources/contrastchecker/) to ensure my colour choices had a high enough colour ratio.
 
+/* Ochre #af9b32
+liac #909ace
+green #474d23
+dark #111f24
+mist #e1e2e7 */
+
 ### Typography
 
 - Headings are in...
+
+/* font-family: 'Josefin Slab', serif;
+font-family: 'Jost', sans-serif;
+font-family: 'Poiret One', cursive; */
 
 ### Imagery 
 

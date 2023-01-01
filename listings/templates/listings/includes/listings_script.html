@@ -1,4 +1,10 @@
 <script>
+    /**
+     * Script for All Listing page filters
+     * Stores filters in local storage to handle page refresh
+     * Shows selected filters to user in a UX-friendly way. Removes and updates on page refresh.
+     * Keeps checkboxes ticked after page refresh, and greys the filter label if checkbox(es) are selected.
+    */
 
     function updatePageWithSelectedFilters(enabledFilters) {
         /**
@@ -16,13 +22,13 @@
                     filterNameAddPrefix = filterName;
                 } else {
                     filterNameAddPrefix = `Sleeps: ${filterName}`;
-                };
+                }
                 let filterNameFormatted = filterNameAddPrefix.toUpperCase().replace("_", " ");
                 let newEl = $("<p></p>").text(filterNameFormatted).addClass("filter-tag");
                 $('#selected-filters-text').append(newEl);
-            };
-        };
-    };
+            }
+        }
+    }
 
     function removeSelectedPageFilters(enabledFilters){
         /**
@@ -39,24 +45,23 @@
         localStorage.setItem("selectedFilters", JSON.stringify(enabledFilters));
     }
 
-
     window.onload = function() {
         // Gets the user's selected filters from Local storage
         // Checks the appropraite checkboxes after page refreshes
-        // Greys out applied filter button
-       // Note this could be refactored
-        let checkboxes = $("input[type=checkbox]")
-        var userFilters = JSON.parse(localStorage.getItem("selectedFilters"))
-        // could refactor to use Map
-        for (const property in userFilters) {
-            for (let i=0; i<checkboxes.length; i++) {
-                if (checkboxes[i].value == userFilters[property]) {
-                    $(`#${checkboxes[i].id}`).prop('checked', true);
-                    $(`#${checkboxes[i].id}`).parent().parent().parent().prev().css({"background-color": "rgba(0,0,0,.1)"});
-                };
-            };
-        };
-        updatePageWithSelectedFilters(userFilters);
+        // Greys applied filter button
+        let checkboxes = $("input[type=checkbox]");
+        var userFilters = JSON.parse(localStorage.getItem("selectedFilters"));
+        if (userFilters != null) {
+            for (let property=0; property<userFilters.length; property++) {
+                for (let i=0; i<checkboxes.length; i++) {
+                    if (checkboxes[i].value == userFilters[property]) {
+                        $(`#${checkboxes[i].id}`).prop('checked', true);
+                        $(`#${checkboxes[i].id}`).parent().parent().parent().prev().css({"background-color": "rgba(0,0,0,.1)"});
+                    }
+                }
+            }
+            updatePageWithSelectedFilters(userFilters);
+        }
     };
 
     $(document).ready(function() {
@@ -65,7 +70,7 @@
         let enabledFilters = [];
 
         // Get all checkboxes on page. Duplicated by onload functuin
-        let checkboxes = $("input[type=checkbox]")
+        let checkboxes = $("input[type=checkbox]");
 
         // Attach a change event handler to the checkboxes. Handler sourced from Stack Overflow
         checkboxes.change(function() {
@@ -74,7 +79,7 @@
                 .map(function() { // Extract values using jQuery map.
                 return this.value;
                 }) 
-                .get() // Get array.
+                .get(); // Get array.
 
                 addEnabledFiltersToStorage(enabledFilters);
         });
@@ -90,7 +95,7 @@
         });
 
         // Enable tooltips - Bootstrap
-        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="tooltip"]').tooltip();
 
     });
 
