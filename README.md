@@ -118,37 +118,53 @@
 
 - I used the Material Design Colour Tool to help me decide on colour choices. I used the [WebAim Contrast Checker](https://webaim.org/resources/contrastchecker/) to ensure my colour choices had a high enough colour ratio.
 
-/* Ochre #af9b32
-liac #909ace
-green #474d23
-dark #111f24
-mist #e1e2e7 */
-
 <h2 align="center"><img src="docs/README/colours-swatches.jpg"></h2>
 
 ### Typography
 
-- Headings are in...
-
-/* font-family: 'Josefin Slab', serif;
-font-family: 'Jost', sans-serif;
-font-family: 'Poiret One', cursive; */
+- Headings are in Josefin Slab, with serif as a fallback font. With slight typewritier style attributes, Josefin Slab brings a subtle sense of character to the website. The body copy is in Jost with sans-serif as a fallback font. The choice of simple, easily-legible typefaces means that the text will be easy to read on all device sizes. 
 
 ### Imagery 
 
-- There is a large emphasis placed on imagery and icons. 
+- Imagery is a very important feature of the website, as users need to be able to see listings to be encouraged to book a holiday.
+
+- Images are mostly displayed in Bootstrap Carousels. These allows the admin to add multiple photos without worrying about them taking up lots of space on the page.
+
+- The admin can choose to set a featured image. This the image that appears first by default on the all listings and listing detail page. There is a fallback 'holding' image if the admin does not set an image.
+
+- Consistent aspect ratios have been used to bring visual harmony to the site across different page layouts.
 
 ### Icons
 
-- I have used icons on ...
+- I used icons from Font Awesome extensively on the website. They are used within the nav bar to reduce the need for verbose descriptions such as 'search. I have used them on buttons to reinforce the action of the button. They are also used within listings to visually represent different facilities, ratings, location pin etc. I have added in screen reader alteratives where I felt it was necessary and appropriate.
 
 ### Cards
 
-- I have used ...
+- I have used Bootstrap cards to visually organise content. These include content that appears as multiples on a page such as listings and reviews. I have also used single cards as containers for content such as the cart, checkout form and checkout confirmation.
 
 # Wireframes
 
-- [View my wireframes in PDF form here](#).
+- [View my wireframes in PDF form here](#docs/README/wireframes/wireframes.pdf).
+
+## Changes to Wireframes
+
+Due to time constraints and descions made during the project, there are some differences between the live site and my initial wireframes
+
+- Added add/edit/delete reviews page within the User Profile
+  * I initially was going to add the review CRUD functionality to the listing page. But during the project I realised it may be more intiutative for users to be able to see all their reviews in one place, instead of scattered on different pages.
+
+- Added Cart step and cart button to nav
+  * Originally I wasn't planning on adding a cart step, as many of the holiday letting websites I looked at for research did not have one. However my mentor suggested it would be a good idea as additional 'add-ons' such as insurance and car rental could be introduced as a future feature.
+
+- Added 'Search and Book' button to nav and as a banner on smaller screen sizes
+  * As I was building the website, I realised it wasn't very easy for users to get to the 'all listings' page. I therefore added a button to the navigation making it easier and more intuiative for users to browse listings.
+
+- Didn't include map view on listing page
+  * I set coordinates for listings and made it a required field so that I could show a google map on each listing page, and also let users see a map view of all listings. However, due to time contraists I was not able to releaise the latter feature.
+
+- Didn't add back to top button at bottom of pages
+  * This feature wasn't a prioirty during development, so I omitted it due to time contraists. However in reality the all listings page would need some way to manage a lot of listings, whether that's infinite scroll or pagination.
+
 
 # Features
 
