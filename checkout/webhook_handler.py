@@ -39,7 +39,7 @@ class StripeWH_Handler:
         Handle a generic/unknown/unexpected webhook event
         """
         return HttpResponse(
-            content=f'Webhook received: {event["type"]}',
+            content=f'Unhandled Webhook received: {event["type"]}',
             status=200)
 
     def handle_payment_intent_succeeded(self, event):
@@ -53,8 +53,6 @@ class StripeWH_Handler:
 
         billing_details = intent.charges.data[0].billing_details
         total = round(intent.charges.data[0].amount / 100, 2)
-
-        print(f'Billing details are {billing_details}')
 
         # Clean data in the billing details
         for field, value in billing_details.address.items():
