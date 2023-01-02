@@ -78,7 +78,7 @@
  | 8 | Site User | Easily register for an account | Have a personal account and be able to see my profile | 
  | 9 | Site User | Easily login or logout | Access my personal info | 
  | 10 | Site User | Easily recover my password | Access my account even if I've forgotten my password | 
- | 11 | Site User | Recieve an email confirmation after registering | Verify that my email was correctly entered | 
+ | 11 | Site User | Easily access my user profile | Access my account quickly | 
  | 12 | Site User | Have a personalised user profile | With my personal order history and be able to update my default billing address | 
  | 13 | Site User | Be able to make an account after checkout | To be able to see my booking if I haven't made one before | 
  | 14 | Site User | Make an account to leave ratings and reviews | Comment on my stay and help others make a choice | 
