@@ -179,7 +179,7 @@
                 */
                 function available(date) {
                     // handles 0-11 difference with +1 to month
-                    let YearMonthDay = date.getFullYear() +  "-" + (date.getMonth()+1) + "-" + date.getDate();
+                    let YearMonthDay = date.getFullYear() +  "-" + ('0' + (date.getMonth()+1)).slice(-2) + "-" + ('0' + date.getDate()).slice(-2);
                     if ($.inArray(YearMonthDay, unavailableDates) != -1) {
                         return false;
                     } else {
