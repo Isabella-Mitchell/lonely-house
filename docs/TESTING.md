@@ -6,8 +6,9 @@ The Gather recipe website has been tested using the following methods:
     - [W3C CSS Validator](#w3c-css-validator)
     - [JSHINT Javascript Code Quality Tool](#jshint-javascript-code-quality-tool)
     - [Python Validation using Gitpod](python-validation-using-gitpod)
-- [A11y Color Contrast Accessibility Checker](#a11y-color-contrast-accessibility-checker)
-- [Wave Webaim Accessibility Checker](#wave-webaim-accessibility-checker)
+- [Accessibility](#accessibility)
+    - [Colour Contrast](#colour-contrast)
+    - [Wave Webaim Accessibility Checker](#wave-webaim-accessibility-checker)
 - [Lighthouse](#lighthouse)
 - [Responsiveness](#responsiveness)
 - [Browser Compatibility](#browser-compatibility)
@@ -82,19 +83,33 @@ The Lonely House website passed all tests using the JSHint Validator tool
 
 <h2 align="center"><img src="TESTING/js-validation/profile.js.jpg"></h2>
 
-There was an issue highlighted by JSHint. i believe it's because I am using a template literal within a jQuery selector. However, as the code performs as I desire it to, and if I use quotes then it does not work, I have decided not to change it.
+* There was an issue highlighted by JSHint. i believe it's because I am using a template literal within a jQuery selector. However, as the code performs as I desire it to, and if I use quotes then it does not work, I have decided not to change it.
 
 <h2 align="center"><img src="TESTING/js-validation/listingsscriptjs1.jpg"></h2>
 
 ## Python Validation using Gitpod
 
-I have checked all Python documents using a PEP8 linter to ensure they are complient.
+* I have checked all Python documents using a PEP8 linter to ensure they are complient.
 
-Exceptions include code I have not written in Django settings.
+* Exceptions include code I have not written in Django settings.
 
-# A11y Color Contrast Accessibility Checker
+# Accessibility 
 
-# Wave Webaim Accessibility Checker
+## Colour Contrast
+
+* I conducted colour contrast checks to help me decide on an appropriate background colour and text colour. 
+
+<h2 align="center"><img src="TESTING/webaimcontrastchecker.jpg"></h2>
+
+## Wave Webaim Accessibility Checker
+
+* I used WAVE Web Accessibility Evaluation Tools to help me check the A11y complience of my code. Though there could be further improvements, I made a dedicated effort to ensure my website it accessible.
+
+<h2 align="center"><img src="TESTING/wave-homepage.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/wave-listing.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/wave-listing-detail.jpg"></h2>
 
 # Lighthouse
 
@@ -218,7 +233,135 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 # Manual Testing
 
+## Navigation
 
+<h2 align="center"><img src="TESTING/screenshots/navigation.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/website-admin-options.jpg"></h2>
+
+## Footer
+
+<h2 align="center"><img src="TESTING/screenshots/footer.jpg"></h2>
+
+## Homepage
+
+<h2 align="center"><img src="TESTING/screenshots/jumbatron.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/featured-listings.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/featured-categroies.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/featured-reviews.jpg"></h2>
+
+## All Listings & Filters
+
+<h2 align="center"><img src="TESTING/screenshots/listings-filters.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/listing-card.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/listings-filters-applied.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/listings-filters-applied-checkboxes.jpg"></h2>
+
+## Search
+
+<h2 align="center"><img src="TESTING/screenshots/search-error-not-applied.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/search-query-applied.jpg"></h2>
+
+## Listing Detail Page
+
+### Image Carousel
+
+<h2 align="center"><img src="TESTING/screenshots/lisiting-detail-page.jpg"></h2>
+
+### Date Range Picker
+
+<h2 align="center"><img src="TESTING/screenshots/lisiting-detail-page-datepicker.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/lisiting-detail-page-datepicker-range.jpg"></h2>
+
+### Check Availability
+
+<h2 align="center"><img src="TESTING/screenshots/listing-detail-submitted.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/listing-detail-clash.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/listing-detail-too-few-dates-selected.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/listing-detail-no-date-selected.jpg"></h2>
+
+### Key Features & Description
+
+<h2 align="center"><img src="TESTING/screenshots/listing-detail-key-feature.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/listing-description.jpg"></h2>
+
+### Google Map
+
+<h2 align="center"><img src="TESTING/screenshots/listing-detail-map.jpg"></h2>
+
+### Average Rating & Reviews
+
+<h2 align="center"><img src="TESTING/screenshots/listing-detail-review.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/listing-detail-aggregate-review.jpg"></h2>
+
+## Cart
+
+<h2 align="center"><img src="TESTING/screenshots/cart.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/cart-multiple-bookings.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/cart-removed-item-alert.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/success-added-to-cart.jpg"></h2>
+
+## Checkout
+
+<h2 align="center"><img src="TESTING/screenshots/checkout.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/checkout-save-option-if-logged-in.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/cart-if-not-logged-in.jpg"></h2>
+
+## Order Success
+
+<h2 align="center"><img src="TESTING/screenshots/order-confirmation.jpg"></h2>
+
+## User authentification
+
+<h2 align="center"><img src="TESTING/screenshots/allauth-error-if-user-access-review-not-theirs.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/allauth-login.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/allauth-logout.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/allauth-not-logged-in-profile-redirect.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/alluth-register.jpg"></h2>
+
+## User Profile
+
+<h2 align="center"><img src="TESTING/screenshots/user-profile.jpg"></h2>
+
+## Reviews
+
+<h2 align="center"><img src="TESTING/screenshots/reviews-view.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/reviews-add.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/reviews-edit.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/reviews-editing-alert.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/reviews-form-validation-1.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/reviews-form-validation-2.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/reviews-form-validation.jpg"></h2>
+
+<h2 align="center"><img src="TESTING/screenshots/reviews-success-message.jpg"></h2>
 
 # Peer Review
 
@@ -226,6 +369,24 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 ## Resolved
 
+
+
 ## Unresolved
+
+These are the notes from the working doc:
+
+Had to add a 'name' field to images as I couldn't override Django Image Object 1. Find a way of automating this
+Currently only shows additional images if a lead image is specified
+remove lead_image_url from model?
+Image jumping size - maybe the upload size or something I can fix with CSS - only in portrait now though
+Fix styling medium - image not quite covering card
+
+Links to all listings from homepage not reseting filter views
+
+Change sleeps to GTE
+
+(Nice to have) - click through from featured category doesn't show filter being applied
+
+Checkout/ Stripe - Views etc - Update full name on Stripe to not just be pulling in First name field
 
 Back to [README.md](/README.md#testing)
