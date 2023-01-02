@@ -1,0 +1,79 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+{% endblock %} 
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+{% endblock %} 
+
+{% block page_header %}
+<div class="header-container-lg"></div>
+{% endblock %} 
+
+{% block content %}
+<div class="container">
+
+    <input data-provide="datepicker">
+
+    <div class="container">
+        <div class="input-daterange row">
+            <input type="text" id="startDateNew" class="form-control col-6" name="startDateNew">
+            <input type="text" id="endDateNew" class="form-control col-6" name="endDateNew">
+        </div>
+    </div>
+
+    <p id="id_listing_bookings_new">["2023-12-01", "2023-12-29", "2023-12-30", "2023-12-30", "2023-01-24", "2023-01-25", "2023-01-24", "2023-01-25", "2023-01-24", "2023-01-25", "2023-1-26", "2023-1-26"]</p>
+
+    {% endblock %} 
+
+{% block postloadjs %} 
+{{ block.super }} 
+
+<script>
+
+    function getUnavailableDates() {
+        let listingBookings = $("#id_listing_bookings_new").text().replace("[", "").replace("]", "").replaceAll('"', "").replaceAll(" ", "");
+        let unavailableDatesArray = listingBookings.split(",");
+        console.log(unavailableDatesArray)
+        return unavailableDatesArray;
+    }
+
+    const unavailableDates = getUnavailableDates();
+
+    $(document).ready(function() {
+    /**
+    * Initialises datepicker on listing detail page
+    * Users can only book from tomorrows date.
+    * Set to yyyy-mm-dd format for calculations.
+    */
+    $('.input-daterange').datepicker({
+        // format to match python - beware of 0-11 or 1-12 months
+        format: 'yyyy-mm-dd',
+        startDate: '+1d',
+        autoclose: true,
+        beforeShowDay:
+            /**
+            * Checks whether dates are available
+            * If date is unavailable it greys out the date in the datepicker.
+            */
+            function available(date) {
+                // handles 0-11 difference with +1 to month
+                let YearMonthDay = date.getFullYear() +  "-" + ('0' + (date.getMonth()+1)).slice(-2) + "-" + ('0' + date.getDate()).slice(-2);
+                if ($.inArray(YearMonthDay, unavailableDates) != -1) {
+                    // console.log(YearMonthDay)
+                    return false;
+                } else {
+                    // console.log(YearMonthDay)
+                    return true;
+                }
+            }
+        });
+    
+    });
+
+</script>
+
+{% endblock %}

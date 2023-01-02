@@ -101,3 +101,9 @@ def listing_detail(request, listing_id):
     }
 
     return render(request, 'listings/listing_detail.html', context)
+
+
+def bug_fix(request):
+    """A view to return the index page including featured content"""
+
+    return render(request, 'listings/bug_fix.html')
