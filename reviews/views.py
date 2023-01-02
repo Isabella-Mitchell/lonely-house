@@ -50,6 +50,7 @@ def add_review(request):
     template = 'reviews/add_review.html'
     context = {
         'form': form,
+        'on_review_page': True,
     }
 
     return render(request, template, context)
@@ -86,6 +87,7 @@ def edit_review(request, review_id):
     context = {
         'form': form,
         'review': review,
+        'on_review_page': True,
     }
 
     return render(request, template, context)
