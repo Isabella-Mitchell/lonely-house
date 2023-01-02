@@ -107,9 +107,7 @@ def checkout(request):
             try:
                 profile = UserProfile.objects.get(user=request.user)
                 order_form = OrderForm(initial={
-                    # ORDER FORM DOESN'T POPULATE WITH NAME INFO
-                    # 'first_name': profile.user.get_first_name(),
-                    # 'last_name': profile.user.get_last_name(),
+                    # ORDER FORM DOESN'T POPULATE WITH NAME INFO. Known Bug
                     'email': profile.user.email,
                     'phone_number': profile.default_phone_number,
                     'country': profile.default_country,
