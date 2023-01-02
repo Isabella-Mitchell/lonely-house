@@ -166,92 +166,155 @@ Due to time constraints and descions made during the project, there are some dif
   * This feature wasn't a prioirty during development, so I omitted it due to time contraists. However in reality the all listings page would need some way to manage a lot of listings, whether that's infinite scroll or pagination.
 
 
-# Features
+# Summary of Features
 
 ## All Pages
 
+- Resonsive design
+- Semantic HTML
+- Custom CSS to give the website a cohesive and user-friendly appearance
+
 ### Header & Navigation
 
-- The website title 'Lonely House' is a H1 heading in the top left hand side of the website. It's easy to read and visible on every page of the website.
-
-- The navigation is clean and minimal. I took inspiration from holiday and estae agent listing website which direct users to one 'all listings' page where they can apply filters.
-
-- There is a 'Search & Book' button which takes the user to the all listings page. This appears as a banner on smaller screens to keep it visible and easily-accessible, without making the website header too large.
-
-- There is a search bar icon. Users can click this to get the search bar to drop down. This makes it easily accessible without cluttering up the screen.
-
-- Users can use a dropdown to access their account, log in or sign up.
-
-- There is a cart link, making it easy for users to view and edit their cart, or proceed to checkout.
+- Website H1 Heading
+- Navigation, including links to:
+  - Search & Book (all listings page)
+  - Search (search bar)
+  - User Profile Options (register/ login/ view profile/ view reviews)
+  - Cart (changes colour if cart is not empty)
 
 ### Footer
 
-- 
+- About
+- Social Links 
 
 ### Messages
 
+- Success message (including cart link when applicable)
+- Info message
+- Error message
+- Warning message
+
 ## Homepage
 
-### Splash Image
+- Jumbotron
+- Featured Listings
+- Featured Categories
+- Featured Reviews
+- 'Call to action' buttons
 
-### Featured Listings
+## All Listings Page
 
-### Featured Categories
-
-### Featured Reviews
-
-### Call To Action Buttons
-
-## All Listing Page
-
-### Splash Image
-
-### Listing Cards
-- Featured Image/ Fallback Image
-- Feature 'toasts'
-- Average Rating
-
-### Filters
+- Splash Image
+- Filters, featuring:
+  - Collapse on smaller screens
+  - Checkbox dropdown
+  - Applied filters shown to user
+  - Ability for user to edit applied filters even after page refresh
+  - Shown listing count
+  - Reset filters button
+- Listing Cards, featuring:
+  - Featured Image or Fallback Image
+  - Image carousel if multiple images
+  - Facility tooltips
+  - Average Rating
+  - Book button
 
 ## Listing Detail Page
+  - Featured Image or Fallback Image
+  - Image carousel if multiple images
+  - Date range picker, featuring:
+    - Greys out unavailable dates
+    - Check availability button
+    - Messages if user selects invalid dates
+    - If dates are valid, total price is shown to user
+    - Book now button (adds to cart)
+  - Key features
+  - Description with line breaks
+  - Location
+  - Google Maps API
+  - Reviews
+  - Average rating
 
-### Image Carousel
+## Cart Page
+- Booking details for each listing added to cart, featuring:
+  - Checkout date is not counted as a night
+  - Confirmation of dates selected
+  - Subtotal
+- Remove from cart option
+- Cart Total
+- Secture Checkout button
+- Back button
 
-### Date Picker/ Availability Checker
+## Checkout Page
+- Order summary
+- Checkout form, featuring:
+  - Option to save information to profile
+  - Autopopulates with content saved to user profile
+  - Stripe payment
 
-### Description
+## Checkout Confirmation Page/ Email
+- Checkout confirmation page
+- Sends booking confirmation email
 
-### Google Map
+## Authetification Pages
+- Register/ Log In/ Log Out/ Reset Password Pages
+- Features largely provided by Django allauth
 
-### Reviews
+## User Profile Page
+- Default information form
+- Order history
+- Users must be logged in
+- Users can only access their own User Profile
 
-## Cart
+## Reviews Pages
+- Users can view all their reviews
+- Users must be logged in
+- Users can only access their own reviews
 
-### Table
+## Add/ Edit/ Delete Reviews
+- Add Review Page
+- Edit Review Page
+- Delete Review
+- Users must be logged in
+- Users can only access their own reviews
 
-## Checkout
+# Key Features
 
-## Checkout Confirmation
-
-## Register/ Log In Pages
-
-## Profile Page
-
-## Reviews Page
-
-## Add/ Edit/ Delete a Review
+I have gone into more detail about some the key ...
 
 # Future Features
 
+- The Javascript For example, I use maths to calulcate the number of nights. I could simply count how many items appear in the array of dates selected by the user. 
+
+
+If a user returns to a listing page from the cart, they do not have a clever way to amend their booking. I have not added this yet due to time constraints. It is down as a future feature. 
+
+TO FINISH
+
 ## User Experience Features 
+
+### All Pages
+
+- 
 
 ## Development Features
 
+### Testing
+
+- JQuery/ Jest
+- More tests for checkout
+
 # Data Model
 
-EXPAND - go into in depth detail
+## Planning & Considerations
+
+As outlined in my ...
+
+## Database Schema
 
 - [View my Database structure in PDF form here](#).
+
 
 # Technologies Used
 
