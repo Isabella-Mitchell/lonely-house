@@ -311,10 +311,24 @@ TO FINISH
 
 As outlined in my ...
 
+TO DO FINISH
+
 ## Database Schema
 
-- [View my Database structure in PDF form here](#).
+The following Data models were used:
 
+- Listings - stores information for each holiday let
+- Category - stores information about Listing category
+- Facility - stores information about Listing facilities
+- Image - stores multiple images for listings
+- Order - stores order information
+- OrderLineItem - stores booking information (one is created for each date)
+- UserProfile - stores user information (relates to Django Allauth User model, not included in this schema)
+- Review - stores rating and review information
+
+This diagram outlines each model's fields and illustrates the relationship between the models:
+
+<h2 align="center"><img src="docs/README/db-schema.png"></h2>
 
 # Technologies Used
 
@@ -328,25 +342,19 @@ As outlined in my ...
 
 - [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
 
-## Frameworks Libraries and Programs
+## Frameworks & Libraries
 
-- [Heroku](https://id.heroku.com/login)
-  - Heroku is the deployment source I used for this project. I'm also using it for the Postgres relational database
-
-- [MongoDB](https://www.mongodb.com/)
-    - I'm using MongoDB for my non-relational database.
-
-- [Flask](https://flask.palletsprojects.com/en/2.2.x/templating/)
-  - Templating language I've used with Python to add logic to my html templates.
+- [Django](https://www.djangoproject.com/)
+  - This website is built using Django, a high-level Python web framwork.. Lonely House features multiple apps with model, view and template layers. I have also used Django to provide an admin view, create forms and test my website. Further features used include [Django Allauth](https://django-allauth.readthedocs.io/en/latest/index.html) for user authentification, Pillow for uploading images, and Crispy Forms.
 
 - [Jinja](https://jinja.palletsprojects.com/en/3.0.x/)
   - Templating language I've used with Python to add logic to my html templates.
 
-- [Materialize CSS](https://materializecss.com/)
-  - Front-end library with HTML, CSS and Javascript based componants. I used features including Nav bar, Cards, Buttons and Forms.
-
 - [jQuery](https://jquery.com/)
   - I used jQuery to add functionality to MaterialiseCSS componants.
+
+- [Bootstrap 4](https://getbootstrap.com/) 
+  - I used bootstrap throughout the site to make it responsive. The website uses Bootstrap's Containers, Grid System, Flexbox and Spacing utilities. I sourced code from the Bootstrap documentation when building the Navbar, Image Carousels, Cards and Buttons.
 
 - [Google Fonts](https://fonts.google.com/)
   - Two fonts are imported from google fonts.
@@ -354,14 +362,42 @@ As outlined in my ...
 - [Font awesome](https://fontawesome.com/)
   - I used icons from font awesome on buttons.
 
-- [Git](https://git-scm.com/)
-  - Git was used as a version control in the terminal.
+- [Bootstrap Date Picker](https://bootstrap-datepicker.readthedocs.io/en/latest/index.html)
+  - I used this CDN to provide the date range picker on the listing detail page.
+
+## Storage & Hosting
+
+- [Heroku](https://id.heroku.com/login)
+  - Heroku is the deployment source I used for this project. I'm also using it for the Postgres relational database
 
 - [Github](https://github.com/)
   - Github was used to create and store the project repository.
 
+- [Amazon Web Services](https://aws.amazon.com/)
+  - AWS is used to host and store static files and media.
+
+- [ElephantSQL](https://www.elephantsql.com/)
+  - ElephantSQL is used to host the website's PostgreSQL database.
+
+## Payments
+
+- [Stripe](https://stripe.com/gb)
+  - Stripe is used to handle website payments.
+
+## Application Programming Interface (API's)
+
+- [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding)
+    - I used Google's Geocoding API to turn the provided address into coordinates.
+
+## IDE & Version Control
+
+- [Git](https://git-scm.com/)
+  - Git was used as a version control in the terminal.
+
 - [Gitpod](https://gitpod.io/)
   - Gitpod was used to create my files and where I wrote the code.
+
+## Other Tools
 
 - [Balsamiq](https://balsamiq.com/)
   - Balsamiq was used to create Wireframes for the project during the initial planning stage.
@@ -385,85 +421,30 @@ As outlined in my ...
   - Tool used to mock up database structure diagram.
 
 - [Unsplash](https://unsplash.com/)
-  - Unsplash was used to source the jumbatron imager.
+  - Unsplash was used to source the website imagery.
+
+- [ChatGPT](https://openai.com/blog/chatgpt/)
+  - OpenAI's ChatGPT was used in part to generate Listing Descriptions and user Reviews.
+
+## Testing & Code Validation
+
+Lighthouse (provided by Google Dev Tools)
+W3C Validator (to check validity of HTML and CSS)
+JSHint.com (to check JavaScript)
+PEP8 Linting on Gitpod (to check Python code for PEP 8 requirements)
+Coverage
+A11y Tools
+Chrome screen reader
+
+TO DO FINISH
 
 # Testing
 
-- Please refer [here](TESTING.md) for more information on testing of the Gather website
+- Please refer [here](docs/README/TESTING.md) for more information on testing of the Lonely House website
 
 # Deployment
 
-## Creating a Gitpod Workspace
-
-The project was created in Gitpod using the Code Institute Gitpod Full Template using these steps:
-
-1. Log in to GitHub and go to the [Code Institute student template for Gitpod](https://github.com/Code-Institute-Org/gitpod-full-template)
-2. Click 'Use this Template' next to the Green Gitpod button.
-3. Add a repository name and click 'Create reposiory from template'.
-4. This will create a copy of the template in your own repository. Now you can click the green 'Gitpod' button to open a workspace in Gitpod.
-
-## Forking the GitHub Repository
-
-Forks are used to propose changes to someone else's project or to use someone else's project as a starting point for your own idea. By forking the GitHub Repository you make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository.
-
-To Fork a Github Repository:
-
-1. Log in to GitHub and go to the [GitHub Repository](https://github.com/Isabella-Mitchell/gather-recipe-website)
-2. Locate the Fork button in the top-right corner of the page, click Fork.
-3. You should now have a copy of the original repository in your GitHub account.
-
-## Making a Local Clone
-
-You will now have a fork of the repository, but you don't have the files in that repository locally on your computer.
-
-To make a local clone:
-
-1. Log in to GitHub and go to the [GitHub Repository](https://github.com/Isabella-Mitchell/gather-recipe-website)
-2. Above the list of files, click  Code.
-3. To clone the repository using HTTPS, under "Clone with HTTPS", click the 'Copy' icon. To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click Use SSH, then click the 'Copy' icon. To clone a repository using GitHub CLI, click Use GitHub CLI, then click the 'Copy' icon.
-4. Open Git Bash.
-5. Change the current working directory to the location where you want the cloned directory.
-6. Type git clone, and then paste the URL you copied earlier. It will look like this, with your GitHub AE username instead of YOUR-USERNAME:
-
-```
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
-```
-
-7. Press Enter. Your local clone will be created.
-
-```
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
-> Cloning into `gather-recipe-website`...
-> remote: Counting objects: 10, done.
-> remote: Compressing objects: 100% (8/8), done.
-> remove: Total 10 (delta 1), reused 10 (delta 1)
-> Unpacking objects: 100% (10/10), done.
-```
-
-Click [Here](https://docs.github.com/en/github-ae@latest/get-started/quickstart/fork-a-repo) for the GitHub quick start guide with images and more detailed explanations of the above process.
-
-## Creating an application with Heroku
-
-You will need to deploy the application using Heroku.
-
-1. Create a requirements.txt file by typing ``` pip3 freeze --local > requirements.txt ``` into the Gitpod CLI. Ensure this is added to your .gitignore file.
-2. Create a Procfile by typing ```echo web: python app.py > Procfile```. Open it and ensure it doesn't have a new line, as this can create errors. Ensure it starts with a capital P.
-3. Add and commit these files to Github.
-4. Go to [Heroku](https://dashboard.heroku.com/apps). Log in or create an account
-5. Click the 'New' button and click 'Create new app'.
-6. Enter a unique name for your project with no capital letters or spaces and select your region. Click 'Create App'.
-7. Inside your project, go to the Resources tab and create a Heroku Postgres Database
-8. Inside your project, go to the 'Settings' tab. Scroll down and click 'Reveal Config Vars'.
-9. Add in the following variables
-  - IP : 0.0.0.0
-  - PORT : 5000
-  - MONGO_DBNAME : Your MongoDB database name
-  - MONGO_URI : This can be found on MongoDB by going to Clusters, Connect, Connect to your application
-  - SECRET_KEY : Your secret key
-10. Deploy your project by going to the Deploy tab and choose 'Connect to Github'
-11. Find your repository name and select Connect.
-12. To connect your Heroku database, go to 'More' in the top right and select run console. Enter ```python3``` to access the python intepreter.
-13. Then type ```From gather import db```. Then type ```db.create_all()```. You can then exit the console.
+- Please refer [here](docs/README/DEPLOYMENT.md) for more information on the deployment of the Lonely House website
 
 # Credits
 
@@ -487,7 +468,9 @@ You will need to deploy the application using Heroku.
 
 ## Media
 
-- Credit - make a seperate folder for image credits
+- As I sourced all the imagery for the Lonely House website from Unsplash, there is an extensive list of media credits.
+
+- Please refer [here](docs/README/CREDITS.md) for full Media credits for the Lonely House website.
 
 ## Acknowledgements
 
