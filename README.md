@@ -428,15 +428,17 @@ This diagram outlines each model's fields and illustrates the relationship betwe
 
 ## Testing & Code Validation
 
-Lighthouse (provided by Google Dev Tools)
-W3C Validator (to check validity of HTML and CSS)
-JSHint.com (to check JavaScript)
-PEP8 Linting on Gitpod (to check Python code for PEP 8 requirements)
-Coverage
-A11y Tools
-Chrome screen reader
+The following tools were used for testing and code validation. You can see results in the Testing section of this README.
 
-TO DO FINISH
+- [W3C Markup Validation Service](https://validator.w3.org/)
+- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+- [JSHint](https://jshint.com/)
+- [Coverage](https://coverage.readthedocs.io/en/7.0.1/)
+- [Lighthouse](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=en)
+- [Python Linting on Gitpod](https://open-vsx.org/extension/ms-python/python)
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+- [WAVE Web Accessibility Evaluation Tools](https://wave.webaim.org/)
+- [Chrome Screen Reader](https://chrome.google.com/webstore/detail/screen-reader/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en)
 
 # Testing
 

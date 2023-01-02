@@ -54,6 +54,8 @@ class StripeWH_Handler:
         billing_details = intent.charges.data[0].billing_details
         total = round(intent.charges.data[0].amount / 100, 2)
 
+        print(f'Billing details are {billing_details}')
+
         # Clean data in the billing details
         for field, value in billing_details.address.items():
             if value == "":
@@ -81,7 +83,9 @@ class StripeWH_Handler:
         while attempt <= 5:
             try:
                 order = Order.objects.get(
+                    # to do name - also check if billing details work this way!
                     first_name__iexact=billing_details.name,
+                    last_name__iexact=billing_details.name,
                     email__iexact=billing_details.email,
                     phone_number__iexact=billing_details.phone,
                     country__iexact=billing_details.address.country,
@@ -111,6 +115,7 @@ class StripeWH_Handler:
                 order = Order.objects.create(
                     # to do name - also check if billing details work this way!
                     first_name=billing_details.name,
+                    last_name__iexact=billing_details.name,
                     user_profile=profile,
                     email=billing_details.email,
                     phone_number=billing_details.phone,

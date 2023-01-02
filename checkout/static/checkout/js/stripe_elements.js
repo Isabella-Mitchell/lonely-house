@@ -63,13 +63,21 @@ form.addEventListener('submit', function(ev) {
     };
     var url = '/checkout/cache_checkout_data/';
 
+    var firstName = $.trim(form.first_name.value);
+    var lastName = $.trim(form.last_name.value);
+
+    var fullName = `${firstName} ${lastName}`
+
+    console.log(fullName)
+
     $.post(url, postData).done(function () {
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
                 billing_details: {
                     // TODO fix so not just first name
-                    name: $.trim(form.first_name.value),
+                    // name: $.trim(form.first_name.value),
+                    name: fullName,
                     phone: $.trim(form.phone_number.value),
                     email: $.trim(form.email.value),
                     address:{
