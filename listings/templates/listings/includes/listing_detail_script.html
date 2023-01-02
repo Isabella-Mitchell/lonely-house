@@ -14,9 +14,9 @@
      * formats and returns as a JS array
     */
     function getUnavailableDates() {
-            let listingBookings = $("#id_listing_bookings").text().replace("[", "").replace("]", "").replaceAll('"', "").replaceAll(" ", "");
-            let unavailableDatesArray = listingBookings.split(",");
-            return unavailableDatesArray;
+        let listingBookings = $("#id_listing_bookings").text().replace("[", "").replace("]", "").replaceAll('"', "").replaceAll(" ", "");
+        let unavailableDatesArray = listingBookings.split(",");
+        return unavailableDatesArray;
     }
 
     const unavailableDates = getUnavailableDates();
