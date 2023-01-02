@@ -31,19 +31,6 @@ class TestUserProfileForm(TestCase):
         self.assertIn('placeholder="County"', form.as_p())
         self.assertIn('placeholder="Postal Code"', form.as_p())
 
-    # def test_valid_data(self):
-    #     form = UserProfileForm({
-    #         'default_phone_number': '0123456789',
-    #         'default_street_address1': '',
-    #         'default_street_address2': '',
-    #         'default_town_or_city': '',
-    #         'default_county': '',
-    #         'default_postcode': '',
-    #     })
-    #     self.assertTrue(form.is_valid())
-    #     user_profile = form.save()
-    #     self.assertEqual(user_profile.default_phone_number, "0123456789")
-
 
 class TestUserProfileModel(TestCase):
 
