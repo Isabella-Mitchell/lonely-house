@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-# from django.shortcuts import reverse
+from django.shortcuts import reverse
 from .forms import ReviewForm
 from listings.models import Listing
 from django.contrib.auth.models import User
@@ -88,19 +88,6 @@ class TestReviewModel(TestCase):
             listing=self.listing, rating='5')
         self.assertFalse(review.featured)
 
-    # def test_foreignkey_cascade(self):
-    #     self.review = Review.objects.create(
-    #         user_profile=self.user_profile[0], listing=self.listing, rating='5')
-    #     """
-    #     Test all FKs have on_delete=models.CASCADE unless otherwise specified
-    #     """
-    #     for f in self.review._meta.get_fields():
-    #         print(f)
-    #         if isinstance(f, models.ForeignKey):
-    #             print(models.ForeignKey)
-    #             self.assertEquals(f.remote_field.on_delete, models.CASCADE, '{} failed, value was {}'.format(f.name, f.remote_field.on_delete))
-    #             print(f.remote_field.on_delete)
-
     def test_foreignkey_cascade_delete(self):
         self.review = Review.objects.create(
             user_profile=self.user_profile[0],
@@ -116,8 +103,6 @@ class TestReviewModel(TestCase):
 
 
 class TestReviewViews(TestCase):
-
-    # c = Client()
 
     def setUp(self):
         # setup before the tests
@@ -138,9 +123,6 @@ class TestReviewViews(TestCase):
         )
         self.user.save()
 
-        # self.user.is_active = True
-        # self.user.save()
-
         # Set password. Otherwise hash affects ability to log in.
         self.user.set_password('aComplexPassword11')
         self.user.save()
@@ -148,9 +130,13 @@ class TestReviewViews(TestCase):
         # Find user_profile
         self.user_profile = UserProfile.objects.filter(user='9999')
 
-        # logged_in = self.c.login(
-        # username='TestUser', password='aComplexPassword11')
-        # print(logged_in)
+        # Create Review
+        self.review = Review.objects.create(
+            user_profile=self.user_profile[0],
+            listing=self.listing,
+            rating='5',
+            review_title="I am a great review",
+            review="Review contents.")
 
     def test_redirects_if_not_logged_in_user(self):
         response = self.client.get('/reviews/')
@@ -164,12 +150,6 @@ class TestReviewViews(TestCase):
         self.assertTemplateUsed(response, 'reviews/reviews.html')
 
     def test_get_user_reviews(self):
-        self.review = Review.objects.create(
-            user_profile=self.user_profile[0],
-            listing=self.listing,
-            rating='5',
-            review_title="I am a great review",
-            review="Review contents.")
         self.client.login(username='TestUser', password='aComplexPassword11')
         response = self.client.get('/reviews/', follow=True)
         self.assertContains(response, "I am a great review")
@@ -178,10 +158,54 @@ class TestReviewViews(TestCase):
         self.assertContains(response, "Listing: test listing")
         self.assertContains(response, "Review contents.")
 
-    # def test_add_review(self):
+    def test_user_can_access_add_review_page(self):
+        self.client.login(username='TestUser', password='aComplexPassword11')
+        response = self.client.get('/reviews/add/', follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'reviews/add_review.html')
 
-    # def test_edit_review(self):
+    def test_add_review(self):
+        self.client.login(username='TestUser', password='aComplexPassword11')
+        response = self.client.get('/reviews/', follow=True)
+        self.assertEqual(len(response.context['user_reviews']), 1)
+        response = self.client.get('/reviews/', follow=True)
+        response = self.client.post('/reviews/add/', {
+            'listing': '1',
+            'rating': '1',
+            'review_title': "I am a bad review",
+            'review': "Review contents.",
+        })
+        response = self.client.get('/reviews/', follow=True)
+        self.assertContains(response, 'Review saved successfully')
+        self.assertEqual(len(response.context['user_reviews']), 2)
 
-    # def test_delete_review(self):
+    def test_edit_review(self):
+        self.client.login(username='TestUser', password='aComplexPassword11')
+        response = self.client.get('/reviews/edit/1/')
+        self.assertContains(
+            response, '<option value="1" selected>test listing</option>')
+        self.assertContains(response, "5")
+        self.assertContains(response, "I am a great review")
+        self.assertContains(response, "Review contents.")
+        response = self.client.post('/reviews/edit/1/', {
+            'listing': '1',
+            'rating': '3',
+            'review_title': "I am an average review",
+            'review': "More Review contents.",
+        })
+        response = self.client.get('/reviews/', follow=True)
+        self.assertContains(response, 'Successfully updated review!')
+        self.assertContains(response, "I am an average review")
+        self.assertContains(response, "By TestUser")
+        self.assertContains(response, "3 / 5.0")
+        self.assertContains(response, "Listing: test listing")
+        self.assertContains(response, "More Review contents.")
 
-    # test have to be review owner for the above?
+    def test_delete_review(self):
+        self.client.login(username='TestUser', password='aComplexPassword11')
+        response = self.client.get('/reviews/', follow=True)
+        self.assertEqual(len(response.context['user_reviews']), 1)
+        response = self.client.get('/reviews/delete/1/')
+        response = self.client.get('/reviews/', follow=True)
+        self.assertContains(response, 'Review successfully deleted')
+        self.assertEqual(len(response.context['user_reviews']), 0)
