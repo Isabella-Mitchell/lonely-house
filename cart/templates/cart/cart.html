@@ -137,14 +137,10 @@
 <script>
     //remove item from cart anmd reload
     $(".remove-item").click(function (e) {
-        console.log("click");
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr("id").split("remove_")[1];
-        console.log(itemId);
         var url = `/cart/remove/${itemId}/`;
-        console.log(url);
         var data = { csrfmiddlewaretoken: csrfToken };
-        console.log(data);
 
         $.post(url, data).done(function () {
             location.reload();

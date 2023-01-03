@@ -68,8 +68,6 @@ form.addEventListener('submit', function(ev) {
 
     var fullName = `${firstName} ${lastName}`
 
-    console.log(fullName)
-
     $.post(url, postData).done(function () {
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
