@@ -217,6 +217,8 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 * Due to time constraints and the use of jQuery via a CDN, I have not written tests for my javascript. This is a future development feature.
 
+* I had to turn off email verification to allow my tests that required log in to work.
+
 ## All tests passing
 
 * In total I wrote 44 tests. They all passed.
@@ -369,24 +371,108 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 ## Resolved
 
+### Datepicker not matching JSON with Javascript due to differences in date and month format
 
+* Dates with single digits for date or month where not being greyed out on the datepicker. This is because the logic that made the date disabled was generating dates as 1-1-24, whereas the JSON was providing dates in 01-01-24 format.
+
+* I noticed this, identified the problem by thinking through the logic and console logging to confirm that this was the issue.
+
+* I used the solution in (this Stack Overflow article)[https://stackoverflow.com/questions/3605214/javascript-add-leading-zeroes-to-date] to fix the bug (also referenced in my credits)
+
+### Datepicker not matching JSON with Javascript due to differences in date and month format
+
+* In my listings script, on window load, the applied filters are compared against the checkboxes. The approproiate checkboxes are checked and the dropdown button changes colour. I am using jQuery selectors the get elements on the page, and template literals to populate the jQuery selector.
+
+* While developing this, I got this error message 'Syntax error, unrecognized expression:' After googling the error message, I found [this article](https://forum.jquery.com/topic/uncaught-error-syntax-error-unrecognized-expression-3-6-2020). I realised that I had an additional set of quote which meant the script wouldn't work.
+
+* I removed the quotes and resolved the bug. (Note this was flagged in my JSHint, so there may be a better solution.)
+
+### Bug caused by cart/add/ URL being used instead of Redirect
+
+* When I developed my project, I thought it would be good UX for users to go straight to cart once they had added a product.
+
+* I initally did this using the cart/add URL, however that meant that users couldn't remove items without reloading the cart page. I realised this was an error in my code that was causing this bug.
+
+* After revisting the Code Institute walkthrough, I decided to change this to redirect and it fixed the bug.
+
+### Images not appearing on Deployed site.
+
+* When I first deployed the website, the images were not loading, and appeared as broken links. 
+
+* I inspected the HTML using Chrome Developer tools and realised there was now an extra '/' in the image URLs. This is because I had included this on my development site. 
+
+* I removed this and it fixed the bug.
 
 ## Unresolved
 
-These are the notes from the working doc:
+### Potential issues using local storage to save applied filters
 
-Had to add a 'name' field to images as I couldn't override Django Image Object 1. Find a way of automating this
-Currently only shows additional images if a lead image is specified
-remove lead_image_url from model?
-Image jumping size - maybe the upload size or something I can fix with CSS - only in portrait now though
-Fix styling medium - image not quite covering card
+* I have used local storage to allow users to edit their filters. If I did not use this, then users would have to reselect checkboxes everytime. Filters can be removed by using the 'Reset Filters' Button.
 
-Links to all listings from homepage not reseting filter views
+* Ideally navigating away from the page would also reset filtes. There were some times during testing when I would navigate to the listings page and see filters being applied when I did not expect them too.
 
-Change sleeps to GTE
+* I feel I would need to learn more about using Local Storage in order to fix this bug.
 
-(Nice to have) - click through from featured category doesn't show filter being applied
+### Listing images name field has to be added manually.
 
-Checkout/ Stripe - Views etc - Update full name on Stripe to not just be pulling in First name field
+<h2 align="center"><img src="TESTING/bug-image-name.jpg"></h2>
+
+* When creating this model, I had to add a 'name' field to images as I couldn't override Django Image Object. This makes it more time consuming for admins to upload images, and leaves more room for human error.
+
+* Due to time constraints I have not improved this method.
+
+### Click through from featured category doesn't show filter being applied
+
+<h2 align="center"><img src="TESTING/bug-category.jpg"></h2>
+
+* When a user clicks on a featured categroy they are directed to the listing page by URL with that query applied. Therefore the Listings Page doesn't appear to have a filter applied, even though the user can see view properties.
+
+* There is a risk the user may not realise there are more properties, because they may not think to reset filters or refresh the page.
+
+* One way to resolve this would to create category 'collections' and link this instead. I have included this as a future feature.
+
+### Checkout first and last names fields not auto populating
+
+* User and User Profile has no first or last name fields, so these fields in the checkout form are not populated. This makes it more time consuming for logged in users who have saved all their other information to go through checkout.
+
+* A way to resolve this would be to add a First and Last name field to the user profile.
+
+* I identified the cause of this bug shortly before submission. I decided to leave this bug unresolved so I did not need to make further migrations so close to submission.
+
+<h2 align="center"><img src="TESTING/bug-checkout-names.jpg"></h2>
+
+### No Invalid Coordinates Handling
+
+<h2 align="center"><img src="TESTING/bug-invalid-coordinates.jpg"></h2>
+
+* Admins can provide Coordinates up to two digits. These means they could enter invalid coordinates, such as 99.9 and 99.9
+
+* I do not have any handling if invalid coordinates are entered. The map appears like this.
+
+* I do not think this is a major issue, as the page still renders, and it unlikely admins would enter incorrect information. Though ideally the map would be hidden if invlaid coordinates are supplied.
+
+### Failing payment_intent.successed Webhooks
+
+<h2 align="center"><img src="TESTING/bug-failing-webhooks.jpg"></h2>
+
+* I have set up Stripe correctly and the majority of my webhooks pass. However I h
+
+* I looked at this issue on Slack and saw lots of people have experienced the same issue. It can also cause confirmation emails to not send properly.
+
+* Possible solutions include deleting my endpoint and creating a new one, clearing site data and changing a DNS setting to Google DNS.
+
+* I have used a diff checker against the relevant walkthrough project files, and cannot identify any typos or mistakes.
+
+* I believe the issue may have been caused by proceeding through checkout on my development site once I had my deployed site set up. 
+
+* This bug occured shortly before submission, so I decided to leave this bug unresolved to ensure I did not break my project without enough time to recitify it.
+
+### Confirmation Emails not sending
+
+* I know I have set up emails correctly, as users can request and recieve Reset Password emails.
+
+* I looked at this issue on Slack and saw lots of people have experienced the same issue. I believe this issue has been caused by my failing webhooks (see above).
+
+* This bug occured shortly before submission, so I decided to leave this bug unresolved to ensure I did not break my project without enough time to recitify it.
 
 Back to [README.md](/README.md#testing)
