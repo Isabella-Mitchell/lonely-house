@@ -166,7 +166,7 @@ Due to time constraints and descions made during the project, there are some dif
   * This feature wasn't a prioirty during development, so I omitted it due to time contraists. However in reality the all listings page would need some way to manage a lot of listings, whether that's infinite scroll or pagination.
 
 
-# Summary of Features
+# Features
 
 ## All Pages
 
@@ -279,35 +279,159 @@ Due to time constraints and descions made during the project, there are some dif
 - Users must be logged in
 - Users can only access their own reviews
 
-# Key Features
-
-I have gone into more detail about some the key ...
-
 # Future Features
 
-- The Javascript For example, I use maths to calulcate the number of nights. I could simply count how many items appear in the array of dates selected by the user. 
+## User Experience Features
 
 
-If a user returns to a listing page from the cart, they do not have a clever way to amend their booking. I have not added this yet due to time constraints. It is down as a future feature. 
+### Datepicker
 
-TO FINISH
+#### Users would be able to book their Check In date on an exisiting Check Out date.
 
-## User Experience Features 
+* The datepicker and booking logic means that a Check out date is not reflected as a night on the datepicker, while the Check In date counts as a night. This is ok if users book consectutive dates, as the later booking can check-in on the same day that the intial booking's check out date. E.g. 5th-7th June and 7th-9th June. However if the trips are not booked consecutively, the later booking cannot select the initial booking's Check-in date. E.g. 7th-9th June means that 5th-7th of June cannot be booked, instead they could book 4th-6th June. 
 
-### All Pages
+* A future feature would be a more complex datpicker that allows this.
 
-- 
+#### Date range picker that does not allow users to select a range that includes an unavailable date.
+
+* Currently, if a user selects a date range that includes on or more unavailable date. E.g. a user tries to book 1st-10th June when 5th June is booked, then they will be notified and informed to select new dates.
+
+* A future feature would be to improve the date range picker functionality so that the user can't select unavailable dates within a range of dates.
+
+#### Optimise date range picker appearance on smaller screens
+
+* I think the date range picker could be larger on smaller screens, making it more accessible.
+
+### Filters
+
+#### Make applied filters act like 'tags' with a close button to remove filter
+
+* When users apply filters, they can see the filters applied appear as text on the screen
+
+* A future feature would be to add a close icon to applied filters, making them easier to close. Currently users have to open up the dropdown menu and unselect the checkbox, else reset filters.
+
+#### Optimise filters appearance on smaller screens
+
+* I think the filter drop downs could have better spacing on smaller screens, making them more accessible.
+
+
+### Listings Pages
+
+#### Map View
+
+* In my initial wireframes, I intended to create a map view of listings, which would allow users use a map to browse listings, rather than a list view as I currently have.
+
+* Due to time contrainsts I was unable to add this feature
+
+#### Curate Listing Order
+
+* A future feature would be to include a 'ranking' field on Listings so that the admin can choose the order that the listings appear on the All Listings page.
+
+#### Add ordering options for users
+
+* A future feature would be to make it possible for users to customise the order of listings. E.g. cheapest first.
+
+#### Category 'Collections'
+
+* A future feature would be to create collections. I noticied that when a user selects a 'featured category' from the homepage, they do not see what Category is being applied. One way around this would be to make category collections so these featured links could navigate there.
+
+
+### Cart & Checkout
+
+#### Amend Booking/ Cart
+
+* If a user returns to a listing page from the cart, they do not have a clever way to amend their booking.
+
+* The user can select new dates and add the property to cart to amend their booking, however this is not intuiative. I could add a toast/ alert warning the user they already have a booking in their cart, and if they select new dates they will loose their existing booking.
+
+* A future feature would be, if users navigate to a listing which is currently in their cart, then their existing booking dates would populate the datepicker.
+
+#### More descriptive 'Add to Cart' toasts
+
+* If a user adds a booking to cart, they can see more informaion in the success toast.
+
+#### Check in and Checkout date being reflected in Order Confirmation
+
+* Users cannot currently see their check in and check out date once they have placed their order. They currently only see the nights they have booked. In my own experience of booking holiday lets, it's very important that the user is clear on these dates. There is a chance, by only reflecting the nights, that users might think the final date is the checkout date, when in fact it is the night after.
+
+* Ideally these dates would be calculated from the line items. E.g. if a line item is deleted (like the user is cutting their trip shorter by one day), then the checkout date automatically calculates itself and updates.
+
+* A future feature would be to reflect the user's check-in and check-out dates in their order confirmation.
+
+#### Update dates shown to user format to be dd-mm-yyyy 
+
+* The format is yyyy-mm-dd due to the default date format on the Python order model. I'm sure this could be changed but it is low prioirty. I also realised I could use a date picker within the line item to select and change the date. This was ideal as it would mean invalid dates could not be entered by the admin. The default format for this is yyyy-mm-dd, so I have also used this on my datepicker. I feel a more user friendly format would be dd-mm-yyyy, but updating this is a low priority.
+
+* A future feature would be to present dates to the user in a more human-friendly fashion.
+
+#### Further Listing Information in Order Confirmation
+
+* Users cannot currently see any address or contact information for their listing in their checkout confirmation.
+
+* A future feature would be to add more fields to the Listing model, or create a new model called ListingInformation, which could include more information about listings to be provided to the user such as Address, contact details and travel information.
+
+### Reviews
+
+#### Implicitly associate reviews with listings
+
+* On the add or edit review form, users can select any listing to leave a review for. This is not very good UX, and also might cause a review to be associated with the wrong listing, and allow unvalidated reviews and spam.
+
+* A future feature would be to only permit users who have made a booking on a listing to leave a review about that listing.
+
+### Further Apps
+
+#### Admin area
+
+* A future feature would be to create an admin area within the website, so admins can easily add, edit or delete content without needing to open up the website admin.
+
+#### Contact Form
+
+* A possible future feature would be a contact form to let customers easily contact the website admin
+
+#### Newsletter Subscribe
+
+* A possible future feature would be a newsletter subscribtion form to let customers easily subscribe to Lonely House Newsletters
+
+#### Wishlist
+
+* A possible future feature would be a wishlist for logged in users. It would encourage users to register, as they could save lisitngs to their wishlist, making them quick and easy to find.
 
 ## Development Features
 
-### Testing
+#### Use Jest for Javascript testing and replace jQuery where possible
 
-- JQuery/ Jest
-- More tests for checkout
+* I've had issues in previous projects with using Jest on .js files that include jQuery. I think the cause of the issue is the fact that I'm using a CDN to import jQuery.
+
+* As the focus of this project is Python and I have wrtien Unittests, I decided to not refactor my Javascript to allow me to use Jest to test my Javascript code.
+
+* A future feature would be to replace jQuery with Javascript in my scripts, and write tests for my scripts.
+
+#### More tests for checkout
+
+* Due to time constraints, I have not written many tests for much of the Stripe payment functionality in my checkout app. This is a future feature I would prioritise.
+
+#### Check if item is a reservation in Checkout views
+
+* I included a reservation field in my OrderLineItem to allow me to offer add-ons in checkout, e.g. an insurance add on. However I have not included logic in my Checkout Views that checks for this. This would need to be rectorfied before further product types are added.
+
+#### Add in a nights calulator to Cart Contexts.
+
+* I am currently taking this data from the listing_detail page via a hidden field. A future feature could be to add in a nights calulator to ensure the user cannot manipulate this number.
+
+#### Sleeps could be a model like categories and filters
+
+* Currently the sleeps filter is populated by a Constant. This means that if a listing was added that slept 18, a new number would have to be applied to the Constant.
+
+* A future fetaure would be to refactor the necessary views, create a sleeps model and amend the listing model, so that this works similar to Categories. This makes it easy for admins to add new listings, and the number automatically appears in the Sleeps filter.
 
 # Data Model
 
 ## Planning & Considerations
+
+sEE kEY FEATURES
+
+I have gone into more detail about some the key ...
+
 
 As outlined in my ...
 
