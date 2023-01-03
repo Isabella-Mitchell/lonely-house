@@ -28,14 +28,11 @@
 ## Contents
 - [User experience](#user-experience)
   * [User Stories](#user-stories)
-    + [First-time Users](#first-time-users)
-    + [Returning Users](#returning-users)
-    + [Business Owner](#business-owner)
 - [Design](#design)
   + [Overview](#overview)
   + [Colour Scheme](#colour-scheme)
   + [Typography](#typography)
-  + [Imagery and Aesthetics](#imagery-and-aesthetics)
+  + [Imagery](#imagery)
   + [Icons](#icons)
   + [Cards](#cards)
 - [Wireframes](#wireframes)
@@ -46,14 +43,15 @@
 - [Data Model](#data-model)
 - [Technologies used](#technologies-used)
   + [Languages Used](#languages-used)
-  + [Frameworks Libraries and Programs](#frameworks-libraries-and-programs)
+  + [Frameworks Libraries](#frameworks-libraries)
+  + [Storage & Hosting](#storage-hosting)
+  + [Payments](#payments)
+  + [APIs](#apis)
+  + [IDE & Version Control](#ide-version-control)
+  + [Other Tools](#other-tools)
+  + [Testing & Code Validation](#testing-code-validation)
 - [Testing](#testing)
 - [Deployment](#deployment)
-  + [Creating a Gitpod Workspace](#creating-a-gitpod-workspace)
-  + [GitHub Pages](#github-pages)
-  + [Forking the GitHub Repository](#forking-the-github-repository)
-  + [Making a Local Clone](#making-a-local-clone)
-  + [Creating an application with Heroku](#creating-an-application-with-heroku)
 - [Credits](#credits)
   + [Code](#code)
   + [Media](#media)
@@ -112,7 +110,7 @@
 
 - The website design is simple yet characterful. As the name 'Lonely House' suggests, the website's USP is that it offers holiday lettings that are remote and situated in nature. They offer a chance for people to escape busy lives, relax in nature and slow down. The aesthic of the website, with its soft edges and rounded corners, warm colours and rich visual references to nature, was inspired by this idea.
 
-### Colour
+### Colour Scheme
 
 - Lonely House uses a limited colour scheme of warm creams, greys and greens. Inspiration for the colour scene came from nature and imagery I sourced in preparation for the project.
 
@@ -508,10 +506,10 @@ This diagram outlines each model's fields and illustrates the relationship betwe
 - [Stripe](https://stripe.com/gb)
   - Stripe is used to handle website payments.
 
-## Application Programming Interface (API's)
+## APIs
 
 - [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding)
-    - I used Google's Geocoding API to turn the provided address into coordinates.
+  - I used Google's Geocoding API to turn the provided address into coordinates.
 
 ## IDE & Version Control
 
@@ -566,15 +564,19 @@ The following tools were used for testing and code validation. You can see resul
 
 # Testing
 
-- Please refer [here](docs/README/TESTING.md) for more information on testing of the Lonely House website
+- Please refer [here](docs/TESTING.md) for more information on testing of the Lonely House website
 
 # Deployment
 
-- Please refer [here](docs/README/DEPLOYMENT.md) for more information on the deployment of the Lonely House website
+- Please refer [here](docs/DEPLOYMENT.md) for more information on the deployment of the Lonely House website
 
 # Credits
 
 ## Code
+
+TO DO
+
+- Django:
 
 - Bootstrap
 
@@ -590,7 +592,17 @@ The following tools were used for testing and code validation. You can see resul
 
 ## Content
 
-- 
+- As the listings are ficitious, I used [ChatGPT](https://openai.com/blog/chatgpt/) to generate listing descriptions.
+
+- I took inspiration from the [Landmark Trust](https://www.landmarktrust.org.uk/) website for the listings names, locations and facilties.
+
+- I looked at the following websites for inspiration on branding and functionality
+  - [Landmark Trust](https://www.landmarktrust.org.uk/)
+  - [Air BnB](https://www.airbnb.co.uk/)
+  - [Center Parcs](https://www.centerparcs.co.uk/)
+  - [The Modern House](https://www.themodernhouse.com/)
+  - [Brickworks](https://www.brickworkslondon.com/)
+  - [Suitcase Magazine](https://suitcasemag.com/)
 
 ## Media
 
@@ -612,4 +624,4 @@ The following tools were used for testing and code validation. You can see resul
 
 Please note this is a personal project. This website is purely for the sake of the developer's portfolio and not for public consumption.
 
-Isabella Mitchell, 2022.
+Isabella Mitchell, 2023.

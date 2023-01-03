@@ -36,7 +36,6 @@ def all_listings(request):
 
         if 'sleeps' in request.GET:
             sleeps_query = request.GET.getlist('sleeps')
-            # TO DO - Could also be gte instead of in
             listings = listings.filter(no_sleeps__in=sleeps_query)
 
         if 'facility' in request.GET:
