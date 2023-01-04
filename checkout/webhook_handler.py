@@ -16,9 +16,11 @@ class StripeWH_Handler:
 
     def __init__(self, request):
         self.request = request
+        print("Setting up WH handler")
 
     def _send_confirmation_email(self, order):
         """Send the user a confirmation email"""
+        print("Launching the Sending out email function")
         cust_email = order.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
@@ -50,12 +52,15 @@ class StripeWH_Handler:
         pid = intent.id
         cart = intent.metadata.cart
         save_info = intent.metadata.save_info
+        print("Setting up the handle_payment_intent_succeeded function")
 
         billing_details = intent.charges.data[0].billing_details
         total = round(intent.charges.data[0].amount / 100, 2)
 
         # Clean data in the billing details
         for field, value in billing_details.address.items():
+            print(field)
+            print(value)
             if value == "":
                 billing_details.address[field] = None
 
@@ -63,6 +68,7 @@ class StripeWH_Handler:
         profile = None
         username = intent.metadata.username
         if username != 'AnonymousUser':
+            print("username not equal to anaon")
             profile = UserProfile.objects.get(user__username=username)
             if save_info:
                 profile.default_phone_number = shipping_details.phone
@@ -77,6 +83,8 @@ class StripeWH_Handler:
                 profile.save()
 
         order_exists = False
+        print("username is equal to anaon")
+        print("trying to get the order")
         attempt = 1
         while attempt <= 5:
             try:
@@ -96,17 +104,21 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                 )
                 order_exists = True
+                print("order exists")
                 break
             except Order.DoesNotExist:
+                print("order does exist")
                 attempt += 1
                 time.sleep(1)
         if order_exists:
+            print("sending email becuase order exists")
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | \
                 SUCCESS: Verified order already in database',
                 status=200)
         else:
+            print("order does not exist so trying to create it")
             order = None
             try:
                 order = Order.objects.create(
@@ -135,13 +147,17 @@ class StripeWH_Handler:
                             date=date,
                         )
                         order_line_item.save()
+                    print("saved the order")
             except Exception as e:
+                print("exception")
                 if order:
                     order.delete()
+                    print("order delete")
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
         self._send_confirmation_email(order)
+        print("sending email bottom of function")
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | \
                 SUCCESS: Created order in webhook',
