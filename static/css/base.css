@@ -277,6 +277,20 @@ input.larger {
     min-height: 360px;
 }
 
+
+/* --------------------- Featured Reviews --------------------- */
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+
+.reviews-height {
+    height: 255px;
+}
+
 /* --------------------- Media Queries --------------------- */
 
 /* changes logo size based on screensize */

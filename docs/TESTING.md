@@ -481,4 +481,8 @@ MORE
 postcode=billing_details.address.postal_code,
 I tried to update this and stripe_elements.js to use Shipping postcode but my webhooks started failign again, so decided to leave it !"
 
+The Fix to above in reolved
+
+Max cart amount
+
 Back to [README.md](/README.md#testing)
