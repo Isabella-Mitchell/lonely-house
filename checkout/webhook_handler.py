@@ -16,11 +16,9 @@ class StripeWH_Handler:
 
     def __init__(self, request):
         self.request = request
-        print("Setting up WH handler")
 
     def _send_confirmation_email(self, order):
         """Send the user a confirmation email"""
-        print("Launching the Sending out email function")
         cust_email = order.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
@@ -52,17 +50,20 @@ class StripeWH_Handler:
         pid = intent.id
         cart = intent.metadata.cart
         save_info = intent.metadata.save_info
-        print("Setting up the handle_payment_intent_succeeded function")
 
         billing_details = intent.charges.data[0].billing_details
+        shipping_details = intent.shipping
         total = round(intent.charges.data[0].amount / 100, 2)
 
         # Clean data in the billing details
         for field, value in billing_details.address.items():
-            print(field)
-            print(value)
             if value == "":
                 billing_details.address[field] = None
+
+        # Clean data in the shipping details
+        for field, value in shipping_details.address.items():
+            if value == "":
+                shipping_details.address[field] = None
 
         full_name = billing_details.name.split(" ", 1)
         first_name = (full_name[0])
@@ -72,7 +73,6 @@ class StripeWH_Handler:
         profile = None
         username = intent.metadata.username
         if username != 'AnonymousUser':
-            print("username not equal to anaon")
             profile = UserProfile.objects.get(user__username=username)
             if save_info:
                 profile.default_phone_number = billing_details.phone
@@ -87,19 +87,19 @@ class StripeWH_Handler:
                 profile.save()
 
         order_exists = False
-        print("username is equal to anaon")
-        print("trying to get the order")
         attempt = 1
         while attempt <= 5:
             try:
-                # Commented out certain field to fix bug caused by postal code and first name issues.
+                # Commented out name fields to fix bug caused by
+                # possibly non-matching fields.
                 order = Order.objects.get(
                     # first_name__iexact=first_name,
                     # last_name__iexact=last_name,
                     email__iexact=billing_details.email,
                     phone_number__iexact=billing_details.phone,
                     country__iexact=billing_details.address.country,
-                    # postcode__iexact=billing_details.address.postal_code,
+                    # shipping postcode
+                    postcode__iexact=shipping_details.address.postal_code,
                     town_or_city__iexact=billing_details.address.city,
                     street_address1__iexact=billing_details.address.line1,
                     street_address2__iexact=billing_details.address.line2,
@@ -109,21 +109,17 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                 )
                 order_exists = True
-                print("order exists")
                 break
             except Order.DoesNotExist:
-                print("order does not exist")
                 attempt += 1
                 time.sleep(1)
         if order_exists:
-            print("sending email becuase order exists")
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | \
                 SUCCESS: Verified order already in database',
                 status=200)
         else:
-            print("order does not exist so trying to create it")
             order = None
             try:
                 order = Order.objects.create(
@@ -133,8 +129,8 @@ class StripeWH_Handler:
                     email=billing_details.email,
                     phone_number=billing_details.phone,
                     country=billing_details.address.country,
-                    # will populate with stripe postcode, bug to fix
-                    postcode=billing_details.address.postal_code,
+                    # shipping postcode
+                    postcode=shipping_details.address.postal_code,
                     town_or_city=billing_details.address.city,
                     street_address1=billing_details.address.line1,
                     street_address2=billing_details.address.line2,
@@ -153,17 +149,13 @@ class StripeWH_Handler:
                             date=date,
                         )
                         order_line_item.save()
-                    print("saved the order")
             except Exception as e:
-                print("exception")
                 if order:
                     order.delete()
-                    print("order delete")
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
         self._send_confirmation_email(order)
-        print("sending email bottom of function")
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | \
                 SUCCESS: Created order in webhook',

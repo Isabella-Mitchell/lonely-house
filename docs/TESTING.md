@@ -475,4 +475,10 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 * This bug occured shortly before submission, so I decided to leave this bug unresolved to ensure I did not break my project without enough time to recitify it.
 
+MORE
+
+# will populate with stripe postcode, unfixed bug
+postcode=billing_details.address.postal_code,
+I tried to update this and stripe_elements.js to use Shipping postcode but my webhooks started failign again, so decided to leave it !"
+
 Back to [README.md](/README.md#testing)

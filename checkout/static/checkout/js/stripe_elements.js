@@ -84,7 +84,13 @@ form.addEventListener('submit', function(ev) {
                         state: $.trim(form.county.value),
                     }
                 }
-            }
+            },
+            shipping: {
+                name: fullName,
+                address: {
+                    postal_code: $.trim(form.postcode.value),
+                }
+            },
         }).then(function(result) {
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');
