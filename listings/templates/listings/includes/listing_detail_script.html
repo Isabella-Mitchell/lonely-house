@@ -171,7 +171,10 @@
             // format to match python - beware of 0-11 or 1-12 months
             format: 'yyyy-mm-dd',
             startDate: '+1d',
+            clearBtn: true,
             autoclose: true,
+            changeMonth: true,
+            changeYear: true,
             beforeShowDay:
                 /**
                 * Checks whether dates are available
@@ -193,11 +196,36 @@
          * Updates start and end date based on user selection.
         */
         var startDate = new Date($('#startDate').val());
+        console.log(`Start date is ${startDate}`);
         var endDate = new Date($('#endDate').val());
+        console.log(`End date is ${endDate}`);
         var $start = $(".input-daterange").find('#startDate');
         var $end = $(".input-daterange").find('#endDate');
         $start.datepicker('setDate', startDate);
         $end.datepicker('setDate', endDate);
+
+        // // set default dates
+        // var start = new Date();
+        // // set end date to max one year period:
+        // var end = new Date(new Date().setYear(start.getFullYear()+1));
+
+        $('#startDate').datepicker({
+        // update "toDate" defaults whenever "fromDate" changes
+        }).on('changeDate', function(){
+            console.log("change function called");
+            // set the "toDate" start to not be later than "fromDate" ends:
+            // $('#endDate').val("").datepicker("update");
+            $("#endDate").datepicker("update", startDate);
+        });
+
+        // $('#toDate').datepicker({
+        //     startDate : start,
+        //     endDate   : end
+        // // update "fromDate" defaults whenever "toDate" changes
+        // }).on('changeDate', function(){
+        //     // set the "fromDate" end to not be later than "toDate" starts:
+        //     $('#fromDate').datepicker('setEndDate', new Date($(this).val()));
+        // });
 
         /**
          * Event listener for check availability button. User to press once they have selected dates
