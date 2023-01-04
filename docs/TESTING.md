@@ -455,7 +455,7 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 <h2 align="center"><img src="TESTING/bug-failing-webhooks.jpg"></h2>
 
-* I have set up Stripe correctly and the majority of my webhooks pass. However I h
+* I have set up Stripe correctly and the majority of my webhooks pass. However I my payment_intent.succeeded is failing, and I can't work out why.
 
 * I looked at this issue on Slack and saw lots of people have experienced the same issue. It can also cause confirmation emails to not send properly.
 
