@@ -64,6 +64,10 @@ class StripeWH_Handler:
             if value == "":
                 billing_details.address[field] = None
 
+        full_name = billing_details.name.split(" ", 1)
+        first_name = (full_name[0])
+        last_name = (full_name[1])
+
         # Update profile information if save_info was checked
         profile = None
         username = intent.metadata.username
@@ -71,15 +75,15 @@ class StripeWH_Handler:
             print("username not equal to anaon")
             profile = UserProfile.objects.get(user__username=username)
             if save_info:
-                profile.default_phone_number = shipping_details.phone
-                profile.default_country = shipping_details.address.country
-                profile.default_postcode = shipping_details.address.postal_code
-                profile.default_town_or_city = shipping_details.address.city
+                profile.default_phone_number = billing_details.phone
+                profile.default_country = billing_details.address.country
+                profile.default_postcode = billing_details.address.postal_code
+                profile.default_town_or_city = billing_details.address.city
                 profile.default_street_address1 = (
-                    shipping_details.address.line1)
+                    billing_details.address.line1)
                 profile.default_street_address2 = (
-                    shipping_details.address.line2)
-                profile.default_county = shipping_details.address.state
+                    billing_details.address.line2)
+                profile.default_county = billing_details.address.state
                 profile.save()
 
         order_exists = False
@@ -88,13 +92,14 @@ class StripeWH_Handler:
         attempt = 1
         while attempt <= 5:
             try:
+                # Commented out certain field to fix bug caused by postal code and first name issues.
                 order = Order.objects.get(
-                    first_name__iexact=billing_details.name.split(" ", 1),
-                    last_name__iexact=billing_details.name.split(" ", 2),
+                    # first_name__iexact=first_name,
+                    # last_name__iexact=last_name,
                     email__iexact=billing_details.email,
                     phone_number__iexact=billing_details.phone,
                     country__iexact=billing_details.address.country,
-                    postcode__iexact=billing_details.address.postal_code,
+                    # postcode__iexact=billing_details.address.postal_code,
                     town_or_city__iexact=billing_details.address.city,
                     street_address1__iexact=billing_details.address.line1,
                     street_address2__iexact=billing_details.address.line2,
@@ -107,7 +112,7 @@ class StripeWH_Handler:
                 print("order exists")
                 break
             except Order.DoesNotExist:
-                print("order does exist")
+                print("order does not exist")
                 attempt += 1
                 time.sleep(1)
         if order_exists:
@@ -122,12 +127,13 @@ class StripeWH_Handler:
             order = None
             try:
                 order = Order.objects.create(
-                    first_name=billing_details.name.split(" ", 1),
-                    last_name=billing_details.name.split(" ", 2),
+                    first_name=first_name,
+                    last_name=last_name,
                     user_profile=profile,
                     email=billing_details.email,
                     phone_number=billing_details.phone,
                     country=billing_details.address.country,
+                    # will populate with stripe postcode, bug to fix
                     postcode=billing_details.address.postal_code,
                     town_or_city=billing_details.address.city,
                     street_address1=billing_details.address.line1,
