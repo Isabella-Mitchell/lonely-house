@@ -193,39 +193,31 @@
     
         /**
          * Displays user's selected dates as a range
-         * Updates start and end date based on user selection.
+         * Means that updates made via text input are reflected on the calender.
         */
+       // set up vars
         var startDate = new Date($('#startDate').val());
-        console.log(`Start date is ${startDate}`);
         var endDate = new Date($('#endDate').val());
-        console.log(`End date is ${endDate}`);
+        // finds the date in the input field
         var $start = $(".input-daterange").find('#startDate');
         var $end = $(".input-daterange").find('#endDate');
+        // updates the datepicker
         $start.datepicker('setDate', startDate);
         $end.datepicker('setDate', endDate);
 
-        // // set default dates
-        // var start = new Date();
-        // // set end date to max one year period:
-        // var end = new Date(new Date().setYear(start.getFullYear()+1));
-
+        /**
+         * Updates end date when start date is changed.
+         * Adds on an extra day by default, as user can't check in and out on the same day
+         * Used instead of clearing dates as datepicker doesn't open on correct month or year.
+         * Does mean the end date will always get changed when the start date is changed. 
+        */
         $('#startDate').datepicker({
-        // update "toDate" defaults whenever "fromDate" changes
         }).on('changeDate', function(){
             console.log("change function called");
-            // set the "toDate" start to not be later than "fromDate" ends:
-            // $('#endDate').val("").datepicker("update");
-            $("#endDate").datepicker("update", startDate);
+            var startDateNew = new Date($('#startDate').val());
+            startDateNew.setDate(startDateNew.getDate() + 1);
+            $end.datepicker('setDate', startDateNew);
         });
-
-        // $('#toDate').datepicker({
-        //     startDate : start,
-        //     endDate   : end
-        // // update "fromDate" defaults whenever "toDate" changes
-        // }).on('changeDate', function(){
-        //     // set the "fromDate" end to not be later than "toDate" starts:
-        //     $('#fromDate').datepicker('setEndDate', new Date($(this).val()));
-        // });
 
         /**
          * Event listener for check availability button. User to press once they have selected dates
