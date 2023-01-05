@@ -163,7 +163,6 @@ Due to time constraints and descions made during the project, there are some dif
 - Didn't add back to top button at bottom of pages
   * This feature wasn't a prioirty during development, so I omitted it due to time contraists. However in reality the all listings page would need some way to manage a lot of listings, whether that's infinite scroll or pagination.
 
-
 # Features
 
 ## All Pages
@@ -279,8 +278,8 @@ Due to time constraints and descions made during the project, there are some dif
 
 # Future Features
 
-## User Experience Features
 
+## User Experience Features
 
 ### Datepicker
 
@@ -574,21 +573,51 @@ The following tools were used for testing and code validation. You can see resul
 
 ## Code
 
-TO DO
+### Code Institute:
+  - I sourced the framework for this project from the Code Institute Boutique Ado walkthrough. I have customised my website wherever possible. My checkout, Stripe payments, webhooks and email verification are very similar to the walkthrough as I desired to focus more on making my website fit for my users goals, rather than adding any further checkout or payment functionality.
 
-- Django:
+### Django:
+  - I referred to the Django documentation whilst building my project. I found articles on [testing](https://docs.djangoproject.com/en/4.1/topics/testing/) and [making database queries](https://docs.djangoproject.com/en/4.1/topics/db/queries/) particularly useful.
 
-- Bootstrap
+### Bootstrap:
+  - I have used Bootstrap classes throughout my project, including for layout utilities and cards. I sourced code from the Bootstrap documentation when building the navbar, image carousels, and dropdowns. These were sourced through the [Bootstrap documentation](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
 
-- Code Institute:
+### Bootstrap Datepicker:
+  - I refferred to [Bootstrap Datepicker documentation](https://bootstrap-datepicker.readthedocs.io/en/latest/markup.html#date-range) for the initial set up of my Bootstrap Date Picker
 
-- Stack Overflow: 
+### Stack Overflow: 
+  I used and/ or referenced code from the following Stack Overflow articles. Most relate to my datepicker and filters scripts.
+- Datepicker
+  - https://stackoverflow.com/questions/21146382/bootstrap-datepicker-restrict-available-dates-to-be-selected
+  - https://stackoverflow.com/questions/62493468/date-range-not-selected-in-calendar-after-value-changed-programmatically 
+  - https://stackoverflow.com/questions/39469538/bootstrap-datepicker-date-range-from-and-to 
+  - https://stackoverflow.com/questions/14409779/bootstrap-datepicker-how-to-set-the-start-date-for-tomorrow 
+  - https://stackoverflow.com/questions/16681875/how-to-get-the-selected-date-value-while-using-bootstrap-datepicker 
+  - https://stackoverflow.com/questions/4413590/javascript-get-array-of-dates-between-2-dates?page=1&tab=scoredesc
+  - https://stackoverflow.com/questions/55746578/gray-out-all-but-certain-dates-on-bootstrap-datepicker
+  - https://stackoverflow.com/questions/3605214/javascript-add-leading-zeroes-to-date
+- Filters
+  - https://stackoverflow.com/questions/14544104/checkbox-check-event-listener
+  - https://stackoverflow.com/questions/68588423/local-storage-isnt-storing-the-value-in-input-field-on-refresh
+  - https://stackoverflow.com/questions/15044340/jquery-set-checkbox-checked
+  - https://stackoverflow.com/questions/54249017/distinct-on-fields-is-not-supported-by-this-database-backend
+- Linking admin button to main menu
+  - https://stackoverflow.com/questions/1022236/linking-to-the-django-admin-site
+- Text area line breaks
+  - https://stackoverflow.com/questions/1894930/django-allow-line-break-from-textarea-input
+    
+### Meetanshi Blog
+  - I referred to [this blog post](https://meetanshi.com/blog/reload-current-page-without-losing-any-form-data-in-javascript) for help on using local storage (for Filters)
 
-- W3Schools: 
+### W3Schools: 
+  - I referred to [this article](https://www.w3docs.com/snippets/css/how-to-set-the-size-of-a-checkbox-with-html-and-css.html) for help on styling checkboxes (for Filters)
 
-- Geekflare: 
+### GeeksForGeeks:
+  - I referred to [this article](https://www.geeksforgeeks.org/datefield-django-models/) for help using a Datefield in my orderlineitem model
 
-- Documentation:
+### Youtube:
+  - I watched [this video](https://www.youtube.com/watch?v=8ptKpzW-KLo) by Frontend Paathshala to help me set up the CDN for bootstrap date picker v4.6
+  - I followed [this tutorial](https://www.youtube.com/watch?v=pRiQeo17u6c) by Traversy Media to set up the Google Maps Geocoding Service API.
 
 ## Content
 
@@ -614,7 +643,7 @@ TO DO
 
 - Thank you to my Mentor Akshat Garg for helpful feedback, industry insights and recommended tools.
 
-- Thank you to ... for participating in the peer code review on the Code Institute Slack channel. Thank you to my family for manually testing the website and for feedback.
+- Thank you to Shahidul Islam for participating in the peer code review on the Code Institute Slack channel.
 
 - Thank you to the Code Institute London Community for their encouragement and technical support.
 

@@ -199,7 +199,7 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
  | 24 | Customer | Easily enter my payment information | Check out quickly with no hassles | Checkout Page | 
  | 25 | Customer | Feel my personal and payment information is safe and secure | Confidently provide the needed information to make a purchase | Checkout Page | 
  | 26 | Customer | View an order confirmation after checkout | Know my order has gone throigh and I haven't made any mistakes | Order Confirmation Page | 
- | 27 | Customer | Recieve an email confirmation after checkout | Keep a confirmation for my records | FAIL - Unresolved Bug | 
+ | 27 | Customer | Recieve an email confirmation after checkout | Keep a confirmation for my records | Email | 
  | Landing Page | 
  | 28 | Store Owner | Showcase featured listing | Give website visitors a quick sense of the types of listings available on my website | Homepage | 
  | 29 | Store Owner | Showcase featured categories | Give website visitors a quick sense of the types of categories available on my website | Homepage | 
@@ -237,15 +237,25 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 ## Navigation
 
+- The main navigation buttons have been tested and proven to work
+- User permissions have been tested and proven to work
+
 <h2 align="center"><img src="TESTING/screenshots/navigation.jpg"></h2>
 
 <h2 align="center"><img src="TESTING/screenshots/website-admin-options.jpg"></h2>
 
+<h2 align="center"><img src="TESTING/screenshots/search.jpg"></h2>
+
 ## Footer
+
+- Social links in the footer have been tested and proven to work
 
 <h2 align="center"><img src="TESTING/screenshots/footer.jpg"></h2>
 
 ## Homepage
+
+- Buttons have been tested and proven to work
+- Links have been tested and proven to work
 
 <h2 align="center"><img src="TESTING/screenshots/jumbatron.jpg"></h2>
 
@@ -253,9 +263,13 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 <h2 align="center"><img src="TESTING/screenshots/featured-categroies.jpg"></h2>
 
-<h2 align="center"><img src="TESTING/screenshots/featured-reviews.jpg"></h2>
+<h2 align="center"><img src="TESTING/screenshots/new-featured-reviews.jpg"></h2>
 
 ## All Listings & Filters
+
+- Filters have been tested and proven to work as desired
+- Reset Filters button has been tested and proven to work
+- Links have been tested and proven to work
 
 <h2 align="center"><img src="TESTING/screenshots/listings-filters.jpg"></h2>
 
@@ -267,6 +281,9 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 ## Search
 
+- Applied search criteria works as expected
+- Empty search works as expected
+
 <h2 align="center"><img src="TESTING/screenshots/search-error-not-applied.jpg"></h2>
 
 <h2 align="center"><img src="TESTING/screenshots/search-query-applied.jpg"></h2>
@@ -275,25 +292,35 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 ### Image Carousel
 
+- Image carousel renders images and controls work as expected
+
 <h2 align="center"><img src="TESTING/screenshots/lisiting-detail-page.jpg"></h2>
 
 ### Date Range Picker
 
+- Date range picker works as expected. Allows user to select a range
+
 <h2 align="center"><img src="TESTING/screenshots/lisiting-detail-page-datepicker.jpg"></h2>
 
-<h2 align="center"><img src="TESTING/screenshots/lisiting-detail-page-datepicker-range.jpg"></h2>
+<h2 align="center"><img src="TESTING/screenshots/datepicker-new.jpg"></h2>
 
 ### Check Availability
+
+- If the dates are valid, the book now button appears with the price
+- If dates are not valid, the relevant messages appear
+- Book now button adds booking to cart and confirms this to the user
 
 <h2 align="center"><img src="TESTING/screenshots/listing-detail-submitted.jpg"></h2>
 
 <h2 align="center"><img src="TESTING/screenshots/listing-detail-clash.jpg"></h2>
 
-<h2 align="center"><img src="TESTING/screenshots/listing-detail-too-few-dates-selected.jpg"></h2>
-
 <h2 align="center"><img src="TESTING/screenshots/listing-detail-no-date-selected.jpg"></h2>
 
+<h2 align="center"><img src="TESTING/screenshots/success-added-to-cart.jpg"></h2>
+
 ### Key Features & Description
+
+- Key features and description appear as expected
 
 <h2 align="center"><img src="TESTING/screenshots/listing-detail-key-feature.jpg"></h2>
 
@@ -301,9 +328,13 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 ### Google Map
 
+- Map renders as expected
+
 <h2 align="center"><img src="TESTING/screenshots/listing-detail-map.jpg"></h2>
 
 ### Average Rating & Reviews
+
+- Average rating and reviews render as expected
 
 <h2 align="center"><img src="TESTING/screenshots/listing-detail-review.jpg"></h2>
 
@@ -311,15 +342,22 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 ## Cart
 
+- Cart renders as expected with one or more products added to cart 
+- Buttons have been tested and proven to work
+- Cart renders as expected with no items in cart
+- Items can be removed from the cart
+
 <h2 align="center"><img src="TESTING/screenshots/cart.jpg"></h2>
 
 <h2 align="center"><img src="TESTING/screenshots/cart-multiple-bookings.jpg"></h2>
 
 <h2 align="center"><img src="TESTING/screenshots/cart-removed-item-alert.jpg"></h2>
 
-<h2 align="center"><img src="TESTING/screenshots/success-added-to-cart.jpg"></h2>
-
 ## Checkout
+
+- Cart renders as expected
+- Signed in user can save information to profile
+- Invalid card details error messages appear
 
 <h2 align="center"><img src="TESTING/screenshots/checkout.jpg"></h2>
 
@@ -327,13 +365,20 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 <h2 align="center"><img src="TESTING/screenshots/cart-if-not-logged-in.jpg"></h2>
 
+<h2 align="center"><img src="TESTING/screenshots/payment-error-message.jpg"></h2>
+
 ## Order Success
+
+- Order success page renders as expected
 
 <h2 align="center"><img src="TESTING/screenshots/order-confirmation.jpg"></h2>
 
 ## User authentification
 
-<h2 align="center"><img src="TESTING/screenshots/allauth-error-if-user-access-review-not-theirs.jpg"></h2>
+- Register, log in and log out pages render as expected
+- Non-authetificated users cannot access user profile, they are redirected to log in
+
+<h2 align="center"><img src="TESTING/screenshots/alluth-register.jpg"></h2>
 
 <h2 align="center"><img src="TESTING/screenshots/allauth-login.jpg"></h2>
 
@@ -341,13 +386,20 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 <h2 align="center"><img src="TESTING/screenshots/allauth-not-logged-in-profile-redirect.jpg"></h2>
 
-<h2 align="center"><img src="TESTING/screenshots/alluth-register.jpg"></h2>
-
 ## User Profile
+
+- User profile renders as expected
+- Links are tested and proven to work
+- Users can update their information from the form.
 
 <h2 align="center"><img src="TESTING/screenshots/user-profile.jpg"></h2>
 
 ## Reviews
+
+- View, add and edit reviews pages render as expected
+- Links are tested and proven to work
+- Users can update their information from the form.
+- Non-authetificated users cannot access reviews page. Redirected to home page
 
 <h2 align="center"><img src="TESTING/screenshots/reviews-view.jpg"></h2>
 
@@ -365,7 +417,17 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 <h2 align="center"><img src="TESTING/screenshots/reviews-success-message.jpg"></h2>
 
+<h2 align="center"><img src="TESTING/screenshots/allauth-error-if-user-access-review-not-theirs.jpg"></h2>
+
+### Confirmation Email
+
+- Order confirmation is sent and recieved.
+
+<h2 align="center"><img src="TESTING/screenshots/confirmation-email.jpg"></h2>
+
 # Peer Review
+
+- I submitted my project for peer review shortly before submission. The feedback was positive and no bugs were highlighted.
 
 # Bugs
 
