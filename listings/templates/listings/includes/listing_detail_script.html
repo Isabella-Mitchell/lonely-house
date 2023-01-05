@@ -171,7 +171,6 @@
             // format to match python - beware of 0-11 or 1-12 months
             format: 'yyyy-mm-dd',
             startDate: '+1d',
-            clearBtn: true,
             autoclose: true,
             changeMonth: true,
             changeYear: true,
@@ -213,7 +212,6 @@
         */
         $('#startDate').datepicker({
         }).on('changeDate', function(){
-            console.log("change function called");
             var startDateNew = new Date($('#startDate').val());
             startDateNew.setDate(startDateNew.getDate() + 1);
             $end.datepicker('setDate', startDateNew);
