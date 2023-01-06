@@ -89,7 +89,7 @@ The Lonely House website passed all tests using the JSHint Validator tool
 
 ## Python Validation using Gitpod
 
-* I have checked all Python documents using a PEP8 linter to ensure they are complient.
+* I have checked all Python documents using a PEP8 linter to ensure they are compliant.
 
 * Exceptions include code I have not written in Django settings.
 
@@ -103,7 +103,7 @@ The Lonely House website passed all tests using the JSHint Validator tool
 
 ## Wave Webaim Accessibility Checker
 
-* I used WAVE Web Accessibility Evaluation Tools to help me check the A11y complience of my code. Though there could be further improvements, I made a dedicated effort to ensure my website it accessible.
+* I used WAVE Web Accessibility Evaluation Tools to help me check the A11y compliance of my code. Though there could be further improvements, I made a dedicated effort to ensure my website is accessible.
 
 <h2 align="center"><img src="TESTING/wave-homepage.jpg"></h2>
 
@@ -114,12 +114,12 @@ The Lonely House website passed all tests using the JSHint Validator tool
 # Lighthouse
 
 I used the Lighthouse reports in Google Developer Tools to examine the pages of the website for the following
-- Performace
+- Performance
 - Accessibility
 - Best Practices 
 - SEO
 
-There were some less than optimum scores for perfomrmance and SEO. These could be resolved by:
+There were some less than optimum scores for performance and SEO. These could be resolved by:
 - Using next gen image formats
 - Reducing unused Javascript and jQuery
 - Adding metadata to listing detail pages
@@ -176,7 +176,7 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
  | 4 | Customer | Quickly identify key features of accomodation through icons and keywords | Decide if it's appropriate for type of stay I want | All Listings Page and Listings Details Pages | 
  | 5 | Customer | See the  price update automatically when I enter my stay length | To help me not overspend | Listings Details Pages | 
  | 6 | Customer | See available dates | Know I'll have the cabin when I book it due to a responsive date picker | Listings Details Pages | 
- | 7 | Customer | See ratings and reviews | To help me make my desision | Listings Details Pages | 
+ | 7 | Customer | See ratings and reviews | To help me make my decision | Listings Details Pages | 
  | Registration and User Accounts | 
  | 8 | Site User | Easily register for an account | Have a personal account and be able to see my profile | Register Page | 
  | 9 | Site User | Easily login or logout | Access my personal info | Log in and Log out Pages | 
@@ -198,22 +198,22 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
  | 23 | Customer | Be able to review my order details | So I can double check I have booked the right accomodation for the right dates with the right number of people | Cart Page and Checkout Page | 
  | 24 | Customer | Easily enter my payment information | Check out quickly with no hassles | Checkout Page | 
  | 25 | Customer | Feel my personal and payment information is safe and secure | Confidently provide the needed information to make a purchase | Checkout Page | 
- | 26 | Customer | View an order confirmation after checkout | Know my order has gone throigh and I haven't made any mistakes | Order Confirmation Page | 
+ | 26 | Customer | View an order confirmation after checkout | Know my order has gone through and I haven't made any mistakes | Order Confirmation Page | 
  | 27 | Customer | Recieve an email confirmation after checkout | Keep a confirmation for my records | Email | 
  | Landing Page | 
  | 28 | Store Owner | Showcase featured listing | Give website visitors a quick sense of the types of listings available on my website | Homepage | 
  | 29 | Store Owner | Showcase featured categories | Give website visitors a quick sense of the types of categories available on my website | Homepage | 
- | 30 | Store Owner | Showcase featured reviews | Show social proof and build trust with websitevisitors | Homepage | 
+ | 30 | Store Owner | Showcase featured reviews | Show social proof and build trust with website visitors | Homepage | 
  | Ratings & Reviews | 
  | 31 | Customer | To be able to add a Rating/ Review | In case I wish to add a rating and or a written review | Add Reviews Page | 
- | 32 | Customer | To be abl to delete a Rating/ Review | In case I wish to delete a rating and or a written review | Reviews Page | 
+ | 32 | Customer | To be able to delete a Rating/ Review | In case I wish to delete a rating and or a written review | Reviews Page | 
  | 33 | Customer | to be able to edit a Rating/ Review | In case I wish to edit a rating and or a written review | Edit Reviews Page | 
 
 # Automated Testing
 
 * I have written a suite of automated tests in Django using Python unittest framework. These cover views, forms and models where applicable. Tests can be found in tests.py files within the apps.
 
-* Due to time contraints, there are some parts of my project which are not covered by automated tests. However I feel the testing is sufficient in conjunction with manual testing.
+* Due to time constrainsts, there are some parts of my project which are not covered by automated tests. However, I feel the testing is sufficient in conjunction with manual testing.
 
 * Due to time constraints and the use of jQuery via a CDN, I have not written tests for my javascript. This is a future development feature.
 
@@ -376,7 +376,7 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 ## User authentification
 
 - Register, log in and log out pages render as expected
-- Non-authetificated users cannot access user profile, they are redirected to log in
+- Non-authenticated users cannot access user profile, they are redirected to log in
 
 <h2 align="center"><img src="TESTING/screenshots/alluth-register.jpg"></h2>
 
@@ -399,7 +399,7 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 - View, add and edit reviews pages render as expected
 - Links are tested and proven to work
 - Users can update their information from the form.
-- Non-authetificated users cannot access reviews page. Redirected to home page
+- Non-authenticated users cannot access reviews page. Redirected to home page
 
 <h2 align="center"><img src="TESTING/screenshots/reviews-view.jpg"></h2>
 
@@ -421,7 +421,7 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 ### Confirmation Email
 
-- Order confirmation is sent and recieved.
+- Order confirmation is sent and received.
 
 <h2 align="center"><img src="TESTING/screenshots/confirmation-email.jpg"></h2>
 
@@ -435,7 +435,7 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 ### Datepicker not matching JSON with Javascript due to differences in date and month format
 
-* Dates with single digits for date or month where not being greyed out on the datepicker. This is because the logic that made the date disabled was generating dates as 1-1-24, whereas the JSON was providing dates in 01-01-24 format.
+* Dates with single digits for date or month were not being greyed out on the datepicker. This is because the logic that made the date disabled was generating dates as 1-1-24, whereas the JSON was providing dates in 01-01-24 format.
 
 * I noticed this, identified the problem by thinking through the logic and console logging to confirm that this was the issue.
 
@@ -443,9 +443,9 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 ### Datepicker not matching JSON with Javascript due to differences in date and month format
 
-* In my listings script, on window load, the applied filters are compared against the checkboxes. The approproiate checkboxes are checked and the dropdown button changes colour. I am using jQuery selectors the get elements on the page, and template literals to populate the jQuery selector.
+* In my listings script, on window load, the applied filters are compared against the checkboxes. The appropriate checkboxes are checked and the dropdown button changes colour. I am using jQuery selectors the get elements on the page, and template literals to populate the jQuery selector.
 
-* While developing this, I got this error message 'Syntax error, unrecognized expression:' After googling the error message, I found [this article](https://forum.jquery.com/topic/uncaught-error-syntax-error-unrecognized-expression-3-6-2020). I realised that I had an additional set of quote which meant the script wouldn't work.
+* While developing this, I got this error message 'Syntax error, unrecognized expression:' After googling the error message, I found [this article](https://forum.jquery.com/topic/uncaught-error-syntax-error-unrecognized-expression-3-6-2020). I realised that I had an additional set of quotes which meant the script wouldn't work.
 
 * I removed the quotes and resolved the bug. (Note this was flagged in my JSHint, so there may be a better solution.)
 
@@ -453,9 +453,9 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 * When I developed my project, I thought it would be good UX for users to go straight to cart once they had added a product.
 
-* I initally did this using the cart/add URL, however that meant that users couldn't remove items without reloading the cart page. I realised this was an error in my code that was causing this bug.
+* I initially did this using the cart/add URL, however that meant that users couldn't remove items without reloading the cart page. I realised this was an error in my code that was causing this bug.
 
-* After revisting the Code Institute walkthrough, I decided to change this to redirect and it fixed the bug.
+* After revisiting the Code Institute walkthrough, I decided to change this to redirect and it fixed the bug.
 
 ### Images not appearing on Deployed site.
 
@@ -465,13 +465,34 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 * I removed this and it fixed the bug.
 
+### Failing payment_intent.successed Webhooks and Confirmation emails not sending.
+
+<h2 align="center"><img src="TESTING/bug-failing-webhooks.jpg"></h2>
+
+* I had Stripe correctly and the majority of my webhooks pass. However, my payment_intent.succeeded was failing and I was getting 500 errors. It beleived this was also causing confirmation emails to not send properly. I knew my email config was correct as I could send and recieve reset password emails.
+
+* After adding print statements to every line of my webhook handler and setting debug as true on Heroku, I was able to detect the cause of the problem:
+    * My order postcodes not matching (due to the Stripe postcode always overriding the user's provided postcode)
+    * The logic I had used to turn first name and last name into full name and then split it back out was incorrect.
+
+* Print statments showing me something was wrong, as handler didn't think order existed.
+<h2 align="center"><img src="TESTING/print-webhookhandler.jpg"></h2>
+
+* Log to console highlighting an issue with name
+<h2 align="center"><img src="TESTING/heroku-error-log-on.jpg"></h2>
+
+* Comparing webhook created order with actual order and seeing postcodes don't match
+<h2 align="center"><img src="TESTING/postcodes-dont-match.jpg"></h2>
+
+* I resolved this issues by attaching my form's postcode details to a shipping postcode, and by updating my first and last name logic.
+
 ## Unresolved
 
 ### Potential issues using local storage to save applied filters
 
 * I have used local storage to allow users to edit their filters. If I did not use this, then users would have to reselect checkboxes everytime. Filters can be removed by using the 'Reset Filters' Button.
 
-* Ideally navigating away from the page would also reset filtes. There were some times during testing when I would navigate to the listings page and see filters being applied when I did not expect them too.
+* Ideally navigating away from the page would also reset filters. There were some times during testing when I would navigate to the listings page and see filters being applied when I did not expect them too.
 
 * I feel I would need to learn more about using Local Storage in order to fix this bug.
 
@@ -479,21 +500,21 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 <h2 align="center"><img src="TESTING/bug-image-name.jpg"></h2>
 
-* When creating this model, I had to add a 'name' field to images as I couldn't override Django Image Object. This makes it more time consuming for admins to upload images, and leaves more room for human error.
+* When creating this model, I had to add a 'name' field to images as I couldn't override Django Image Object. This makes it more time-consuming for admins to upload images, and leaves more room for human error.
 
-* Due to time constraints I have not improved this method.
+* Due to time constrainsts I have not improved this method.
 
 ### Click through from featured category doesn't show filter being applied
 
 <h2 align="center"><img src="TESTING/bug-category.jpg"></h2>
 
-* When a user clicks on a featured categroy they are directed to the listing page by URL with that query applied. Therefore the Listings Page doesn't appear to have a filter applied, even though the user can see view properties.
+* When a user clicks on a featured category they are directed to the listing page by URL with that query applied. Therefore the Listings Page doesn't appear to have a filter applied, even though the user can see view properties.
 
 * There is a risk the user may not realise there are more properties, because they may not think to reset filters or refresh the page.
 
 * One way to resolve this would to create category 'collections' and link this instead. I have included this as a future feature.
 
-### Checkout first and last names fields not auto populating
+### Checkout first and last names fields not auto-populating
 
 * User and User Profile has no first or last name fields, so these fields in the checkout form are not populated. This makes it more time consuming for logged in users who have saved all their other information to go through checkout.
 
@@ -507,44 +528,16 @@ I also personally tested the website on iPhone 11, iPad Pro 2nd Generation, Dell
 
 <h2 align="center"><img src="TESTING/bug-invalid-coordinates.jpg"></h2>
 
-* Admins can provide Coordinates up to two digits. These means they could enter invalid coordinates, such as 99.9 and 99.9
+* Admins can provide Coordinates up to two digits. This means they could enter invalid coordinates, such as 99.9 and 99.9
 
 * I do not have any handling if invalid coordinates are entered. The map appears like this.
 
-* I do not think this is a major issue, as the page still renders, and it unlikely admins would enter incorrect information. Though ideally the map would be hidden if invlaid coordinates are supplied.
+* I do not think this is a major issue, as the page still renders, and it unlikely admins would enter incorrect information. Though ideally the map would be hidden if invalid coordinates are supplied.
 
-### Failing payment_intent.successed Webhooks
+### Max cart length
 
-<h2 align="center"><img src="TESTING/bug-failing-webhooks.jpg"></h2>
+* I noticed that I couldn't place a booking for a stay of more than approximately 25 days. This is because of there is a max-length value of 500 characters. As I noticied this shortly before submission, and shorter stays can be booked without a probelm, I decided to leave this bug as unresolved.
 
-* I have set up Stripe correctly and the majority of my webhooks pass. However I my payment_intent.succeeded is failing, and I can't work out why.
-
-* I looked at this issue on Slack and saw lots of people have experienced the same issue. It can also cause confirmation emails to not send properly.
-
-* Possible solutions include deleting my endpoint and creating a new one, clearing site data and changing a DNS setting to Google DNS.
-
-* I have used a diff checker against the relevant walkthrough project files, and cannot identify any typos or mistakes.
-
-* I believe the issue may have been caused by proceeding through checkout on my development site once I had my deployed site set up. 
-
-* This bug occured shortly before submission, so I decided to leave this bug unresolved to ensure I did not break my project without enough time to recitify it.
-
-### Confirmation Emails not sending
-
-* I know I have set up emails correctly, as users can request and recieve Reset Password emails.
-
-* I looked at this issue on Slack and saw lots of people have experienced the same issue. I believe this issue has been caused by my failing webhooks (see above).
-
-* This bug occured shortly before submission, so I decided to leave this bug unresolved to ensure I did not break my project without enough time to recitify it.
-
-MORE
-
-# will populate with stripe postcode, unfixed bug
-postcode=billing_details.address.postal_code,
-I tried to update this and stripe_elements.js to use Shipping postcode but my webhooks started failign again, so decided to leave it !"
-
-The Fix to above in reolved
-
-Max cart amount
+<h2 align="center"><img src="TESTING/bug-cart-too-long.jpg"></h2>
 
 Back to [README.md](/README.md#testing)

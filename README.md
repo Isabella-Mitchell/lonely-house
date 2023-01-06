@@ -6,13 +6,13 @@
 
 * Lonely House is a fictional holiday letting website that allows users to browse and book holiday lettings.
 
-* This is my Milestone Project 4 submission for Code Institute's Diploma in Web Application Development course. Lonely House is built using Django full stack framework and uses a Relational Database. Technologies used include HTML, CSS, Javascript, Python, Google Maps API and Stripe payments.
+* This is my Milestone Project 4 submission for Code Institute's Diploma in Web Application Development course. Lonely House is built using Django full-stack framework and uses a Relational Database. Technologies used include HTML, CSS, Javascript, Python, Google Maps API and Stripe payments.
 
 * Key features include:
   - Filters: Users can apply filters to quickly and easily find options
-  - Real-time Availability: Users can browse and select available dates (unavailable dates from exisiting bookings will be disabled).
+  - Real-time Availability: Users can browse and select available dates (unavailable dates from existing bookings will be disabled).
   - Cart & Stripe Checkout: Users can add multiple bookings to their cart and proceed to checkout with Stripe.
-  - Authentication : Users can create an account to save their contact information and view their order history
+  - Authentication: Users can create an account to save their contact information and view their order history
   - Reviews: Registered users can create, read, update and delete reviews
 
 ## Live Project
@@ -60,18 +60,18 @@
 
 # User Experience
 
-## User stoires
+## User stories
 
 | User Story ID | As a/an | I want to be able to... | So that I can... |
 | --- | ----------- | ----------- | ----------- |
  | Viewing and Navigation | 
 | 1 | Customer | View a list of accomodation | Quickly compare and select different accomodation options | 
- | 2 | Customer | View individually accomodation details | Find out further information about and see further images of the listing | 
+ | 2 | Customer | View individual accomodation details | Find out further information about and see further images of the listing | 
  | 3 | Customer | See an embedded google maps map | Plan my journey to the site from my location | 
- | 4 | Customer | Quickly identify key features of accomodation through icons and keywords | Decide if it's appropriate for type of stay I want | 
+ | 4 | Customer | Quickly identify key features of accomodation through icons and keywords | Decide if it's appropriate for the type of stay I want | 
  | 5 | Customer | See the  price update automatically when I enter my stay length | To help me not overspend | 
  | 6 | Customer | See available dates | Know I'll have the cabin when I book it due to a responsive date picker | 
- | 7 | Customer | See ratings and reviews | To help me make my desision | 
+ | 7 | Customer | See ratings and reviews | To help me make my decision | 
  | Registration and User Accounts | 
  | 8 | Site User | Easily register for an account | Have a personal account and be able to see my profile | 
  | 9 | Site User | Easily login or logout | Access my personal info | 
@@ -93,22 +93,22 @@
  | 23 | Customer | Be able to review my order details | So I can double check I have booked the right accomodation for the right dates with the right number of people | 
  | 24 | Customer | Easily enter my payment information | Check out quickly with no hassles | 
  | 25 | Customer | Feel my personal and payment information is safe and secure | Confidently provide the needed information to make a purchase | 
- | 26 | Customer | View an order confirmation after checkout | Know my order has gone throigh and I haven't made any mistakes | 
+ | 26 | Customer | View an order confirmation after checkout | Know my order has gone through and I haven't made any mistakes | 
  | 27 | Customer | Recieve an email confirmation after checkout | Keep a confirmation for my records | 
  | Landing Page | 
- | 28 | Store Owner | Showcase featured listingd | Give website visitors a quick sense of the types of listings available on my website | 
+ | 28 | Store Owner | Showcase featured listings | Give website visitors a quick sense of the types of listings available on my website | 
  | 29 | Store Owner | Showcase featured categories | Give website visitors a quick sense of the types of categories available on my website | 
- | 30 | Store Owner | Showcase featured reviews | Show social proof and build trust with websitevisitors | 
+ | 30 | Store Owner | Showcase featured reviews | Show social proof and build trust with website visitors | 
  | Ratings & Reviews | 
  | 31 | Customer | To be able to add a Rating/ Review | In case I wish to add a rating and or a written review | 
- | 32 | Customer | To be abl to delete a Rating/ Review | In case I wish to delete a rating and or a written review | 
+ | 32 | Customer | To be able to delete a Rating/ Review | In case I wish to delete a rating and or a written review | 
  | 33 | Customer | to be able to edit a Rating/ Review | In case I wish to edit a rating and or a written review | 
 
 ## Design
 
 ### Overview
 
-- The website design is simple yet characterful. As the name 'Lonely House' suggests, the website's USP is that it offers holiday lettings that are remote and situated in nature. They offer a chance for people to escape busy lives, relax in nature and slow down. The aesthic of the website, with its soft edges and rounded corners, warm colours and rich visual references to nature, was inspired by this idea.
+- The website design is simple yet characterful. As the name 'Lonely House' suggests, the website's USP is that it offers holiday lettings that are remote and situated in nature. They offer a chance for people to escape busy lives, relax in nature and slow down. The aesthetic of the website, with its soft edges and rounded corners, warm colours and rich visual references to nature, was inspired by this idea.
 
 ### Colour Scheme
 
@@ -120,21 +120,21 @@
 
 ### Typography
 
-- Headings are in Josefin Slab, with serif as a fallback font. With slight typewritier style attributes, Josefin Slab brings a subtle sense of character to the website. The body copy is in Jost with sans-serif as a fallback font. The choice of simple, easily-legible typefaces means that the text will be easy to read on all device sizes. 
+- Headings are in Josefin Slab, with serif as a fallback font. With slight typewriter style attributes, Josefin Slab brings a subtle sense of character to the website. The body copy is in Jost with sans-serif as a fallback font. The choice of simple, easily-legible typefaces means that the text will be easy to read on all device sizes. 
 
 ### Imagery 
 
 - Imagery is a very important feature of the website, as users need to be able to see listings to be encouraged to book a holiday.
 
-- Images are mostly displayed in Bootstrap Carousels. These allows the admin to add multiple photos without worrying about them taking up lots of space on the page.
+- Images are mostly displayed in Bootstrap Carousels. These allow the admin to add multiple photos without worrying about them taking up lots of space on the page.
 
-- The admin can choose to set a featured image. This the image that appears first by default on the all listings and listing detail page. There is a fallback 'holding' image if the admin does not set an image.
+- The admin can choose to set a featured image. This is the image that appears first by default on the all listings and listing detail page. There is a fallback 'holding' image if the admin does not set an image.
 
 - Consistent aspect ratios have been used to bring visual harmony to the site across different page layouts.
 
 ### Icons
 
-- I used icons from Font Awesome extensively on the website. They are used within the nav bar to reduce the need for verbose descriptions such as 'search. I have used them on buttons to reinforce the action of the button. They are also used within listings to visually represent different facilities, ratings, location pin etc. I have added in screen reader alteratives where I felt it was necessary and appropriate.
+- I used icons from Font Awesome extensively on the website. They are used within the nav bar to reduce the need for verbose descriptions such as 'search. I have used them on buttons to reinforce the action of the button. They are also used within listings to visually represent different facilities, ratings, location pin etc. I have added screen reader alternatives where I felt it was necessary and appropriate.
 
 ### Cards
 
@@ -146,28 +146,28 @@
 
 ## Changes to Wireframes
 
-Due to time constraints and descions made during the project, there are some differences between the live site and my initial wireframes
+Due to time constraints and decisions made during the project, there are some differences between the live site and my initial wireframes
 
 - Added add/edit/delete reviews page within the User Profile
-  * I initially was going to add the review CRUD functionality to the listing page. But during the project I realised it may be more intiutative for users to be able to see all their reviews in one place, instead of scattered on different pages.
+  * I initially was going to add the review CRUD functionality to the listing page. But during the project I realised it may be more intuitive for users to be able to see all their reviews in one place, instead of scattered on different pages.
 
 - Added Cart step and cart button to nav
-  * Originally I wasn't planning on adding a cart step, as many of the holiday letting websites I looked at for research did not have one. However my mentor suggested it would be a good idea as additional 'add-ons' such as insurance and car rental could be introduced as a future feature.
+  * Originally I wasn't planning on adding a cart step, as many of the holiday letting websites I looked at for research did not have one. However, my mentor suggested it would be a good idea as additional 'add-ons' such as insurance and car rental could be introduced as a future feature.
 
 - Added 'Search and Book' button to nav and as a banner on smaller screen sizes
-  * As I was building the website, I realised it wasn't very easy for users to get to the 'all listings' page. I therefore added a button to the navigation making it easier and more intuiative for users to browse listings.
+  * As I was building the website, I realised it wasn't very easy for users to get to the 'all listings' page. I therefore added a button to the navigation making it easier and more intuitive for users to browse listings.
 
 - Didn't include map view on listing page
-  * I set coordinates for listings and made it a required field so that I could show a google map on each listing page, and also let users see a map view of all listings. However, due to time contraists I was not able to releaise the latter feature.
+  * I set coordinates for listings and made it a required field so that I could show a google map on each listing page, and also let users see a map view of all listings. However, due to time constraints I was not able to realise the latter feature.
 
 - Didn't add back to top button at bottom of pages
-  * This feature wasn't a prioirty during development, so I omitted it due to time contraists. However in reality the all listings page would need some way to manage a lot of listings, whether that's infinite scroll or pagination.
+  * This feature wasn't a priority during development, so I omitted it due to time constraints. However in reality the all listings page would need some way to manage a lot of listings, whether that's infinite scroll or pagination.
 
 # Features
 
 ## All Pages
 
-- Resonsive design
+- Responsive design
 - Semantic HTML
 - Custom CSS to give the website a cohesive and user-friendly appearance
 
@@ -240,21 +240,21 @@ Due to time constraints and descions made during the project, there are some dif
   - Subtotal
 - Remove from cart option
 - Cart Total
-- Secture Checkout button
+- Secure Checkout button
 - Back button
 
 ## Checkout Page
 - Order summary
 - Checkout form, featuring:
   - Option to save information to profile
-  - Autopopulates with content saved to user profile
+  - Auto populates with content saved to user profile
   - Stripe payment
 
 ## Checkout Confirmation Page/ Email
 - Checkout confirmation page
 - Sends booking confirmation email
 
-## Authetification Pages
+## Authentification Pages
 - Register/ Log In/ Log Out/ Reset Password Pages
 - Features largely provided by Django allauth
 
@@ -278,14 +278,13 @@ Due to time constraints and descions made during the project, there are some dif
 
 # Future Features
 
-
 ## User Experience Features
 
 ### Datepicker
 
-#### Users would be able to book their Check In date on an exisiting Check Out date.
+#### Users would be able to book their Check In date on an existing Check Out date.
 
-* The datepicker and booking logic means that a Check out date is not reflected as a night on the datepicker, while the Check In date counts as a night. This is ok if users book consectutive dates, as the later booking can check-in on the same day that the intial booking's check out date. E.g. 5th-7th June and 7th-9th June. However if the trips are not booked consecutively, the later booking cannot select the initial booking's Check-in date. E.g. 7th-9th June means that 5th-7th of June cannot be booked, instead they could book 4th-6th June. 
+* The datepicker and booking logic means that a Check out date is not reflected as a night on the datepicker, while the Check In date counts as a night. This is ok if users book consecutive dates, as the later booking can check-in on the same day that the initial booking's check out date. E.g. 5th-7th June and 7th-9th June. However if the trips are not booked consecutively, the later booking cannot select the initial booking's Check-in date. E.g. 7th-9th June means that 5th-7th of June cannot be booked, instead they could book 4th-6th June. 
 
 * A future feature would be a more complex datpicker that allows this.
 
@@ -330,7 +329,7 @@ Due to time constraints and descions made during the project, there are some dif
 
 #### Category 'Collections'
 
-* A future feature would be to create collections. I noticied that when a user selects a 'featured category' from the homepage, they do not see what Category is being applied. One way around this would be to make category collections so these featured links could navigate there.
+* A future feature would be to create collections. I noticed that when a user selects a 'featured category' from the homepage, they do not see what Category is being applied. One way around this would be to make category collections so these featured links could navigate there.
 
 
 ### Cart & Checkout
@@ -339,25 +338,25 @@ Due to time constraints and descions made during the project, there are some dif
 
 * If a user returns to a listing page from the cart, they do not have a clever way to amend their booking.
 
-* The user can select new dates and add the property to cart to amend their booking, however this is not intuiative. I could add a toast/ alert warning the user they already have a booking in their cart, and if they select new dates they will loose their existing booking.
+* The user can select new dates and add the property to cart to amend their booking, however this is not intuitive. I could add a toast/ alert warning the user they already have a booking in their cart, and if they select new dates they will lose their existing booking.
 
 * A future feature would be, if users navigate to a listing which is currently in their cart, then their existing booking dates would populate the datepicker.
 
 #### More descriptive 'Add to Cart' toasts
 
-* If a user adds a booking to cart, they can see more informaion in the success toast.
+* If a user adds a booking to cart, they can see more information in the success toast.
 
 #### Check in and Checkout date being reflected in Order Confirmation
 
 * Users cannot currently see their check in and check out date once they have placed their order. They currently only see the nights they have booked. In my own experience of booking holiday lets, it's very important that the user is clear on these dates. There is a chance, by only reflecting the nights, that users might think the final date is the checkout date, when in fact it is the night after.
 
-* Ideally these dates would be calculated from the line items. E.g. if a line item is deleted (like the user is cutting their trip shorter by one day), then the checkout date automatically calculates itself and updates.
+* Ideally, these dates would be calculated from the line items. E.g. if a line item is deleted (like the user is cutting their trip shorter by one day), then the checkout date automatically calculates itself and updates.
 
 * A future feature would be to reflect the user's check-in and check-out dates in their order confirmation.
 
 #### Update dates shown to user format to be dd-mm-yyyy 
 
-* The format is yyyy-mm-dd due to the default date format on the Python order model. I'm sure this could be changed but it is low prioirty. I also realised I could use a date picker within the line item to select and change the date. This was ideal as it would mean invalid dates could not be entered by the admin. The default format for this is yyyy-mm-dd, so I have also used this on my datepicker. I feel a more user friendly format would be dd-mm-yyyy, but updating this is a low priority.
+* The format is yyyy-mm-dd due to the default date format on the Python order model. I'm sure this could be changed but it is low priority. I also realised I could use a date picker within the line item to select and change the date. This was ideal as it would mean invalid dates could not be entered by the admin. The default format for this is yyyy-mm-dd, so I have also used this on my datepicker. I feel a more user-friendly format would be dd-mm-yyyy, but updating this is a low priority.
 
 * A future feature would be to present dates to the user in a more human-friendly fashion.
 
@@ -387,7 +386,7 @@ Due to time constraints and descions made during the project, there are some dif
 
 #### Newsletter Subscribe
 
-* A possible future feature would be a newsletter subscribtion form to let customers easily subscribe to Lonely House Newsletters
+* A possible future feature would be a newsletter subscription form to let customers easily subscribe to Lonely House Newsletters
 
 #### Wishlist
 
@@ -399,7 +398,7 @@ Due to time constraints and descions made during the project, there are some dif
 
 * I've had issues in previous projects with using Jest on .js files that include jQuery. I think the cause of the issue is the fact that I'm using a CDN to import jQuery.
 
-* As the focus of this project is Python and I have wrtien Unittests, I decided to not refactor my Javascript to allow me to use Jest to test my Javascript code.
+* As the focus of this project is Python and I have written Unittests, I decided to not refactor my Javascript to allow me to use Jest to test my Javascript code.
 
 * A future feature would be to replace jQuery with Javascript in my scripts, and write tests for my scripts.
 
@@ -409,7 +408,7 @@ Due to time constraints and descions made during the project, there are some dif
 
 #### Check if item is a reservation in Checkout views
 
-* I included a reservation field in my OrderLineItem to allow me to offer add-ons in checkout, e.g. an insurance add on. However I have not included logic in my Checkout Views that checks for this. This would need to be rectorfied before further product types are added.
+* I included a reservation field in my OrderLineItem to allow me to offer add-ons in checkout, e.g. an insurance add on. However, I have not included logic in my Checkout Views that checks for this. This would need to be rectified before further product types are added.
 
 #### Add in a nights calulator to Cart Contexts.
 
@@ -419,11 +418,11 @@ Due to time constraints and descions made during the project, there are some dif
 
 * Currently the sleeps filter is populated by a Constant. This means that if a listing was added that slept 18, a new number would have to be applied to the Constant.
 
-* A future fetaure would be to refactor the necessary views, create a sleeps model and amend the listing model, so that this works similar to Categories. This makes it easy for admins to add new listings, and the number automatically appears in the Sleeps filter.
+* A future feature would be to refactor the necessary views, create a sleeps model and amend the listing model, so that this works similarly to Categories. This makes it easy for admins to add new listings, and the number automatically appears in the Sleeps filter.
 
 # Data Model
 
-## Planning & Considerations
+## Considerations
 
 A few of the key points I had to consider when designed my database schema was:
 - How booked dates would be recorded in the order model
@@ -464,22 +463,22 @@ This diagram outlines each model's fields and illustrates the relationship betwe
 ## Frameworks & Libraries
 
 - [Django](https://www.djangoproject.com/)
-  - This website is built using Django, a high-level Python web framwork.. Lonely House features multiple apps with model, view and template layers. I have also used Django to provide an admin view, create forms and test my website. Further features used include [Django Allauth](https://django-allauth.readthedocs.io/en/latest/index.html) for user authentification, Pillow for uploading images, and Crispy Forms.
+  - This website is built using Django, a high-level Python web framework. Lonely House features multiple apps with model, view and template layers. I have also used Django to provide an admin view, create forms and test my website. Further features used include [Django Allauth](https://django-allauth.readthedocs.io/en/latest/index.html) for user authentification, Pillow for uploading images, and Crispy Forms.
 
 - [Jinja](https://jinja.palletsprojects.com/en/3.0.x/)
   - Templating language I've used with Python to add logic to my html templates.
 
 - [jQuery](https://jquery.com/)
-  - I used jQuery to add functionality to MaterialiseCSS componants.
+  - I used jQuery to add functionality to Bootstrap components and within my scripts.
 
 - [Bootstrap 4](https://getbootstrap.com/) 
   - I used bootstrap throughout the site to make it responsive. The website uses Bootstrap's Containers, Grid System, Flexbox and Spacing utilities. I sourced code from the Bootstrap documentation when building the Navbar, Image Carousels, Cards and Buttons.
 
 - [Google Fonts](https://fonts.google.com/)
-  - Two fonts are imported from google fonts.
+  - Fonts are imported from google fonts.
   
 - [Font awesome](https://fontawesome.com/)
-  - I used icons from font awesome on buttons.
+  - I used icons from font awesome across the website
 
 - [Bootstrap Date Picker](https://bootstrap-datepicker.readthedocs.io/en/latest/index.html)
   - I used this CDN to provide the date range picker on the listing detail page.
@@ -487,7 +486,7 @@ This diagram outlines each model's fields and illustrates the relationship betwe
 ## Storage & Hosting
 
 - [Heroku](https://id.heroku.com/login)
-  - Heroku is the deployment source I used for this project. I'm also using it for the Postgres relational database
+  - Heroku is the deployment source I used for this project.
 
 - [Github](https://github.com/)
   - Github was used to create and store the project repository.
@@ -505,8 +504,8 @@ This diagram outlines each model's fields and illustrates the relationship betwe
 
 ## APIs
 
-- [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding)
-  - I used Google's Geocoding API to turn the provided address into coordinates.
+- [Google Maps API](https://developers.google.com/maps/)
+  - I used Google MAPS API to show the listing's location on a google map via coordinates.
 
 ## IDE & Version Control
 
@@ -581,7 +580,7 @@ The following tools were used for testing and code validation. You can see resul
   - I have used Bootstrap classes throughout my project, including for layout utilities and cards. I sourced code from the Bootstrap documentation when building the navbar, image carousels, and dropdowns. These were sourced through the [Bootstrap documentation](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
 
 ### Bootstrap Datepicker:
-  - I refferred to [Bootstrap Datepicker documentation](https://bootstrap-datepicker.readthedocs.io/en/latest/markup.html#date-range) for the initial set up of my Bootstrap Date Picker
+  - I referred to [Bootstrap Datepicker documentation](https://bootstrap-datepicker.readthedocs.io/en/latest/markup.html#date-range) for the initial set up of my Bootstrap Date Picker
 
 ### Stack Overflow: 
   I used and/ or referenced code from the following Stack Overflow articles. Most relate to my datepicker and filters scripts.
@@ -619,9 +618,9 @@ The following tools were used for testing and code validation. You can see resul
 
 ## Content
 
-- As the listings are ficitious, I used [ChatGPT](https://openai.com/blog/chatgpt/) to generate listing descriptions.
+- As the listings are fictitious, I used [ChatGPT](https://openai.com/blog/chatgpt/) to generate listing descriptions.
 
-- I took inspiration from the [Landmark Trust](https://www.landmarktrust.org.uk/) website for the listings names, locations and facilties.
+- I took inspiration from the [Landmark Trust](https://www.landmarktrust.org.uk/) website for the listings names, locations and facilities.
 
 - I looked at the following websites for inspiration on branding and functionality
   - [Landmark Trust](https://www.landmarktrust.org.uk/)
