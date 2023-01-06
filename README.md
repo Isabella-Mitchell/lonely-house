@@ -11,7 +11,7 @@
 * Key features include:
   - Filters: Users can apply filters to quickly and easily find options
   - Real-time Availability: Users can browse and select available dates (unavailable dates from existing bookings will be disabled).
-  - Cart & Stripe Checkout: Users can add multiple bookings to their cart and proceed to checkout with Stripe.
+  - Cart & Stripe Checkout: Users can add multiple bookings to their cart and proceed to checkout with Stripe. See [Stripe's testing card details](https://stripe.com/docs/testing?testing-method=card-numbers#visa) to place an order on the website.
   - Authentication: Users can create an account to save their contact information and view their order history
   - Reviews: Registered users can create, read, update and delete reviews
 
@@ -43,11 +43,11 @@
 - [Data Model](#data-model)
 - [Technologies used](#technologies-used)
   + [Languages Used](#languages-used)
-  + [Frameworks Libraries](#frameworks-libraries)
-  + [Storage & Hosting](#storage-hosting)
+  + [Frameworks & Libraries](#frameworks--libraries)
+  + [Storage & Hosting](#storage--hosting)
   + [Payments](#payments)
   + [APIs](#apis)
-  + [IDE & Version Control](#ide-version-control)
+  + [IDE & Version Control](#ide--version-control)
   + [Other Tools](#other-tools)
   + [Testing & Code Validation](#testing-code-validation)
 - [Testing](#testing)
@@ -640,7 +640,7 @@ The following tools were used for testing and code validation. You can see resul
 
 - Thank you to my Mentor Akshat Garg for helpful feedback, industry insights and recommended tools.
 
-- Thank you to Shahidul Islam for participating in the peer code review on the Code Institute Slack channel.
+- Thank you to Shahidul Islam and Szilvia Csernus for participating in the peer code review on the Code Institute Slack channel.
 
 - Thank you to the Code Institute London Community for their encouragement and technical support.
 
