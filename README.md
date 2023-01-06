@@ -12,7 +12,7 @@
   - Filters: Users can apply filters to quickly and easily find options
   - Real-time Availability: Users can browse and select available dates (unavailable dates from exisiting bookings will be disabled).
   - Cart & Stripe Checkout: Users can add multiple bookings to their cart and proceed to checkout with Stripe.
-  - User Profile : Users can create an account to save their contact information and view their order history
+  - Authentication : Users can create an account to save their contact information and view their order history
   - Reviews: Registered users can create, read, update and delete reviews
 
 ## Live Project
@@ -425,14 +425,12 @@ Due to time constraints and descions made during the project, there are some dif
 
 ## Planning & Considerations
 
-sEE kEY FEATURES
-
-I have gone into more detail about some the key ...
-
-
-As outlined in my ...
-
-TO DO FINISH
+A few of the key points I had to consider when designed my database schema was:
+- How booked dates would be recorded in the order model
+- How booked dates would be 'passed' into the listings page reflected by the datepicker
+- How I could add multiple facilities to my listings, while keeping the listing model streamlined.
+- How I could make it easy for Admin to add and edit facilities and categories.
+- How listings could have multiple images, one image or no images
 
 ## Database Schema
 
