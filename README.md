@@ -15,9 +15,11 @@
   - Authentication: Users can create an account to save their contact information and view their order history
   - Reviews: Registered users can create, read, update and delete reviews
 
-## Live Project
+## Live Project (Offline)
 
-[View the live project here.](https://lonely-house.herokuapp.com/)
+I have taken my project offline for the forseeable future.
+
+[When it was live, you could find it here.](https://lonely-house.herokuapp.com/)
 
 ## Repository
 
